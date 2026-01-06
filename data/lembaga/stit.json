@@ -1,0 +1,50 @@
+{
+  "id": "stit",
+  "name": "STIT Sunniyah Salafiyah",
+  "shortName": "STIT",
+  "desc": "Sekolah Tinggi Ilmu Tarbiyah",
+  "type": "stit",
+  "gender": "umum",
+  "icon": "school",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "STIT Sunniyah Salafiyah adalah perguruan tinggi yang fokus pada pendidikan  tarbiyah dan keguruan Islami.",
+    "akreditasi": "B"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "fullDay": {
+      "totalEstimasi": 3500000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 2500000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Semester 1",
+          "deskripsi": "Biaya semester",
+          "jumlah": 1000000,
+          "icon": "school"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-08-31",
+    "persyaratan": [
+      "Fotokopi Ijazah SMA/MA",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Sehat"
+    ]
+  },
+  "fasilitas": ["Kampus", "Perpustakaan", "Lab Micro Teaching", "Masjid"],
+  "programUnggulan": [
+    "Pendidikan Agama Islam",
+    "Bahasa Arab",
+    "Metode Pembelajaran"
+  ]
+}

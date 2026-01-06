@@ -1,0 +1,58 @@
+{
+  "id": "smp-putra",
+  "name": "SMP Putra Al-Azhar",
+  "shortName": "SMP Putra",
+  "desc": "SMP Berasrama untuk Putra",
+  "type": "smp",
+  "gender": "putra",
+  "icon": "school",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "SMP Putra Al-Azhar menggabungkan kurikulum nasional dengan pendidikan agama Islam yang kuat, mencetak siswa yang berprestasi akademik dan berakhlak mulia.",
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 5000000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 3000000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 600000,
+          "icon": "school"
+        },
+        {
+          "nama": "Asrama & Makan",
+          "deskripsi": "Akomodasi",
+          "jumlah": 800000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Seragam",
+          "deskripsi": "Seragam lengkap",
+          "jumlah": 600000,
+          "icon": "checkroom"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Ijazah SD",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Sehat"
+    ]
+  },
+  "fasilitas": ["Asrama Putra", "Lab IPA", "Lab Komputer", "Masjid"],
+  "programUnggulan": ["Tahfidz Qur'an", "Olimpiade Sains", "English Club"]
+}

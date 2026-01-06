@@ -1,0 +1,68 @@
+{
+  "id": "smp-putri",
+  "name": "SMP Putri Al-Azhar",
+  "shortName": "SMP Putri",
+  "desc": "SMP Berasrama untuk Putri",
+  "type": "smp",
+  "gender": "putri",
+  "icon": "school",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "SMP Putri Al-Azhar memadukan pendidikan formal dan kepesantrenan untuk mencetak siswa putri yang berprestasi dan berakhlak.",
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 4800000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 2800000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 600000,
+          "icon": "school"
+        },
+        {
+          "nama": "Asrama & Makan",
+          "deskripsi": "Akomodasi",
+          "jumlah": 800000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Seragam",
+          "deskripsi": "Seragam lengkap",
+          "jumlah": 600000,
+          "icon": "checkroom"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Ijazah SD",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Sehat"
+    ]
+  },
+  "fasilitas": [
+    "Asrama Putri",
+    "Lab IPA",
+    "Lab Komputer",
+    "Masjid",
+    "Perpustakaan"
+  ],
+  "programUnggulan": [
+    "Tahfidz Qur'an",
+    "Bahasa Arab & Inggris",
+    "Keterampilan Putri"
+  ]
+}

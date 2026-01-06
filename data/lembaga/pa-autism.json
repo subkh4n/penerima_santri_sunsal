@@ -1,0 +1,69 @@
+{
+  "id": "pa-autism",
+  "name": "Pondok Autism Sunniyah Salafiyah",
+  "shortName": "Pondok Autism",
+  "desc": "Pondok Khusus untuk Anak Berkebutuhan Khusus",
+  "type": "ponpes",
+  "gender": "umum",
+  "icon": "favorite",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "Pondok Autism menyediakan pendidikan dan terapi khusus untuk anak berkebutuhan khusus (autisme) dengan pendekatan Islami.",
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 6000000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 3500000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 1000000,
+          "icon": "school"
+        },
+        {
+          "nama": "Terapi & Asrama",
+          "deskripsis": "Biaya terapi dan akomodasi",
+          "jumlah": 1000000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Alat Terapi",
+          "deskripsi": "Perlengkapan terapi",
+          "jumlah": 500000,
+          "icon": "medical_services"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Akta Kelahiran",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Keterangan Dokter/Psikolog"
+    ]
+  },
+  "fasilitas": [
+    "Asrama Khusus",
+    "Ruang Terapi",
+    "Sensory Room",
+    "Playground Terapeutik",
+    "Masjid"
+  ],
+  "programUnggulan": [
+    "Terapi ABA",
+    "Terapi Wicara",
+    "Terapi Okupasi",
+    "Pendidikan Agama"
+  ]
+}

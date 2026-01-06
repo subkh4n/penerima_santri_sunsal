@@ -1,0 +1,58 @@
+{
+  "id": "smk-putri",
+  "name": "SMK Putri Al-Azhar",
+  "shortName": "SMK Putri",
+  "desc": "SMK Berasrama untuk Putri",
+  "type": "smk",
+  "gender": "putri",
+  "icon": "engineering",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "SMK Putri Al-Azhar mempersiapkan siswa dengan keterampilan vokasi dan nilai-nilai Islami untuk siap kerja atau berwirausaha.",
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 5200000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 3000000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 650000,
+          "icon": "school"
+        },
+        {
+          "nama": "Asrama & Makan",
+          "deskripsi": "Akomodasi",
+          "jumlah": 900000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Perlengkapan Praktik",
+          "deskripsi": "Alat praktik",
+          "jumlah": 650000,
+          "icon": "construction"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Ijazah SMP",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Sehat"
+    ]
+  },
+  "fasilitas": ["Asrama Putri", "Workshop Praktik", "Lab Komputer", "Masjid"],
+  "programUnggulan": ["Tata Busana", "Tata Boga", "Administrasi Perkantoran"]
+}

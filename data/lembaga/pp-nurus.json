@@ -1,0 +1,58 @@
+{
+  "id": "pp-nurus",
+  "name": "Pondok Putri Nurus Salimin",
+  "shortName": "PP Nurus Salimin",
+  "desc": "Pondok Pesantren Putri",
+  "type": "ponpes",
+  "gender": "putri",
+  "icon": "mosque",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "Pondok Putri Nurus Salimin mencetak generasi muslimah yang berakhlak mulia dan menguasai ilmu agama.",
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 4000000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 2300000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 500000,
+          "icon": "school"
+        },
+        {
+          "nama": "Asrama",
+          "deskripsi": "Akomodasi",
+          "jumlah": 700000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Perlengkapan",
+          "deskripsi": "Kitab & seragam",
+          "jumlah": 500000,
+          "icon": "backpack"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Akta Kelahiran",
+      "Fotokopi KK",
+      "Pas foto 3x4",
+      "Surat Sehat"
+    ]
+  },
+  "fasilitas": ["Asrama Putri", "Masjid", "Perpustakaan", "Ruang Keterampilan"],
+  "programUnggulan": ["Tahfidz Al-Qur'an", "Bahasa Arab", "Menjahit & Memasak"]
+}

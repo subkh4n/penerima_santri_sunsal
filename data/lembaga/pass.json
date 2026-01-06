@@ -1,0 +1,79 @@
+{
+  "id": "pass",
+  "name": "Pondok Athfal Sunniyah Salafiyah",
+  "shortName": "Pondok Athfal",
+  "desc": "Pendidikan Anak Usia Dini Berbasis Pesantren",
+  "type": "ponpes",
+  "gender": "umum",
+  "icon": "child_care",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "Pondok Athfal Sunniyah Salafiyah adalah lembaga pendidikan anak usia dini yang memadukan kurikulum nasional dengan pendidikan kepesantrenan. Kami berkomitmen mencetak generasi Qur'ani yang berakhlakul karimah sejak dini.",
+    "visi": "Menjadi lembaga PAUD terdepan dalam mencetak generasi Qur'ani yang berakhlakul karimah",
+    "misi": [
+      "Menyelenggarakan pendidikan anak usia dini berbasis Al-Qur'an dan As-Sunnah",
+      "Membangun karakter Islami sejak dini",
+      "Mengembangkan potensi anak secara optimal"
+    ],
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 3500000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran awal",
+          "jumlah": 2000000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya pendidikan bulanan",
+          "jumlah": 400000,
+          "icon": "school"
+        },
+        {
+          "nama": "Seragam",
+          "deskripsi": "Paket seragam lengkap",
+          "jumlah": 600000,
+          "icon": "checkroom"
+        },
+        {
+          "nama": "Perlengkapan",
+          "deskripsi": "Tas, alat tulis, dan buku",
+          "jumlah": 500000,
+          "icon": "backpack"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Akta Kelahiran (2 lembar)",
+      "Fotokopi Kartu Keluarga (2 lembar)",
+      "Pas foto 3x4 berwarna (4 lembar)",
+      "Surat Keterangan Sehat dari dokter"
+    ],
+    "tahapanSeleksi": ["Wawancara orang tua", "Observasi anak"]
+  },
+  "fasilitas": [
+    "Ruang Kelas Ber-AC",
+    "Playground",
+    "Masjid",
+    "Perpustakaan Anak"
+  ],
+  "programUnggulan": [
+    "Tahfidz Juz 30",
+    "Bahasa Arab untuk Anak",
+    "Character Building"
+  ],
+  "kontak": {
+    "telepon": "081234567890",
+    "email": "athfal@sunsal.sch.id",
+    "alamat": "Jl. Raya Situbondo, Besuki, Jawa Timur"
+  }
+}

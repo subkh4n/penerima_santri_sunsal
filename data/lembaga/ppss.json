@@ -1,0 +1,109 @@
+{
+  "id": "ppss",
+  "name": "Pondok Putra Sunniyah Salafiyah",
+  "shortName": "Pondok Putra",
+  "desc": "Pondok Pesantren Putra Terpadu",
+  "type": "ponpes",
+  "gender": "putra",
+  "icon": "mosque",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "profil": {
+    "deskripsi": "Pondok Putra Sunniyah Salafiyah adalah pondok pesantren putra yang memadukan pendidikan formal dan kepesantrenan. Santri dibimbing untuk menguasai ilmu agama dan ilmu umum secara seimbang.",
+    "visi": "Menjadi pondok pesantren putra terdepan dalam mencetak ulama yang berilmu dan berakhlak mulia",
+    "misi": [
+      "Menyelenggarakan pendidikan pesantren berbasis manhaj salafusshalih",
+      "Mengajarkan kitab kuning dan Al-Qur'an",
+      "Membentuk karakter santri yang tangguh"
+    ],
+    "akreditasi": "A"
+  },
+  "biaya": {
+    "tahunAjaran": "2025-2026",
+    "boarding": {
+      "totalEstimasi": 4250000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran awal",
+          "jumlah": 2500000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya pendidikan bulanan",
+          "jumlah": 500000,
+          "icon": "school"
+        },
+        {
+          "nama": "Asrama",
+          "deskripsi": "Biaya akomodasi boarding",
+          "jumlah": 750000,
+          "icon": "hotel"
+        },
+        {
+          "nama": "Kitab & Seragam",
+          "deskripsi": "Paket kitab dan seragam",
+          "jumlah": 500000,
+          "icon": "menu_book"
+        }
+      ]
+    },
+    "fullDay": {
+      "totalEstimasi": 3000000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran awal",
+          "jumlah": 2000000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya pendidikan bulanan",
+          "jumlah": 400000,
+          "icon": "school"
+        },
+        {
+          "nama": "Kitab & Seragam",
+          "deskripsi": "Paket kitab dan seragam",
+          "jumlah": 600000,
+          "icon": "menu_book"
+        }
+      ]
+    }
+  },
+  "pendaftaran": {
+    "tanggalBuka": "2025-05-12",
+    "tanggalTutup": "2025-06-30",
+    "persyaratan": [
+      "Fotokopi Akta Kelahiran (2 lembar)",
+      "Fotokopi Kartu Keluarga (2 lembar)",
+      "Pas foto 3x4 (4 lembar)",
+      "Surat Keterangan Sehat dari dokter",
+      "Surat rekomendasi dari sekolah asal"
+    ],
+    "tahapanSeleksi": [
+      "Tes membaca Al-Qur'an",
+      "Wawancara",
+      "Tes akademik dasar"
+    ]
+  },
+  "fasilitas": [
+    "Asrama Putra",
+    "Masjid Besar",
+    "Perpustakaan Kitab Kuning",
+    "Lab Komputer",
+    "Lapangan Olahraga"
+  ],
+  "programUnggulan": [
+    "Tahfidz Al-Qur'an 30 Juz",
+    "Bahasa Arab dan Inggris",
+    "Kitab Kuning",
+    "Seni Islami"
+  ],
+  "kontak": {
+    "telepon": "081234567891",
+    "email": "putra@sunsal.sch.id",
+    "alamat": "Jl. Raya Situbondo, Besuki, Jawa Timur"
+  }
+}
