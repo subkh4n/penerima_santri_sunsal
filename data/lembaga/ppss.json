@@ -6,17 +6,17 @@
   "type": "ponpes",
   "gender": "putra",
   "icon": "mosque",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXrQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "Pondok Putra Sunniyah Salafiyah adalah pondok pesantren putra yang memadukan pendidikan formal dan kepesantrenan. Santri dibimbing untuk menguasai ilmu agama dan ilmu umum secara seimbang.",
-    "visi": "Menjadi pondok pesantren putra terdepan dalam mencetak ulama yang berilmu dan berakhlak mulia",
-    "misi": [
-      "Menyelenggarakan pendidikan pesantren berbasis manhaj salafusshalih",
-      "Mengajarkan kitab kuning dan Al-Qur'an",
-      "Membentuk karakter santri yang tangguh"
-    ],
+    "deskripsi": "Pondok Putra Sunniyah Salafiyah fokus pada pendalaman ilmu agama (tafaqquh fiddin) dengan metode salaf yang dipadukan dengan manajemen modern.",
     "akreditasi": "A"
   },
+  "visi": "Mencetak kader ulama yang amil (mengamalkan ilmunya) dan sholih.",
+  "misi": [
+    "Menyelenggarakan pendidikan diniyah yang kurikulumnya bersumber dari kitab kuning.",
+    "Membentuk karakter santri yang disiplin, mandiri, dan bertanggung jawab.",
+    "Mempersiapkan santri untuk terjun ke masyarakat sebagai da'i."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -88,18 +88,6 @@
       "Tes akademik dasar"
     ]
   },
-  "fasilitas": [
-    "Asrama Putra",
-    "Masjid Besar",
-    "Perpustakaan Kitab Kuning",
-    "Lab Komputer",
-    "Lapangan Olahraga"
-  ],
-  "programUnggulan": [
-    "Tahfidz Al-Qur'an 30 Juz",
-    "Bahasa Arab dan Inggris",
-    "Kitab Kuning",
-    "Seni Islami"
   ],
   "kontak": {
     "telepon": "081234567891",

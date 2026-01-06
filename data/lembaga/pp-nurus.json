@@ -6,11 +6,17 @@
   "type": "ponpes",
   "gender": "putri",
   "icon": "mosque",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRYMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "Pondok Putri Nurus Salimin mencetak generasi muslimah yang berakhlak mulia dan menguasai ilmu agama.",
-    "akreditasi": "A"
+    "deskripsi": "Pondok Putri Nurus Salimin adalah lembaga pendidikan putri yang mengutamakan pembentukan karakter muslimah berbudi luhur.",
+    "akreditasi": "B"
   },
+  "visi": "Membangun pribadi muslimah yang sholihah, mandiri, dan bermanfaat.",
+  "misi": [
+    "Menanamkan nilai-nilai keislaman melalui pendidikan formal dan non-formal.",
+    "Melatih kemandirian santriwati melalui kegiatan kewirausahaan.",
+    "Membiasakan akhlak mulia dalam kehidupan sehari-hari."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -76,6 +82,13 @@
       "Surat Sehat"
     ]
   },
-  "fasilitas": ["Asrama Putri", "Masjid", "Perpustakaan", "Ruang Keterampilan"],
-  "programUnggulan": ["Tahfidz Al-Qur'an", "Bahasa Arab", "Menjahit & Memasak"]
+  "fasilitas": ["Asrama", "Musholla", "Dapur Umum"],
+  "programUnggulan": ["Tahsin Qur'an", "Fiqih Nisa'", "Keterampilan Menjahit"],
+  "kontak": {
+    "telepon": "081234567895",
+    "whatsapp": "081234567895",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }
+```

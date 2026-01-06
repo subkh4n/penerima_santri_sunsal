@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickActions from "@/components/QuickActions";
@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ChatAssistant from "@/components/ChatAssistant";
 import { getAllLembaga, getLembagaById, formatCurrency } from "@/lib/lembaga";
+import { Lembaga } from "@/types/lembaga";
 
 enum Tab {
   HOME = "home",
@@ -17,12 +18,6 @@ enum Tab {
   BIAYA = "biaya",
   BERITA = "berita",
   DOWNLOAD = "download",
-}
-
-interface Institution {
-  name: string;
-  desc: string;
-  icon: string;
 }
 
 interface NewsItem {
@@ -46,10 +41,21 @@ export default function Home() {
   const [selectedLembaga, setSelectedLembaga] = useState("");
   const [newsCategory, setNewsCategory] = useState("Semua");
   const [selectedInstitution, setSelectedInstitution] =
-    useState<Institution | null>(null);
+    useState<Lembaga | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  const tentangRef = useRef<HTMLDivElement>(null);
+  const programRef = useRef<HTMLDivElement>(null);
+  const fasilitasRef = useRef<HTMLDivElement>(null);
+  const kontakRef = useRef<HTMLDivElement>(null);
+
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -82,71 +88,19 @@ export default function Home() {
 
   const categories = ["Semua", "Pengumuman", "Kegiatan", "Prestasi", "Artikel"];
 
+  const allLembaga = getAllLembaga();
   const profilSections = [
     {
       title: "Pondok Pesantren",
-      items: [
-        {
-          name: "Pondok Athfal Sunniyah Salafiyah",
-          desc: "Pendidikan Diniyah Anak Usia Dini",
-          icon: "child_care",
-        },
-        {
-          name: "Pondok Putra Sunniyah Salafiyah",
-          desc: "Asrama Santri Putra",
-          icon: "mosque",
-        },
-        {
-          name: "Pondok Putri Az-zahro'",
-          desc: "Asrama Santri Putri",
-          icon: "woman_2",
-        },
-      ],
+      items: allLembaga.filter((l) => l.type === "ponpes"),
     },
     {
       title: "Sekolah Formal",
-      items: [
-        {
-          name: "SMP Putra Al-azhar",
-          desc: "Sekolah Menengah Pertama (Putra)",
-          icon: "school",
-        },
-        {
-          name: "SMA Putra Al-azhar",
-          desc: "Sekolah Menengah Atas (Putra)",
-          icon: "history_edu",
-        },
-        {
-          name: "SMP Putri Al-azhar",
-          desc: "Sekolah Menengah Pertama (Putri)",
-          icon: "school",
-        },
-        {
-          name: "SMK Putri Al-azhar",
-          desc: "Sekolah Menengah Kejuruan (Putri)",
-          icon: "draw",
-        },
-      ],
+      items: allLembaga.filter((l) => ["smp", "sma", "smk"].includes(l.type)),
     },
     {
       title: "Madrasah & Kampus",
-      items: [
-        {
-          name: "Madrasah Sunniyah Salafiyah",
-          desc: "Pendidikan Diniyah",
-          icon: "menu_book",
-        },
-        {
-          name: "Madrasah Az-zahro'",
-          desc: "Pendidikan Diniyah Putri",
-          icon: "auto_stories",
-        },
-        {
-          name: "STIT Sunniyah Salafiyah",
-          desc: "Sekolah Tinggi Ilmu Tarbiyah",
-          icon: "account_balance",
-        },
-      ],
+      items: allLembaga.filter((l) => ["madrasah", "stit"].includes(l.type)),
     },
   ];
 
@@ -234,31 +188,35 @@ export default function Home() {
                         aria-label="Go back"
                         className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-white/10 active:scale-95 transition-all text-[#111813] dark:text-white"
                       >
-                        <span className="material-symbols-outlined">
+                        <span
+                          className="material-symbols-outlined"
+                          data-icon="arrow_back_ios_new"
+                        >
                           arrow_back_ios_new
                         </span>
                       </button>
                       <h1 className="text-lg font-bold tracking-tight text-[#111813] dark:text-white flex-1 text-center pr-8">
-                        Detail Lembaga
+                        Profil Lembaga
                       </h1>
                     </div>
                   </header>
 
-                  <div className="overflow-y-auto pb-32 no-scrollbar">
+                  <main className="flex-1 overflow-y-auto pb-24 no-scrollbar">
                     <div className="relative h-64 w-full">
                       <div
                         className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center"
                         style={{
-                          backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6')`,
+                          backgroundImage: `url('${selectedInstitution.image}')`,
                         }}
                       ></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-black/30"></div>
                       <div className="absolute bottom-4 left-4">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-[#052e12] shadow-lg backdrop-blur-sm">
-                          <span className="material-symbols-outlined text-[16px] mr-1 fill-1">
+                          <span className="material-symbols-outlined text-[16px] mr-1 filled">
                             verified
                           </span>
-                          Terakreditasi A
+                          Order Terakreditasi{" "}
+                          {selectedInstitution.profil.akreditasi || "A"}
                         </span>
                       </div>
                     </div>
@@ -277,63 +235,269 @@ export default function Home() {
                       </div>
 
                       <div className="flex space-x-2 overflow-x-auto no-scrollbar mb-6 pb-2">
-                        <button className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors">
+                        <button
+                          onClick={() => scrollToSection(tentangRef)}
+                          className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors"
+                        >
                           Tentang
                         </button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                        <button
+                          onClick={() => scrollToSection(programRef)}
+                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                        >
                           Program
                         </button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                        <button
+                          onClick={() => scrollToSection(fasilitasRef)}
+                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                        >
                           Fasilitas
                         </button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                        <button
+                          onClick={() => scrollToSection(kontakRef)}
+                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                        >
                           Kontak
                         </button>
                       </div>
 
-                      <section className="space-y-4 mb-8">
+                      <section ref={tentangRef} className="space-y-4 mb-8">
                         <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
                           <span className="w-1 h-6 bg-primary rounded-full"></span>
                           Selayang Pandang
                         </h3>
-                        <div className="p-4 bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-white/5">
+                        <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
                           <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {selectedInstitution.name} adalah lembaga pendidikan
-                            di bawah naungan Yayasan Sunniyah Salafiyah yang
-                            memadukan kurikulum nasional dan kepesantrenan. Kami
-                            berkomitmen mencetak generasi yang tidak hanya
-                            unggul dalam ilmu pengetahuan umum, tetapi juga
-                            memiliki kedalaman ilmu agama dan akhlakul karimah.
+                            {selectedInstitution.profil.deskripsi}
                           </p>
                         </div>
                       </section>
 
-                      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-50 max-w-[480px] mx-auto">
-                        <div className="flex gap-3">
-                          <button
-                            onClick={() => {
-                              setActiveTab(Tab.DOWNLOAD);
-                              setSelectedInstitution(null);
-                            }}
-                            className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-xl border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                          >
-                            <span className="text-xs font-semibold">
-                              Download Brosur
-                            </span>
-                          </button>
-                          <a
-                            href="https://ppdb.sunsal.net/formulirpendaftar/#/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:brightness-105 active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-xl shadow-lg shadow-primary/20 transition-all"
-                          >
-                            Daftar Sekarang
-                            <span className="material-symbols-outlined text-[18px]">
-                              arrow_forward
-                            </span>
-                          </a>
+                      {selectedInstitution.visi && (
+                        <section className="space-y-4 mb-8">
+                          <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                            <span className="w-1 h-6 bg-primary rounded-full"></span>
+                            Visi & Misi
+                          </h3>
+                          <div className="grid gap-3">
+                            <div className="relative overflow-hidden p-4 rounded-lg bg-[#e8f5e9] dark:bg-[#132e21] border border-primary/20">
+                              <span className="absolute -right-4 -top-4 text-primary/10 dark:text-primary/5">
+                                <span className="material-symbols-outlined text-[100px] filled">
+                                  visibility
+                                </span>
+                              </span>
+                              <h4 className="font-bold text-[#111813] dark:text-white mb-1 relative z-10">
+                                Visi
+                              </h4>
+                              <p className="text-sm text-gray-700 dark:text-gray-300 italic relative z-10">
+                                "{selectedInstitution.visi}"
+                              </p>
+                            </div>
+                            {selectedInstitution.misi && (
+                              <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
+                                <h4 className="font-bold text-[#111813] dark:text-white mb-3">
+                                  Misi
+                                </h4>
+                                <ul className="space-y-3">
+                                  {selectedInstitution.misi.map((misi, idx) => (
+                                    <li
+                                      key={idx}
+                                      className="flex items-start gap-3"
+                                    >
+                                      <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-primary/20 text-primary text-[10px] font-bold mt-0.5">
+                                        {idx + 1}
+                                      </span>
+                                      <span className="text-sm text-gray-600 dark:text-gray-300">
+                                        {misi}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        </section>
+                      )}
+
+                      <section ref={programRef} className="space-y-4 mb-8">
+                        <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                          <span className="w-1 h-6 bg-primary rounded-full"></span>
+                          {selectedInstitution.prodi
+                            ? "Jurusan & Program"
+                            : "Program Unggulan"}
+                        </h3>
+                        {selectedInstitution.prodi ? (
+                          <div className="grid grid-cols-2 gap-3">
+                            {selectedInstitution.prodi.map((prodi, idx) => (
+                              <div
+                                key={idx}
+                                className={`group p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all text-center ${
+                                  idx ===
+                                    selectedInstitution.prodi!.length - 1 &&
+                                  idx % 2 === 0
+                                    ? "col-span-2"
+                                    : ""
+                                }`}
+                              >
+                                <div className="w-10 h-10 mx-auto mb-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
+                                  <span className="material-symbols-outlined">
+                                    {prodi.icon || "school"}
+                                  </span>
+                                </div>
+                                <h4 className="font-semibold text-sm text-[#111813] dark:text-white">
+                                  {prodi.nama}
+                                </h4>
+                                <p className="text-[10px] text-gray-500 mt-1">
+                                  {prodi.deskripsi}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-1 gap-3">
+                            {selectedInstitution.programUnggulan?.map(
+                              (prog, idx) => (
+                                <div
+                                  key={idx}
+                                  className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-3"
+                                >
+                                  <span className="material-symbols-outlined text-primary">
+                                    check_circle
+                                  </span>
+                                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                                    {prog}
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
+                      </section>
+
+                      {selectedInstitution.fasilitas && (
+                        <section ref={fasilitasRef} className="space-y-4 mb-8">
+                          <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                            <span className="w-1 h-6 bg-primary rounded-full"></span>
+                            Fasilitas
+                          </h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            {selectedInstitution.fasilitas.map(
+                              (fasilitas, idx) => (
+                                <div
+                                  key={idx}
+                                  className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-2"
+                                >
+                                  <span className="material-symbols-outlined text-primary text-[20px]">
+                                    apartment
+                                  </span>
+                                  <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
+                                    {fasilitas}
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </section>
+                      )}
+
+                      <section ref={kontakRef} className="space-y-4">
+                        <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                          <span className="w-1 h-6 bg-primary rounded-full"></span>
+                          Kontak & Lokasi
+                        </h3>
+                        <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-white/10">
+                          <div className="bg-gray-200 dark:bg-gray-700 h-32 w-full flex items-center justify-center relative">
+                            <div
+                              className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply"
+                              style={{
+                                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u')`,
+                              }}
+                            ></div>
+                            {selectedInstitution.kontak?.googleMap && (
+                              <button
+                                onClick={() =>
+                                  window.open(
+                                    selectedInstitution.kontak?.googleMap,
+                                    "_blank"
+                                  )
+                                }
+                                className="z-10 bg-white dark:bg-[#111813] text-[#111813] dark:text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 hover:scale-105 transition-transform"
+                              >
+                                <span className="material-symbols-outlined text-[16px] text-primary">
+                                  map
+                                </span>
+                                Lihat di Peta
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="p-4 bg-white dark:bg-surface-dark">
+                            <div className="flex items-start gap-3 mb-4">
+                              <span className="material-symbols-outlined text-gray-400 mt-0.5">
+                                location_on
+                              </span>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                {selectedInstitution.kontak?.alamat ||
+                                  "Alamat belum tersedia"}
+                              </p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                              {selectedInstitution.kontak?.whatsapp && (
+                                <a
+                                  href={`https://wa.me/${selectedInstitution.kontak.whatsapp}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-100 transition-colors"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">
+                                    chat
+                                  </span>
+                                  WhatsApp
+                                </a>
+                              )}
+                              {selectedInstitution.kontak?.telepon && (
+                                <a
+                                  href={`tel:${selectedInstitution.kontak.telepon}`}
+                                  className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 transition-colors"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">
+                                    call
+                                  </span>
+                                  Telepon
+                                </a>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      </section>
+                      <div className="h-6"></div>
+                    </div>
+                  </main>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-20">
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          setActiveTab(Tab.DOWNLOAD);
+                          setSelectedInstitution(null);
+                        }}
+                        className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                      >
+                        <span className="text-xs font-semibold">
+                          Download Brosur
+                        </span>
+                      </button>
+                      <a
+                        href="https://ppdb.sunsal.net/formulirpendaftar/#/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:bg-[#0fd650] active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-lg shadow-lg shadow-primary/20 transition-all"
+                      >
+                        Daftar Sekarang
+                        <span className="material-symbols-outlined text-[18px]">
+                          arrow_forward
+                        </span>
+                      </a>
                     </div>
                   </div>
                 </div>

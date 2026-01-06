@@ -11,6 +11,12 @@
     "deskripsi": "Madrasah Putri Azzahro' menyediakan pendidikan agama Islam mendalam khusus bagi santriwati untuk membentuk muslimah berilmu dan berakhlak mulia.",
     "akreditasi": "A"
   },
+  "visi": "Terwujudnya muslimah yang faqihah dan berakhlaqul karimah.",
+  "misi": [
+    "Menyelenggarakan pendidikan diniyah khusus putri.",
+    "Mengkaji kitab-kitab kuning dengan metode salaf.",
+    "Membentuk karakter muslimah yang tawadhu' dan istiqomah."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "fullDay": {
@@ -43,5 +49,11 @@
     "persyaratan": ["Fotokopi Akta Kelahiran", "Fotokopi KK", "Pas foto 3x4"]
   },
   "fasilitas": ["Ruang Kelas", "Musholla Putri", "Perpustakaan"],
-  "programUnggulan": ["Tahsin Al-Qur'an", "Fiqih Wanita", "Akhlak"]
+  "programUnggulan": ["Tahsin Al-Qur'an", "Fiqih Wanita", "Akhlak"],
+  "kontak": {
+    "telepon": "081234567803",
+    "whatsapp": "081234567803",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

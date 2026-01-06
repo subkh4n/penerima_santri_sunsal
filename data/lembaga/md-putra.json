@@ -11,6 +11,12 @@
     "deskripsi": "Madrasah Diniyah menyediakan pendidikan agama Islam setelah sekolah formal untuk memperdalam ilmu agama.",
     "akreditasi": "A"
   },
+  "visi": "Terwujudnya santri yang faqih dan berakhlak mulia.",
+  "misi": [
+    "Menyelenggarakan pendidikan diniyah takmiliyah.",
+    "Mengajarkan kitab-kitab dasar keislaman.",
+    "Membiasakan amalan ibadah sehari-hari."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "fullDay": {
@@ -43,5 +49,11 @@
     "persyaratan": ["Fotokopi Akta Kelahiran", "Fotokopi KK", "Pas foto 3x4"]
   },
   "fasilitas": ["Ruang Kelas", "Masjid", "Perpustakaan Kitab"],
-  "programUnggulan": ["Kitab Kuning", "Bahasa Arab", "Fiqih Ibadah"]
+  "programUnggulan": ["Kitab Kuning", "Bahasa Arab", "Fiqih Ibadah"],
+  "kontak": {
+    "telepon": "081234567800",
+    "whatsapp": "081234567800",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

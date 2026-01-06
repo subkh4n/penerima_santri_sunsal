@@ -8,9 +8,15 @@
   "icon": "school",
   "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "SMP Putri Al-Azhar memadukan pendidikan formal dan kepesantrenan untuk mencetak siswa putri yang berprestasi dan berakhlak.",
+    "deskripsi": "SMP Putri Al-Azhar adalah sekolah menengah pertama khusus putri yang mengintegrasikan ilmu pengetahuan umum dan agama.",
     "akreditasi": "A"
   },
+  "visi": "Terbentuknya muslimah yang cerdas, kreatif, dan berwawasan global.",
+  "misi": [
+    "Menyelenggarakan pembelajaran yang aktif dan menyenangkan.",
+    "Mengembangkan potensi siswi dalam bidang akademik dan non-akademik.",
+    "Menanamkan nilai-nilai keislaman dalam setiap aktivitas."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -81,11 +87,21 @@
     "Lab IPA",
     "Lab Komputer",
     "Masjid",
-    "Perpustakaan"
+    "Perpustakaan",
+    "Lab Bahasa",
+    "Ruang Keterampilan"
   ],
   "programUnggulan": [
+    "English Speaking",
+    "Karya Ilmiah Remaja",
     "Tahfidz Qur'an",
     "Bahasa Arab & Inggris",
     "Keterampilan Putri"
-  ]
+  ],
+  "kontak": {
+    "telepon": "081234567896",
+    "whatsapp": "081234567896",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

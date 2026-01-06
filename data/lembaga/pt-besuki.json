@@ -8,9 +8,15 @@
   "icon": "import_contacts",
   "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "Pondok Takhfidz Besuki mengkhususkan program tahfidz Al-Qur'an 30 Juz dengan bimbingan intensif.",
-    "akreditasi": "A"
+    "deskripsi": "Pondok Takhfidz Besuki adalah cabang dari YSS yang fokus pada pendalaman Al-Qur'an di wilayah Besuki.",
+    "akreditasi": "B"
   },
+  "visi": "Menjadi pusat pembelajaran Al-Qur'an yang mencetak generasi rabbani.",
+  "misi": [
+    "Mengajarkan metode menghafal Al-Qur'an yang efektif.",
+    "Menanamkan kecintaan terhadap Al-Qur'an dan As-Sunnah.",
+    "Membina masyarakat melalui dakwah Al-Qur'an."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -53,6 +59,12 @@
       "Surat Sehat"
     ]
   },
-  "fasilitas": ["Asrama Putra", "Masjid", "Ruang Tahfidz", "Perpustakaan"],
-  "programUnggulan": ["Tahfidz 30 Juz", "Muroja'ah Rutin", "Tilawah"]
+  "fasilitas": ["Musholla", "Asrama Santri", "Halaman Luas"],
+  "programUnggulan": ["Tahfidz Anak", "Tahsin Dewasa", "Kajian Tafsir"],
+  "kontak": {
+    "telepon": "081234567899",
+    "whatsapp": "081234567899",
+    "alamat": "Besuki, Situbondo, Jawa Timur",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

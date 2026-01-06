@@ -12,8 +12,6 @@ export interface BiayaType {
 
 export interface Profil {
   deskripsi: string;
-  visi?: string;
-  misi?: string[];
   akreditasi?: string;
   npsn?: string;
 }
@@ -27,8 +25,16 @@ export interface Pendaftaran {
 
 export interface Kontak {
   telepon?: string;
+  whatsapp?: string;
   email?: string;
   alamat?: string;
+  googleMap?: string;
+}
+
+export interface Prodi {
+  nama: string;
+  deskripsi: string;
+  icon?: string;
 }
 
 export interface Lembaga {
@@ -42,6 +48,8 @@ export interface Lembaga {
   image: string;
 
   profil: Profil;
+  visi?: string;
+  misi?: string[];
 
   biaya: {
     tahunAjaran: string;
@@ -53,6 +61,7 @@ export interface Lembaga {
 
   fasilitas?: string[];
   programUnggulan?: string[];
+  prodi?: Prodi[]; // For MA, SMK, STIT
   kontak?: Kontak;
   galeri?: string[];
 }

@@ -6,11 +6,17 @@
   "type": "ponpes",
   "gender": "umum",
   "icon": "favorite",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXQQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "Pondok Autism menyediakan pendidikan dan terapi khusus untuk anak berkebutuhan khusus (autisme) dengan pendekatan Islami.",
-    "akreditasi": "A"
+    "deskripsi": "Pondok Pesantren khusus untuk anak berkebutuhan khusus (autisme) dengan terapi dan pendidikan agama yang disesuaikan.",
+    "akreditasi": "Terakreditasi"
   },
+  "visi": "Menjadi lembaga pendidikan khusus yang mandiri dan berkarakter Islami.",
+  "misi": [
+    "Memberikan layanan terapi dan pendidikan yang komprehensif.",
+    "Mengembangkan potensi kemandirian anak berkebutuhan khusus.",
+    "Menanamkan nilai-nilai agama sesuai dengan kemampuan anak."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -53,17 +59,6 @@
       "Surat Keterangan Dokter/Psikolog"
     ]
   },
-  "fasilitas": [
-    "Asrama Khusus",
-    "Ruang Terapi",
-    "Sensory Room",
-    "Playground Terapeutik",
-    "Masjid"
-  ],
-  "programUnggulan": [
-    "Terapi ABA",
-    "Terapi Wicara",
-    "Terapi Okupasi",
     "Pendidikan Agama"
   ]
 }

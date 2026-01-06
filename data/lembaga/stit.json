@@ -6,11 +6,17 @@
   "type": "stit",
   "gender": "umum",
   "icon": "school",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "STIT Sunniyah Salafiyah adalah perguruan tinggi yang fokus pada pendidikan  tarbiyah dan keguruan Islami.",
+    "deskripsi": "STIT Sunniyah Salafiyah adalah perguruan tinggi yang mencetak sarjana muslim yang intelek dan ulama yang sarjana.",
     "akreditasi": "B"
   },
+  "visi": "Menjadi Perguruan Tinggi Islam yang Unggul dalam Integrasi Keilmuan dan Keislaman.",
+  "misi": [
+    "Menyelenggarakan pendidikan tinggi yang berkualitas dan berdaya saing.",
+    "Mengembangkan riset dan pengabdian masyarakat.",
+    "Membangun kemitraan strategis dengan berbagai lembaga."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "fullDay": {
@@ -41,10 +47,29 @@
       "Surat Sehat"
     ]
   },
-  "fasilitas": ["Kampus", "Perpustakaan", "Lab Micro Teaching", "Masjid"],
-  "programUnggulan": [
-    "Pendidikan Agama Islam",
-    "Bahasa Arab",
-    "Metode Pembelajaran"
-  ]
+  "fasilitas": ["Ruang Kuliah Ber-AC", "Perpustakaan Kampus", "Wi-Fi Area"],
+  "programUnggulan": ["Beasiswa Tahfidz", "KKN Nusantara", "Jurnal Ilmiah"],
+  "prodi": [
+    {
+      "nama": "PBA",
+      "deskripsi": "Pendidikan Bahasa Arab",
+      "icon": "translate"
+    },
+    {
+      "nama": "MPI",
+      "deskripsi": "Manajemen Pendidikan Islam",
+      "icon": "school"
+    },
+    {
+      "nama": "ES",
+      "deskripsi": "Ekonomi Syariah",
+      "icon": "account_balance"
+    }
+  ],
+  "kontak": {
+    "telepon": "081234567801",
+    "whatsapp": "081234567801",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

@@ -6,11 +6,17 @@
   "type": "ponpes",
   "gender": "putra",
   "icon": "menu_book",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxzXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "Pondok Qur'an Ranggeh fokus pada pembelajaran Al-Qur'an dengan metode tahsin dan tahfidz intensif.",
-    "akreditasi": "A"
+    "deskripsi": "Pondok Qur'an Ranggeh mencetak hafidz dan hafidzah yang mutqin dan berwawasan luas.",
+    "akreditasi": "B"
   },
+  "visi": "Terwujudnya generasi Qur'ani yang sholih, muslih, dan berprestasi.",
+  "misi": [
+    "Menyelenggarakan pendidikan Tahfidzul Qur'an yang berkualitas.",
+    "Mengembangkan potensi santri dalam bidang Ulumul Qur'an.",
+    "Membentuk karakter santri yang berakhlakul karimah."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -53,6 +59,13 @@
       "Surat Sehat"
     ]
   },
-  "fasilitas": ["Asrama Putra", "Masjid", "Ruang Tahfidz"],
-  "programUnggulan": ["Tahfidz 30 Juz", "Tahsin Al-Qur'an", "Qiro'ah"]
+  "fasilitas": ["Asrama Tahfidz", "Masjid", "Ruang Setoran"],
+  "programUnggulan": ["Tahfidz 30 Juz", "Qiro'ah Sab'ah", "Tafsir Al-Qur'an"],
+  "kontak": {
+    "telepon": "081234567898",
+    "whatsapp": "081234567898",
+    "alamat": "Ranggeh, Pasuruan, Jawa Timur",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }
+```

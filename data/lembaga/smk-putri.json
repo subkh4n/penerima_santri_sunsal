@@ -8,9 +8,15 @@
   "icon": "engineering",
   "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
   "profil": {
-    "deskripsi": "SMK Putri Al-Azhar mempersiapkan siswa dengan keterampilan vokasi dan nilai-nilai Islami untuk siap kerja atau berwirausaha.",
+    "deskripsi": "SMK Putri Al-Azhar mencetak lulusan yang kompeten di bidang keahliannya serta memiliki karakter islami yang kuat.",
     "akreditasi": "A"
   },
+  "visi": "Menjadi SMK unggulan yang menghasilkan lulusan siap kerja, santun, dan mandiri.",
+  "misi": [
+    "Menyelenggarakan pendidikan kejuruan yang berbasis industri.",
+    "Membekali siswi dengan keterampilan wirausaha.",
+    "Membentuk karakter kerja yang profesional dan islami."
+  ],
   "biaya": {
     "tahunAjaran": "2025-2026",
     "boarding": {
@@ -76,6 +82,25 @@
       "Surat Sehat"
     ]
   },
-  "fasilitas": ["Asrama Putri", "Workshop Praktik", "Lab Komputer", "Masjid"],
-  "programUnggulan": ["Tata Busana", "Tata Boga", "Administrasi Perkantoran"]
+  "fasilitas": ["Lab Komputer", "Studio Busana", "Teaching Factory"],
+  "programUnggulan": ["Desain Busana", "Multimedia", "Kewirausahaan"],
+  "prodi": [
+    {
+      "nama": "Tata Busana",
+      "deskripsi": "Keahlian Desain dan Produksi Busana",
+      "icon": "styler"
+    },
+    {
+      "nama": "TKJ",
+      "deskripsi": "Teknik Komputer dan Jaringan",
+      "icon": "computer"
+    }
+  ],
+  "kontak": {
+    "telepon": "081234567897",
+    "whatsapp": "081234567897",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }
+```
