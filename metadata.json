@@ -1,0 +1,8 @@
+{
+  "name": "Yayasan Sunniyah Salafiyah",
+  "description": "Mobile-focused portal for Yayasan Sunniyah Salafiyah, featuring enrollment information, academic updates, and an AI-powered student assistant.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
