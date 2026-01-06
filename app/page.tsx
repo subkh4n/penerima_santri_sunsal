@@ -212,7 +212,7 @@ export default function Home() {
             <div className="animate-fade-in">
               <Hero />
               <QuickActions />
-              <InfoSection />
+              <InfoSection onViewAllClick={() => setActiveTab(Tab.BERITA)} />
               <StatsSection />
               <Footer />
             </div>
