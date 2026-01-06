@@ -14,6 +14,7 @@ import ptBesukiData from "@/data/lembaga/pt-besuki.json";
 import mdPutraData from "@/data/lembaga/md-putra.json";
 import stitData from "@/data/lembaga/stit.json";
 import paAutismData from "@/data/lembaga/pa-autism.json";
+import mdAzzahroData from "@/data/lembaga/md-azzahro.json";
 
 // Create a map of all lembaga
 const lembagaMap: Record<string, Lembaga> = {
@@ -30,6 +31,7 @@ const lembagaMap: Record<string, Lembaga> = {
   "md-putra": mdPutraData as Lembaga,
   stit: stitData as Lembaga,
   "pa-autism": paAutismData as Lembaga,
+  "md-azzahro": mdAzzahroData as Lembaga,
 };
 
 /**
