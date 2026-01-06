@@ -1,6 +1,38 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import {
+  ChevronLeft,
+  Search,
+  FileText,
+  Download,
+  CheckCircle2,
+  Calendar,
+  Clock,
+  Briefcase,
+  ChevronDown,
+  ScrollText,
+  Share2,
+  User,
+  ChevronRight,
+  Info,
+  PenSquare,
+  BadgeCheck,
+  School,
+  Eye,
+  Building2,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Globe,
+  Landmark,
+  LayoutDashboard,
+  Wallet,
+  Banknote,
+  Newspaper,
+  QrCode,
+  GraduationCap,
+} from "lucide-react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickActions from "@/components/QuickActions";
@@ -30,6 +62,38 @@ interface NewsItem {
   image: string;
   summary: string;
 }
+
+const getIcon = (iconName: string, size: number = 20) => {
+  const iconMap: { [key: string]: any } = {
+    school: School,
+    check_circle: CheckCircle2,
+    apartment: Building2,
+    domain: Building2,
+    receipt_long: ScrollText,
+    info: Info,
+    visibility: Eye,
+    map: MapPin,
+    location_on: MapPin,
+    chat: MessageCircle,
+    call: Phone,
+    language: Globe,
+    mosque: Landmark,
+    dashboard: LayoutDashboard,
+    payments: Wallet,
+    account_balance_wallet: Wallet,
+    money: Banknote,
+    newspaper: Newspaper,
+    download: Download,
+    qr_code: QrCode,
+    person: User,
+    schedule: Clock,
+    calendar_month: Calendar,
+    work: Briefcase,
+  };
+
+  const IconComponent = iconMap[iconName] || Info;
+  return <IconComponent size={size} />;
+};
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.HOME);
@@ -188,12 +252,7 @@ export default function Home() {
                         aria-label="Go back"
                         className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-white/20 active:scale-95 transition-all text-white backdrop-blur-md shadow-sm"
                       >
-                        <span
-                          className="material-symbols-outlined"
-                          data-icon="arrow_back_ios_new"
-                        >
-                          arrow_back_ios_new
-                        </span>
+                        <ChevronLeft size={28} />
                       </button>
                       <h1 className="text-lg font-bold tracking-tight text-white flex-1 text-center pr-8 drop-shadow-md">
                         Profil Lembaga
@@ -212,9 +271,7 @@ export default function Home() {
                       <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-black/30"></div>
                       <div className="absolute bottom-4 left-4">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-[#052e12] shadow-lg backdrop-blur-sm">
-                          <span className="material-symbols-outlined text-[16px] mr-1 filled">
-                            verified
-                          </span>
+                          <BadgeCheck size={16} className="mr-1 fill-current" />
                           Terakreditasi{" "}
                           {selectedInstitution.profil.akreditasi || "A"}
                         </span>
@@ -227,9 +284,7 @@ export default function Home() {
                           {selectedInstitution.name}
                         </h2>
                         <div className="flex items-center text-sm text-[#61896f] dark:text-gray-400">
-                          <span className="material-symbols-outlined text-[18px] mr-1">
-                            school
-                          </span>
+                          <School size={18} className="mr-1" />
                           <span>{selectedInstitution.desc}</span>
                         </div>
                       </div>
@@ -282,9 +337,7 @@ export default function Home() {
                           <div className="grid gap-3">
                             <div className="relative overflow-hidden p-4 rounded-lg bg-[#e8f5e9] dark:bg-[#132e21] border border-primary/20">
                               <span className="absolute -right-4 -top-4 text-primary/10 dark:text-primary/5">
-                                <span className="material-symbols-outlined text-[100px] filled">
-                                  visibility
-                                </span>
+                                <Eye size={100} className="fill-current" />
                               </span>
                               <h4 className="font-bold text-[#111813] dark:text-white mb-1 relative z-10">
                                 Visi
@@ -340,9 +393,7 @@ export default function Home() {
                                 }`}
                               >
                                 <div className="w-10 h-10 mx-auto mb-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
-                                  <span className="material-symbols-outlined">
-                                    {prodi.icon || "school"}
-                                  </span>
+                                  {getIcon(prodi.icon || "school", 20)}
                                 </div>
                                 <h4 className="font-semibold text-sm text-[#111813] dark:text-white">
                                   {prodi.nama}
@@ -361,9 +412,10 @@ export default function Home() {
                                   key={idx}
                                   className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-3"
                                 >
-                                  <span className="material-symbols-outlined text-primary">
-                                    check_circle
-                                  </span>
+                                  <CheckCircle2
+                                    size={20}
+                                    className="text-primary"
+                                  />
                                   <span className="text-sm text-gray-700 dark:text-gray-300">
                                     {prog}
                                   </span>
@@ -387,9 +439,10 @@ export default function Home() {
                                   key={idx}
                                   className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-2"
                                 >
-                                  <span className="material-symbols-outlined text-primary text-[20px]">
-                                    apartment
-                                  </span>
+                                  <Building2
+                                    size={20}
+                                    className="text-primary"
+                                  />
                                   <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
                                     {fasilitas}
                                   </span>
@@ -423,9 +476,7 @@ export default function Home() {
                                 }
                                 className="z-10 bg-white dark:bg-[#111813] text-[#111813] dark:text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 hover:scale-105 transition-transform"
                               >
-                                <span className="material-symbols-outlined text-[16px] text-primary">
-                                  map
-                                </span>
+                                <MapPin size={16} className="text-primary" />
                                 Lihat di Peta
                               </button>
                             )}
@@ -433,9 +484,10 @@ export default function Home() {
 
                           <div className="p-4 bg-white dark:bg-surface-dark">
                             <div className="flex items-start gap-3 mb-4">
-                              <span className="material-symbols-outlined text-gray-400 mt-0.5">
-                                location_on
-                              </span>
+                              <MapPin
+                                size={20}
+                                className="text-gray-400 mt-0.5"
+                              />
                               <p className="text-sm text-gray-600 dark:text-gray-300">
                                 {selectedInstitution.kontak?.alamat ||
                                   "Alamat belum tersedia"}
@@ -449,9 +501,7 @@ export default function Home() {
                                   rel="noopener noreferrer"
                                   className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-100 transition-colors"
                                 >
-                                  <span className="material-symbols-outlined text-[16px]">
-                                    chat
-                                  </span>
+                                  <MessageCircle size={16} />
                                   WhatsApp
                                 </a>
                               )}
@@ -460,9 +510,7 @@ export default function Home() {
                                   href={`tel:${selectedInstitution.kontak.telepon}`}
                                   className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 transition-colors"
                                 >
-                                  <span className="material-symbols-outlined text-[16px]">
-                                    call
-                                  </span>
+                                  <Phone size={16} />
                                   Telepon
                                 </a>
                               )}
@@ -494,9 +542,7 @@ export default function Home() {
                         className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:bg-[#0fd650] active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-lg shadow-lg shadow-primary/20 transition-all"
                       >
                         Daftar Sekarang
-                        <span className="material-symbols-outlined text-[18px]">
-                          arrow_forward
-                        </span>
+                        <ChevronRight size={18} />
                       </a>
                     </div>
                   </div>
@@ -506,9 +552,7 @@ export default function Home() {
                   <div className="py-3 sticky top-[68px] z-10 bg-surface-light dark:bg-surface-dark transition-colors duration-300">
                     <div className="flex w-full h-12 items-stretch rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800 border border-transparent dark:border-gray-700">
                       <div className="text-text-sub flex items-center justify-center pl-4">
-                        <span className="material-symbols-outlined text-[24px]">
-                          search
-                        </span>
+                        <Search size={24} />
                       </div>
                       <input
                         className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3"
@@ -543,9 +587,7 @@ export default function Home() {
                             >
                               <div className="flex items-center gap-4 flex-1 overflow-hidden">
                                 <div className="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12 group-hover:bg-primary group-hover:text-black transition-colors">
-                                  <span className="material-symbols-outlined text-[24px]">
-                                    {item.icon}
-                                  </span>
+                                  {getIcon(item.icon, 24)}
                                 </div>
                                 <div className="flex flex-col justify-center overflow-hidden">
                                   <p className="text-text-main dark:text-white text-base font-medium leading-normal truncate group-hover:text-primary transition-colors">
@@ -557,9 +599,7 @@ export default function Home() {
                                 </div>
                               </div>
                               <div className="shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">
-                                <span className="material-symbols-outlined text-[24px]">
-                                  chevron_right
-                                </span>
+                                <ChevronRight size={24} />
                               </div>
                             </div>
                           ))}
@@ -599,9 +639,7 @@ export default function Home() {
 
               <div className="mb-3 relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <span className="material-symbols-outlined text-text-sub text-[20px]">
-                    domain
-                  </span>
+                  <Building2 size={20} className="text-text-sub" />
                 </div>
                 <select
                   value={selectedLembaga}
@@ -616,9 +654,7 @@ export default function Home() {
                   ))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <span className="material-symbols-outlined text-text-sub text-[24px]">
-                    expand_more
-                  </span>
+                  <ChevronDown size={24} className="text-text-sub" />
                 </div>
               </div>
 
@@ -636,9 +672,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
-                    <span className="material-symbols-outlined text-[16px] text-primary">
-                      check_circle
-                    </span>
+                    <CheckCircle2 size={16} className="text-primary" />
                     <span className="text-xs text-gray-300">
                       Termasuk SPP Bulan Pertama
                     </span>
@@ -648,9 +682,7 @@ export default function Home() {
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-text-main dark:text-white font-bold text-lg px-1 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary">
-                    receipt_long
-                  </span>
+                  <ScrollText className="text-primary" />
                   Rincian Biaya
                 </h3>
                 <div className="bg-white dark:bg-gray-800 rounded-xl p-2 shadow-sm border border-gray-100 dark:border-white/5 transition-colors">
@@ -663,9 +695,7 @@ export default function Home() {
                         <div
                           className={`size-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700`}
                         >
-                          <span className="material-symbols-outlined text-[20px] text-primary">
-                            {item.icon}
-                          </span>
+                          {getIcon(item.icon, 20)}
                         </div>
                         <div>
                           <p className="text-text-main dark:text-white text-sm font-semibold">
@@ -685,9 +715,10 @@ export default function Home() {
               </div>
 
               <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-100 dark:border-yellow-900/30">
-                <span className="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-[20px] shrink-0 mt-0.5">
-                  info
-                </span>
+                <Info
+                  size={20}
+                  className="text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5"
+                />
                 <p className="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed">
                   <span className="font-bold">Catatan:</span> Biaya di atas
                   adalah estimasi untuk tahun ajaran 2026/2027. Pembayaran dapat
@@ -1052,10 +1083,9 @@ export default function Home() {
                           </p>
                         </div>
                       </div>
+
                       <button className="mt-4 flex items-center justify-center w-full h-11 gap-2 bg-primary hover:brightness-105 active:scale-[0.98] text-black text-sm font-bold rounded-xl transition-all shadow-sm">
-                        <span className="material-symbols-outlined text-[20px] fill-1">
-                          download
-                        </span>
+                        <Download size={20} className="fill-current" />
                         Download Brosur PDF
                       </button>
                     </div>
@@ -1074,9 +1104,7 @@ export default function Home() {
                     disabled={currentPage === 1}
                     className="flex items-center justify-center w-10 h-10 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-text-main dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[20px]">
-                      chevron_left
-                    </span>
+                    <ChevronLeft size={20} />
                   </button>
 
                   <div className="flex items-center gap-1">
@@ -1133,9 +1161,7 @@ export default function Home() {
                     }
                     className="flex items-center justify-center w-10 h-10 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-text-main dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[20px]">
-                      chevron_right
-                    </span>
+                    <ChevronRight size={20} />
                   </button>
                 </div>
               )}

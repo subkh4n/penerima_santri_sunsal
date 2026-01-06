@@ -1,5 +1,5 @@
-
-import React from 'react';
+import React from "react";
+import { GraduationCap, Phone, Mail, Globe } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         {/* Brand Section */}
         <div className="flex items-center gap-4">
           <div className="size-12 rounded-2xl bg-[#e6fcf0] dark:bg-primary/20 flex items-center justify-center text-primary">
-            <span className="material-symbols-outlined text-[28px] fill-1">school</span>
+            <GraduationCap size={28} strokeWidth={1.5} />
           </div>
           <div className="flex flex-col">
             <h4 className="text-text-main dark:text-white font-black text-xl leading-tight">
@@ -19,23 +19,32 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-        
+
         {/* Contact Icons Section */}
         <div className="flex gap-3 mt-2">
-          <a className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all" href="tel:#">
-            <span className="material-symbols-outlined text-[20px] fill-1">call</span>
+          <a
+            className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all"
+            href="tel:#"
+          >
+            <Phone size={20} />
           </a>
-          <a className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all" href="mailto:#">
-            <span className="material-symbols-outlined text-[20px] fill-1">mail</span>
+          <a
+            className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all"
+            href="mailto:#"
+          >
+            <Mail size={20} />
           </a>
-          <a className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all" href="#">
-            <span className="material-symbols-outlined text-[20px] fill-1">public</span>
+          <a
+            className="size-11 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary hover:text-black transition-all"
+            href="#"
+          >
+            <Globe size={20} />
           </a>
         </div>
-        
+
         {/* Divider */}
         <div className="h-px bg-gray-100 dark:bg-gray-800 w-full my-2"></div>
-        
+
         {/* Copyright Section */}
         <div className="flex flex-col items-center justify-center gap-1">
           <p className="text-center text-[13px] text-text-sub dark:text-gray-500 font-medium leading-relaxed">

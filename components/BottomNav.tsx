@@ -1,6 +1,6 @@
-
-import React from 'react';
-import { Tab } from '../App';
+import React from "react";
+import { Tab } from "../App";
+import { Home, Building2, Banknote, Newspaper, Download } from "lucide-react";
 
 interface BottomNavProps {
   activeTab: Tab;
@@ -9,11 +9,11 @@ interface BottomNavProps {
 
 const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab }) => {
   const tabs = [
-    { id: Tab.HOME, label: 'Home', icon: 'home' },
-    { id: Tab.PROFIL, label: 'Profil', icon: 'domain' },
-    { id: Tab.BIAYA, label: 'Biaya', icon: 'payments' },
-    { id: Tab.BERITA, label: 'Berita', icon: 'newspaper' },
-    { id: Tab.DOWNLOAD, label: 'Download', icon: 'download' },
+    { id: Tab.HOME, label: "Home", icon: Home },
+    { id: Tab.PROFIL, label: "Profil", icon: Building2 },
+    { id: Tab.BIAYA, label: "Biaya", icon: Banknote },
+    { id: Tab.BERITA, label: "Berita", icon: Newspaper },
+    { id: Tab.DOWNLOAD, label: "Download", icon: Download },
   ];
 
   return (
@@ -23,13 +23,21 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab }) => {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`flex flex-col items-center gap-1 transition-all active:scale-90 min-w-[64px] ${
-            activeTab === tab.id ? 'text-primary' : 'text-gray-400 hover:text-gray-500'
+            activeTab === tab.id
+              ? "text-primary"
+              : "text-gray-400 hover:text-gray-500"
           }`}
         >
-          <span className={`material-symbols-outlined text-[24px] ${activeTab === tab.id ? 'fill-1' : ''}`}>
-            {tab.icon}
-          </span>
-          <span className={`text-[10px] ${activeTab === tab.id ? 'font-bold' : 'font-medium'}`}>
+          <tab.icon
+            size={24}
+            strokeWidth={activeTab === tab.id ? 2.5 : 2}
+            className={activeTab === tab.id ? "text-primary" : ""}
+          />
+          <span
+            className={`text-[10px] ${
+              activeTab === tab.id ? "font-bold" : "font-medium"
+            }`}
+          >
             {tab.label}
           </span>
         </button>

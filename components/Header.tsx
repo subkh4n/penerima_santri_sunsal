@@ -1,4 +1,5 @@
 import React from "react";
+import { Sun, Moon, Bell } from "lucide-react";
 
 interface HeaderProps {
   onToggleTheme: () => void;
@@ -26,23 +27,13 @@ const Header: React.FC<HeaderProps> = ({
           className="flex cursor-pointer items-center justify-center rounded-xl h-10 w-10 bg-transparent text-text-main dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           aria-label="Toggle dark mode"
         >
-          <span
-            className="material-symbols-outlined"
-            style={{ fontSize: "22px" }}
-          >
-            {isDarkMode ? "light_mode" : "dark_mode"}
-          </span>
+          {isDarkMode ? <Sun size={22} /> : <Moon size={22} />}
         </button>
         <button
           className="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 w-10 bg-transparent text-text-main dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           aria-label="Notifications"
         >
-          <span
-            className="material-symbols-outlined"
-            style={{ fontSize: "24px" }}
-          >
-            notifications
-          </span>
+          <Bell size={24} />
         </button>
       </div>
     </div>

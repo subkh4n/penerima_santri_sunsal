@@ -1,8 +1,22 @@
 import React from "react";
+import { Calendar, Info, BookOpen, ChevronRight } from "lucide-react";
 
 interface InfoSectionProps {
   onViewAllClick?: () => void;
 }
+
+const getIcon = (name: string, size: number) => {
+  switch (name) {
+    case "calendar_month":
+      return <Calendar size={size} />;
+    case "info":
+      return <Info size={size} />;
+    case "gavel":
+      return <BookOpen size={size} />;
+    default:
+      return <Info size={size} />;
+  }
+};
 
 const InfoSection: React.FC<InfoSectionProps> = ({ onViewAllClick }) => {
   const infoCards = [
@@ -58,9 +72,7 @@ const InfoSection: React.FC<InfoSectionProps> = ({ onViewAllClick }) => {
               <div className="p-4 flex flex-col gap-3">
                 <div className="flex gap-3 items-start">
                   <div className="bg-primary/10 rounded-lg p-2 text-primary shrink-0">
-                    <span className="material-symbols-outlined text-[24px]">
-                      {card.icon}
-                    </span>
+                    {getIcon(card.icon, 24)}
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-text-main dark:text-white text-lg font-bold leading-tight">
@@ -84,8 +96,8 @@ const InfoSection: React.FC<InfoSectionProps> = ({ onViewAllClick }) => {
               <div className="flex flex-col justify-between flex-1 gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-primary text-[20px]">
-                      {card.icon}
+                    <span className="text-primary">
+                      {getIcon(card.icon, 20)}
                     </span>
                     <p className="text-text-main dark:text-white text-base font-bold leading-tight">
                       {card.title}
@@ -97,9 +109,7 @@ const InfoSection: React.FC<InfoSectionProps> = ({ onViewAllClick }) => {
                 </div>
                 <button className="flex items-center gap-1 text-primary text-sm font-bold mt-2 hover:underline w-fit">
                   <span>Baca Selengkapnya</span>
-                  <span className="material-symbols-outlined text-[16px]">
-                    arrow_forward
-                  </span>
+                  <ChevronRight size={16} />
                 </button>
               </div>
               <div

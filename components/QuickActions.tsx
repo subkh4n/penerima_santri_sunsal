@@ -1,4 +1,5 @@
 import React from "react";
+import { FileEdit, LogIn } from "lucide-react";
 
 const QuickActions: React.FC = () => {
   return (
@@ -10,9 +11,7 @@ const QuickActions: React.FC = () => {
           rel="noopener noreferrer"
           className="flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-primary text-[#111813] text-base font-bold leading-normal tracking-[0.015em] hover:brightness-105 transition-all shadow-sm flex gap-2 active:scale-[0.98]"
         >
-          <span className="material-symbols-outlined text-[20px]">
-            edit_square
-          </span>
+          <FileEdit size={20} />
           <span className="truncate">Daftar</span>
         </a>
         <a
@@ -21,7 +20,7 @@ const QuickActions: React.FC = () => {
           rel="noopener noreferrer"
           className="flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-gray-100 dark:bg-gray-800 text-text-main dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-200 dark:hover:bg-gray-700 transition-all border border-transparent dark:border-gray-700 flex gap-2 active:scale-[0.98]"
         >
-          <span className="material-symbols-outlined text-[20px]">login</span>
+          <LogIn size={20} />
           <span className="truncate">Login</span>
         </a>
       </div>

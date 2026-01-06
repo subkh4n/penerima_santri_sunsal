@@ -1,4 +1,5 @@
 import React from "react";
+import { ClipboardCheck } from "lucide-react";
 
 const Hero: React.FC = () => {
   const heroImageUrl =
@@ -33,9 +34,10 @@ const Hero: React.FC = () => {
             rel="noopener noreferrer"
             className="z-10 flex min-w-[84px] w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all group"
           >
-            <span className="material-symbols-outlined mr-2 text-[20px] group-hover:scale-110 transition-transform">
-              assignment_turned_in
-            </span>
+            <ClipboardCheck
+              size={20}
+              className="mr-2 group-hover:scale-110 transition-transform"
+            />
             <span className="truncate">Hasil Seleksi Penerimaan</span>
           </a>
         </div>

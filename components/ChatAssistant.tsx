@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { generateAssistantResponse } from "@/services/geminiService";
+import { Bot, X, Send } from "lucide-react";
 
 interface Message {
   role: "user" | "model";
@@ -53,7 +54,7 @@ const ChatAssistant: React.FC = () => {
         className="fixed bottom-24 right-6 size-14 rounded-full bg-primary text-black shadow-xl flex items-center justify-center z-[60] hover:scale-110 active:scale-95 transition-all animate-bounce-slow"
         style={{ animationDuration: "3s" }}
       >
-        <span className="material-symbols-outlined text-[28px]">smart_toy</span>
+        <Bot size={28} />
       </button>
 
       {/* Chat Drawer/Overlay */}
@@ -63,14 +64,14 @@ const ChatAssistant: React.FC = () => {
             {/* Header */}
             <div className="p-4 bg-primary flex justify-between items-center text-black">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined">smart_toy</span>
+                <Bot size={24} />
                 <span className="font-bold">Asisten Sunniyah</span>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="hover:bg-black/10 p-1 rounded-full"
               >
-                <span className="material-symbols-outlined">close</span>
+                <X size={24} />
               </button>
             </div>
 
@@ -124,7 +125,7 @@ const ChatAssistant: React.FC = () => {
                   disabled={isLoading}
                   className="bg-primary text-black size-12 rounded-xl flex items-center justify-center hover:brightness-105 active:scale-95 disabled:opacity-50 transition-all"
                 >
-                  <span className="material-symbols-outlined">send</span>
+                  <Send size={24} />
                 </button>
               </div>
             </div>
