@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import QuickActions from './components/QuickActions';
-import InfoSection from './components/InfoSection';
-import StatsSection from './components/StatsSection';
-import Footer from './components/Footer';
-import BottomNav from './components/BottomNav';
+﻿import React, { useState, useEffect, useMemo } from "react";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import QuickActions from "./components/QuickActions";
+import InfoSection from "./components/InfoSection";
+import StatsSection from "./components/StatsSection";
+import Footer from "./components/Footer";
+import BottomNav from "./components/BottomNav";
+import { getAllLembaga } from "./lib/lembaga";
+import type { Lembaga } from "./types/lembaga";
 
 export enum Tab {
-  HOME = 'home',
-  PROFIL = 'profil',
-  BIAYA = 'biaya',
-  BERITA = 'berita',
-  DOWNLOAD = 'download'
+  HOME = "home",
+  PROFIL = "profil",
+  JADWAL = "jadwal",
+  BIAYA = "biaya",
+  BERITA = "berita",
+  DOWNLOAD = "download",
 }
 
 interface Institution {
@@ -32,75 +35,301 @@ interface NewsItem {
   summary: string;
 }
 
+interface JadwalItem {
+  tanggal: string;
+  kegiatan: string;
+  keterangan: string;
+  status: "selesai" | "berlangsung" | "akan-datang";
+  lokasi?: string;
+  icon: string;
+}
+
+interface JadwalGelombang {
+  gelombang: number;
+  items: JadwalItem[];
+}
+
+// Dummy jadwal data
+const jadwalData: JadwalGelombang[] = [
+  {
+    gelombang: 1,
+    items: [
+      {
+        tanggal: "1 Jan - 28 Feb",
+        kegiatan: "Pendaftaran Online",
+        keterangan: "Via Aplikasi/Website",
+        status: "selesai",
+        icon: "app_registration",
+      },
+      {
+        tanggal: "5 Maret",
+        kegiatan: "Tes Seleksi Masuk",
+        keterangan: "Tes kemampuan dasar, tes membaca Al-Qur'an, dan wawancara",
+        status: "berlangsung",
+        lokasi: "Gedung Aula Utama Lt. 2",
+        icon: "edit_document",
+      },
+      {
+        tanggal: "10 Maret",
+        kegiatan: "Pengumuman Kelulusan",
+        keterangan:
+          "Hasil tes seleksi dapat dilihat melalui aplikasi atau papan pengumuman",
+        status: "akan-datang",
+        icon: "campaign",
+      },
+      {
+        tanggal: "11 - 20 Maret",
+        kegiatan: "Daftar Ulang",
+        keterangan:
+          "Pembayaran biaya masuk dan pengambilan seragam santri baru",
+        status: "akan-datang",
+        icon: "assignment_add",
+      },
+      {
+        tanggal: "15 Juli",
+        kegiatan: "Awal Masuk Sekolah",
+        keterangan: "Hari pertama kegiatan KBM",
+        status: "akan-datang",
+        icon: "school",
+      },
+    ],
+  },
+  {
+    gelombang: 2,
+    items: [
+      {
+        tanggal: "1 - 30 April",
+        kegiatan: "Pendaftaran Online",
+        keterangan: "Via Aplikasi/Website",
+        status: "akan-datang",
+        icon: "app_registration",
+      },
+      {
+        tanggal: "5 Mei",
+        kegiatan: "Tes Seleksi Masuk",
+        keterangan: "Tes kemampuan dasar, tes membaca Al-Qur'an, dan wawancara",
+        status: "akan-datang",
+        lokasi: "Gedung Aula Utama Lt. 2",
+        icon: "edit_document",
+      },
+      {
+        tanggal: "10 Mei",
+        kegiatan: "Pengumuman Kelulusan",
+        keterangan:
+          "Hasil tes seleksi dapat dilihat melalui aplikasi atau papan pengumuman",
+        status: "akan-datang",
+        icon: "campaign",
+      },
+      {
+        tanggal: "11 - 20 Mei",
+        kegiatan: "Daftar Ulang",
+        keterangan:
+          "Pembayaran biaya masuk dan pengambilan seragam santri baru",
+        status: "akan-datang",
+        icon: "assignment_add",
+      },
+      {
+        tanggal: "15 Juli",
+        kegiatan: "Awal Masuk Sekolah",
+        keterangan: "Hari pertama kegiatan KBM",
+        status: "akan-datang",
+        icon: "school",
+      },
+    ],
+  },
+  {
+    gelombang: 3,
+    items: [
+      {
+        tanggal: "1 - 30 Juni",
+        kegiatan: "Pendaftaran Online",
+        keterangan: "Via Aplikasi/Website",
+        status: "akan-datang",
+        icon: "app_registration",
+      },
+      {
+        tanggal: "5 Juli",
+        kegiatan: "Tes Seleksi Masuk",
+        keterangan: "Tes kemampuan dasar, tes membaca Al-Qur'an, dan wawancara",
+        status: "akan-datang",
+        lokasi: "Gedung Aula Utama Lt. 2",
+        icon: "edit_document",
+      },
+      {
+        tanggal: "10 Juli",
+        kegiatan: "Pengumuman Kelulusan",
+        keterangan:
+          "Hasil tes seleksi dapat dilihat melalui aplikasi atau papan pengumuman",
+        status: "akan-datang",
+        icon: "campaign",
+      },
+      {
+        tanggal: "11 - 14 Juli",
+        kegiatan: "Daftar Ulang",
+        keterangan:
+          "Pembayaran biaya masuk dan pengambilan seragam santri baru",
+        status: "akan-datang",
+        icon: "assignment_add",
+      },
+      {
+        tanggal: "15 Juli",
+        kegiatan: "Awal Masuk Sekolah",
+        keterangan: "Hari pertama kegiatan KBM",
+        status: "akan-datang",
+        icon: "school",
+      },
+    ],
+  },
+];
+
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.HOME);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [boardingType, setBoardingType] = useState<'Boarding' | 'Full Day'>('Boarding');
-  const [selectedLembaga, setSelectedLembaga] = useState('');
-  const [newsCategory, setNewsCategory] = useState('Semua');
-  const [selectedInstitution, setSelectedInstitution] = useState<Institution | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [boardingType, setBoardingType] = useState<"Boarding" | "Full Day">(
+    "Boarding"
+  );
+  const [selectedLembaga, setSelectedLembaga] = useState("");
+  const [newsCategory, setNewsCategory] = useState("Semua");
+  const [selectedInstitution, setSelectedInstitution] =
+    useState<Institution | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [jadwalLembaga, setJadwalLembaga] = useState<string>("");
+  const [jadwalGelombang, setJadwalGelombang] = useState<number>(1);
+  const allLembaga: Lembaga[] = useMemo(() => getAllLembaga(), []);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle("dark");
   };
 
   const getHeaderTitle = (tab: Tab) => {
     switch (tab) {
-      case Tab.HOME: return 'Beranda';
-      case Tab.PROFIL: return 'Profil Lembaga';
-      case Tab.BIAYA: return 'Informasi Biaya';
-      case Tab.BERITA: return 'Berita & Kegiatan';
-      case Tab.DOWNLOAD: return 'Pusat Unduhan';
-      default: return 'Beranda';
+      case Tab.HOME:
+        return "Beranda";
+      case Tab.PROFIL:
+        return "Profil Lembaga";
+      case Tab.JADWAL:
+        return "Jadwal Kegiatan";
+      case Tab.BIAYA:
+        return "Informasi Biaya";
+      case Tab.BERITA:
+        return "Berita & Kegiatan";
+      case Tab.DOWNLOAD:
+        return "Pusat Unduhan";
+      default:
+        return "Beranda";
     }
   };
 
-  const categories = ['Semua', 'Pengumuman', 'Kegiatan', 'Prestasi', 'Artikel'];
+  const categories = ["Semua", "Pengumuman", "Kegiatan", "Prestasi", "Artikel"];
 
   const profilSections = [
     {
       title: "Pondok Pesantren",
       items: [
-        { name: "Pondok Athfal Sunniyah Salafiyah", desc: "Pendidikan Diniyah Anak Usia Dini", icon: "child_care" },
-        { name: "Pondok Putra Sunniyah Salafiyah", desc: "Asrama Santri Putra", icon: "mosque" },
-        { name: "Pondok Putri Az-zahro'", desc: "Asrama Santri Putri", icon: "woman_2" },
-      ]
+        {
+          name: "Pondok Athfal Sunniyah Salafiyah",
+          desc: "Pendidikan Diniyah Anak Usia Dini",
+          icon: "child_care",
+        },
+        {
+          name: "Pondok Putra Sunniyah Salafiyah",
+          desc: "Asrama Santri Putra",
+          icon: "mosque",
+        },
+        {
+          name: "Pondok Putri Az-zahro'",
+          desc: "Asrama Santri Putri",
+          icon: "woman_2",
+        },
+      ],
     },
     {
       title: "Sekolah Formal",
       items: [
-        { name: "SMP Putra Al-azhar", desc: "Sekolah Menengah Pertama (Putra)", icon: "school" },
-        { name: "SMA Putra Al-azhar", desc: "Sekolah Menengah Atas (Putra)", icon: "history_edu" },
-        { name: "SMP Putri Al-azhar", desc: "Sekolah Menengah Pertama (Putri)", icon: "school" },
-        { name: "SMK Putri Al-azhar", desc: "Sekolah Menengah Kejuruan (Putri)", icon: "draw" },
-      ]
+        {
+          name: "SMP Putra Al-azhar",
+          desc: "Sekolah Menengah Pertama (Putra)",
+          icon: "school",
+        },
+        {
+          name: "SMA Putra Al-azhar",
+          desc: "Sekolah Menengah Atas (Putra)",
+          icon: "history_edu",
+        },
+        {
+          name: "SMP Putri Al-azhar",
+          desc: "Sekolah Menengah Pertama (Putri)",
+          icon: "school",
+        },
+        {
+          name: "SMK Putri Al-azhar",
+          desc: "Sekolah Menengah Kejuruan (Putri)",
+          icon: "draw",
+        },
+      ],
     },
     {
       title: "Madrasah & Kampus",
       items: [
-        { name: "Madrasah Sunniyah Salafiyah", desc: "Pendidikan Diniyah", icon: "menu_book" },
-        { name: "Madrasah Az-zahro'", desc: "Pendidikan Diniyah Putri", icon: "auto_stories" },
-        { name: "STIT Sunniyah Salafiyah", desc: "Sekolah Tinggi Ilmu Tarbiyah", icon: "account_balance" },
-      ]
-    }
+        {
+          name: "Madrasah Sunniyah Salafiyah",
+          desc: "Pendidikan Diniyah",
+          icon: "menu_book",
+        },
+        {
+          name: "Madrasah Az-zahro'",
+          desc: "Pendidikan Diniyah Putri",
+          icon: "auto_stories",
+        },
+        {
+          name: "STIT Sunniyah Salafiyah",
+          desc: "Sekolah Tinggi Ilmu Tarbiyah",
+          icon: "account_balance",
+        },
+      ],
+    },
   ];
 
   const rincianBiaya = [
-    { name: "Pendaftaran", desc: "Formulir & Administrasi", amount: "Rp 250.000", icon: "app_registration" },
-    { name: "Uang Pangkal", desc: "Pengembangan Gedung", amount: "Rp 2.500.000", icon: "domain" },
-    { name: "Seragam", desc: "3 Stel Bahan Kain", amount: "Rp 650.000", icon: "checkroom" },
-    { name: "Kitab & Buku", desc: "Paket Semester 1", amount: "Rp 450.000", icon: "menu_book" },
-    { name: "SPP Bulan 1", desc: "Syahriah & Makan", amount: "Rp 400.000", icon: "payments" },
+    {
+      name: "Pendaftaran",
+      desc: "Formulir & Administrasi",
+      amount: "Rp 250.000",
+      icon: "app_registration",
+    },
+    {
+      name: "Uang Pangkal",
+      desc: "Pengembangan Gedung",
+      amount: "Rp 2.500.000",
+      icon: "domain",
+    },
+    {
+      name: "Seragam",
+      desc: "3 Stel Bahan Kain",
+      amount: "Rp 650.000",
+      icon: "checkroom",
+    },
+    {
+      name: "Kitab & Buku",
+      desc: "Paket Semester 1",
+      amount: "Rp 450.000",
+      icon: "menu_book",
+    },
+    {
+      name: "SPP Bulan 1",
+      desc: "Syahriah & Makan",
+      amount: "Rp 400.000",
+      icon: "payments",
+    },
   ];
 
   const downloadItems = [
@@ -109,55 +338,64 @@ const App: React.FC = () => {
       desc: "Pendidikan tingkat dasar",
       type: "PDF",
       size: "1.2 MB",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAt5zjRM8B-1n4IXNBD-knYgEavErBZ_NFcFnE-j8r8AJpYhw7BdXjrlcGHi9xG9VPtPiiQd7XQ2HQ_x2l3BHAldokKNU0HXJqG28HRntMp7dOXmpvquhDGXXLj8-q5Wi_GcKmD7Bd0Hd0dDy3ZMXvlxxRIqUF5b5qcLXDZm1zbJXVpFJPCSrhycxPupqMLzSh8bbPkl7GJhucUMchnTP4RpfmPt49at2bSlQVJSX2JhAu1t5Kre6zHIStLGg3SeR6o42hQRfbLcF5M"
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAt5zjRM8B-1n4IXNBD-knYgEavErBZ_NFcFnE-j8r8AJpYhw7BdXjrlcGHi9xG9VPtPiiQd7XQ2HQ_x2l3BHAldokKNU0HXJqG28HRntMp7dOXmpvquhDGXXLj8-q5Wi_GcKmD7Bd0Hd0dDy3ZMXvlxxRIqUF5b5qcLXDZm1zbJXVpFJPCSrhycxPupqMLzSh8bbPkl7GJhucUMchnTP4RpfmPt49at2bSlQVJSX2JhAu1t5Kre6zHIStLGg3SeR6o42hQRfbLcF5M",
     },
     {
       name: "Madrasah Tsanawiyah (MTs)",
       desc: "Pendidikan tingkat menengah",
       type: "PDF",
       size: "2.4 MB",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWJo9eFxCdrleK5VookN6PFmDrUoU_v1SQ7kqHcNgtWWnYSoQ2uKUyewuzTi9AnhAZvKt-zIPuDkxvG4fO114ay6-MiblG0BsS21aVjqp_9uQwaZMztL1S55Kbpy3LgnC-PFCMZPoh_rgkEBvY4LqNd2SgaAe3lGYo8f3_05bCWQBAmoFahRSdVFrNltoITRQoQku729kFX5yx9wOQHCvnefxvb7WCRGfxmOZsuGDik-a_ifs7KlJknN9Sk1DIYE2xFoi1l7S7I07X"
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAWJo9eFxCdrleK5VookN6PFmDrUoU_v1SQ7kqHcNgtWWnYSoQ2uKUyewuzTi9AnhAZvKt-zIPuDkxvG4fO114ay6-MiblG0BsS21aVjqp_9uQwaZMztL1S55Kbpy3LgnC-PFCMZPoh_rgkEBvY4LqNd2SgaAe3lGYo8f3_05bCWQBAmoFahRSdVFrNltoITRQoQku729kFX5yx9wOQHCvnefxvb7WCRGfxmOZsuGDik-a_ifs7KlJknN9Sk1DIYE2xFoi1l7S7I07X",
     },
     {
       name: "Madrasah Aliyah (MA)",
       desc: "Pendidikan tingkat atas",
       type: "PDF",
       size: "3.1 MB",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u"
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u",
     },
     {
       name: "Pondok Pesantren",
       desc: "Asrama dan Pendidikan Diniyah",
       type: "PDF",
       size: "4.5 MB",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6"
-    }
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+    },
   ];
 
   const mainNews: NewsItem = {
-    id: 'psb-2026',
-    category: 'Pengumuman',
-    title: 'Penerimaan Santri Baru Tahun Ajaran 2026/2027 Resmi Dibuka',
-    date: '12 Mei 2026',
-    author: 'Panitia PSB',
-    authorRole: 'Admin Yayasan',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBAFa4uOSZSTNi2bkEThp0X9-S8tGUggUB34NyVuuv3EdCpTrM8e88se-Ng5FFjRcqllT-RSn7UM6ALRs7ie0i_4rU7283dKDl5qMJleynIpawARI-Q8D9TE37dAm-5fG6cpCorfqx4VGD4fhgq1mLHiwZmeZTNz6Pm06gtMh2TGTZmWVrbmkUqYIuvp52iRYTZTf0uTMSq2aD9hbkSczYVUpagGR6hKZpGoHCBKYItOV9KtPlOhdyRX8pEijOB8GdDDW-vLtW8IrFh',
-    summary: 'Yayasan Sunniyah Salafiyah kembali membuka kesempatan bagi putra-putri terbaik untuk bergabung. Segera daftarkan diri Anda sebelum kuota terpenuhi.'
+    id: "psb-2026",
+    category: "Pengumuman",
+    title: "Penerimaan Santri Baru Tahun Ajaran 2026/2027 Resmi Dibuka",
+    date: "12 Mei 2026",
+    author: "Panitia PSB",
+    authorRole: "Admin Yayasan",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBAFa4uOSZSTNi2bkEThp0X9-S8tGUggUB34NyVuuv3EdCpTrM8e88se-Ng5FFjRcqllT-RSn7UM6ALRs7ie0i_4rU7283dKDl5qMJleynIpawARI-Q8D9TE37dAm-5fG6cpCorfqx4VGD4fhgq1mLHiwZmeZTNz6Pm06gtMh2TGTZmWVrbmkUqYIuvp52iRYTZTf0uTMSq2aD9hbkSczYVUpagGR6hKZpGoHCBKYItOV9KtPlOhdyRX8pEijOB8GdDDW-vLtW8IrFh",
+    summary:
+      "Yayasan Sunniyah Salafiyah kembali membuka kesempatan bagi putra-putri terbaik untuk bergabung. Segera daftarkan diri Anda sebelum kuota terpenuhi.",
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark' : ''}`}>
+    <div className={`min-h-screen ${isDarkMode ? "dark" : ""}`}>
       <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto shadow-2xl bg-surface-light dark:bg-surface-dark transition-colors duration-300">
-        
-        {(!selectedInstitution && !selectedNews) && (
-          <Header 
-            onToggleTheme={toggleDarkMode} 
-            isDarkMode={isDarkMode} 
-            title={getHeaderTitle(activeTab)} 
+        {!selectedInstitution && !selectedNews && (
+          <Header
+            onToggleTheme={toggleDarkMode}
+            isDarkMode={isDarkMode}
+            title={getHeaderTitle(activeTab)}
           />
         )}
-        
-        <main className={`flex-1 ${(selectedInstitution || selectedNews) ? '' : 'pb-24'}`}>
+
+        <main
+          className={`flex-1 ${
+            selectedInstitution || selectedNews ? "" : "pb-24"
+          }`}
+        >
           {activeTab === Tab.HOME && (
             <div className="animate-fade-in">
               <Hero />
@@ -174,24 +412,35 @@ const App: React.FC = () => {
                 <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
                   <header className="sticky top-0 z-30 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200/50 dark:border-white/5 transition-all duration-300">
                     <div className="flex items-center justify-between px-4 py-3">
-                      <button 
+                      <button
                         onClick={() => setSelectedInstitution(null)}
-                        aria-label="Go back" 
+                        aria-label="Go back"
                         className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-white/10 active:scale-95 transition-all text-[#111813] dark:text-white"
                       >
-                        <span className="material-symbols-outlined">arrow_back_ios_new</span>
+                        <span className="material-symbols-outlined">
+                          arrow_back_ios_new
+                        </span>
                       </button>
-                      <h1 className="text-lg font-bold tracking-tight text-[#111813] dark:text-white flex-1 text-center pr-8">Detail Lembaga</h1>
+                      <h1 className="text-lg font-bold tracking-tight text-[#111813] dark:text-white flex-1 text-center pr-8">
+                        Detail Lembaga
+                      </h1>
                     </div>
                   </header>
 
                   <div className="overflow-y-auto pb-32 no-scrollbar">
                     <div className="relative h-64 w-full">
-                      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center" style={{ backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6')` }}></div>
+                      <div
+                        className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6')`,
+                        }}
+                      ></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-black/30"></div>
                       <div className="absolute bottom-4 left-4">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-[#052e12] shadow-lg backdrop-blur-sm">
-                          <span className="material-symbols-outlined text-[16px] mr-1 fill-1">verified</span>
+                          <span className="material-symbols-outlined text-[16px] mr-1 fill-1">
+                            verified
+                          </span>
                           Terakreditasi A
                         </span>
                       </div>
@@ -199,18 +448,30 @@ const App: React.FC = () => {
 
                     <div className="px-4 -mt-2 relative z-10">
                       <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-[#111813] dark:text-white leading-tight mb-2">{selectedInstitution.name}</h2>
+                        <h2 className="text-2xl font-bold text-[#111813] dark:text-white leading-tight mb-2">
+                          {selectedInstitution.name}
+                        </h2>
                         <div className="flex items-center text-sm text-[#61896f] dark:text-gray-400">
-                          <span className="material-symbols-outlined text-[18px] mr-1">school</span>
+                          <span className="material-symbols-outlined text-[18px] mr-1">
+                            school
+                          </span>
                           <span>{selectedInstitution.desc}</span>
                         </div>
                       </div>
 
                       <div className="flex space-x-2 overflow-x-auto no-scrollbar mb-6 pb-2">
-                        <button className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors">Tentang</button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">Program</button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">Fasilitas</button>
-                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">Kontak</button>
+                        <button className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors">
+                          Tentang
+                        </button>
+                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                          Program
+                        </button>
+                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                          Fasilitas
+                        </button>
+                        <button className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors">
+                          Kontak
+                        </button>
                       </div>
 
                       <section className="space-y-4 mb-8">
@@ -220,7 +481,12 @@ const App: React.FC = () => {
                         </h3>
                         <div className="p-4 bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-white/5">
                           <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {selectedInstitution.name} adalah lembaga pendidikan di bawah naungan Yayasan Sunniyah Salafiyah yang memadukan kurikulum nasional dan kepesantrenan. Kami berkomitmen mencetak generasi yang tidak hanya unggul dalam ilmu pengetahuan umum, tetapi juga memiliki kedalaman ilmu agama dan akhlakul karimah.
+                            {selectedInstitution.name} adalah lembaga pendidikan
+                            di bawah naungan Yayasan Sunniyah Salafiyah yang
+                            memadukan kurikulum nasional dan kepesantrenan. Kami
+                            berkomitmen mencetak generasi yang tidak hanya
+                            unggul dalam ilmu pengetahuan umum, tetapi juga
+                            memiliki kedalaman ilmu agama dan akhlakul karimah.
                           </p>
                         </div>
                       </section>
@@ -228,11 +494,15 @@ const App: React.FC = () => {
                       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-50 max-w-[480px] mx-auto">
                         <div className="flex gap-3">
                           <button className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-xl border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                            <span className="text-xs font-semibold">Download Brosur</span>
+                            <span className="text-xs font-semibold">
+                              Download Brosur
+                            </span>
                           </button>
                           <button className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:brightness-105 active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-xl shadow-lg shadow-primary/20 transition-all">
                             Daftar Sekarang
-                            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            <span className="material-symbols-outlined text-[18px]">
+                              arrow_forward
+                            </span>
                           </button>
                         </div>
                       </div>
@@ -244,11 +514,13 @@ const App: React.FC = () => {
                   <div className="py-3 sticky top-[68px] z-10 bg-surface-light dark:bg-surface-dark transition-colors duration-300">
                     <div className="flex w-full h-12 items-stretch rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800 border border-transparent dark:border-gray-700">
                       <div className="text-text-sub flex items-center justify-center pl-4">
-                        <span className="material-symbols-outlined text-[24px]">search</span>
+                        <span className="material-symbols-outlined text-[24px]">
+                          search
+                        </span>
                       </div>
-                      <input 
-                        className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3" 
-                        placeholder="Cari lembaga..." 
+                      <input
+                        className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3"
+                        placeholder="Cari lembaga..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
@@ -261,33 +533,44 @@ const App: React.FC = () => {
                         {section.title}
                       </h3>
                       <div className="flex flex-col gap-3">
-                        {section.items.filter(item => 
-                          item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          item.desc.toLowerCase().includes(searchQuery.toLowerCase())
-                        ).map((item, iIdx) => (
-                          <div 
-                            key={iIdx} 
-                            onClick={() => setSelectedInstitution(item)}
-                            className="group flex items-center gap-4 bg-white dark:bg-gray-800/50 px-4 min-h-[72px] rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-50 dark:border-gray-700/50 hover:border-primary/30"
-                          >
-                            <div className="flex items-center gap-4 flex-1 overflow-hidden">
-                              <div className="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12 group-hover:bg-primary group-hover:text-black transition-colors">
-                                <span className="material-symbols-outlined text-[24px]">{item.icon}</span>
+                        {section.items
+                          .filter(
+                            (item) =>
+                              item.name
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase()) ||
+                              item.desc
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase())
+                          )
+                          .map((item, iIdx) => (
+                            <div
+                              key={iIdx}
+                              onClick={() => setSelectedInstitution(item)}
+                              className="group flex items-center gap-4 bg-white dark:bg-gray-800/50 px-4 min-h-[72px] rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-gray-50 dark:border-gray-700/50 hover:border-primary/30"
+                            >
+                              <div className="flex items-center gap-4 flex-1 overflow-hidden">
+                                <div className="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12 group-hover:bg-primary group-hover:text-black transition-colors">
+                                  <span className="material-symbols-outlined text-[24px]">
+                                    {item.icon}
+                                  </span>
+                                </div>
+                                <div className="flex flex-col justify-center overflow-hidden">
+                                  <p className="text-text-main dark:text-white text-base font-medium leading-normal truncate group-hover:text-primary transition-colors">
+                                    {item.name}
+                                  </p>
+                                  <p className="text-text-sub dark:text-gray-400 text-xs font-normal leading-normal truncate">
+                                    {item.desc}
+                                  </p>
+                                </div>
                               </div>
-                              <div className="flex flex-col justify-center overflow-hidden">
-                                <p className="text-text-main dark:text-white text-base font-medium leading-normal truncate group-hover:text-primary transition-colors">
-                                  {item.name}
-                                </p>
-                                <p className="text-text-sub dark:text-gray-400 text-xs font-normal leading-normal truncate">
-                                  {item.desc}
-                                </p>
+                              <div className="shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">
+                                <span className="material-symbols-outlined text-[24px]">
+                                  chevron_right
+                                </span>
                               </div>
                             </div>
-                            <div className="shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">
-                              <span className="material-symbols-outlined text-[24px]">chevron_right</span>
-                            </div>
-                          </div>
-                        ))}
+                          ))}
                       </div>
                     </div>
                   ))}
@@ -297,18 +580,321 @@ const App: React.FC = () => {
             </div>
           )}
 
+          {activeTab === Tab.JADWAL && (
+            <div className="flex flex-col pb-24 animate-fade-in">
+              {/* Institution Selector */}
+              <div className="px-4 pt-6 pb-2 flex flex-col items-center">
+                <div className="w-full mb-6 max-w-md">
+                  <label
+                    className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
+                    htmlFor="jadwal-institution-select"
+                  >
+                    Pilih Lembaga
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <span className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">
+                        school
+                      </span>
+                    </div>
+                    <select
+                      id="jadwal-institution-select"
+                      value={jadwalLembaga}
+                      onChange={(e) => setJadwalLembaga(e.target.value)}
+                      className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer"
+                    >
+                      <option value="">Pilih Lembaga</option>
+                      {allLembaga.map((lembaga) => (
+                        <option key={lembaga.id} value={lembaga.id}>
+                          {lembaga.shortName}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <span className="material-symbols-outlined text-gray-400">
+                        expand_more
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {jadwalLembaga && (
+                  <div className="text-center mb-2">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-xs font-medium mb-3 shadow-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      Tahun Ajaran 2026/2027
+                    </div>
+                    <h2 className="text-2xl font-extrabold text-text-main dark:text-white tracking-tight leading-tight">
+                      {allLembaga.find((l) => l.id === jadwalLembaga)?.name}
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">
+                      Yayasan Sunniyah Salafiyah
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Wave Tabs */}
+              {jadwalLembaga && (
+                <>
+                  <div className="sticky top-[60px] z-10 bg-surface-light dark:bg-surface-dark pt-2 pb-4 px-4">
+                    <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
+                      {[1, 2, 3].map((gel) => (
+                        <button
+                          key={gel}
+                          onClick={() => setJadwalGelombang(gel)}
+                          className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
+                            jadwalGelombang === gel
+                              ? "bg-primary text-black shadow-sm ring-1 ring-black/5"
+                              : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                          }`}
+                        >
+                          <span>Gelombang {gel}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Schedule Content */}
+                  <div className="px-4 pb-28 relative min-h-[400px]">
+                    {/* Schedule Table */}
+                    <div className="mb-8">
+                      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
+                          <span className="material-symbols-outlined text-primary">
+                            calendar_month
+                          </span>
+                          <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
+                            Jadwal Kegiatan
+                          </h3>
+                        </div>
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
+                                  Tanggal
+                                </th>
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                  Keterangan
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                              {jadwalData
+                                .find((g) => g.gelombang === jadwalGelombang)
+                                ?.items.map((item, idx) => (
+                                  <tr
+                                    key={idx}
+                                    className={`group transition-colors ${
+                                      item.status === "berlangsung"
+                                        ? "bg-green-50/50 dark:bg-green-900/10"
+                                        : ""
+                                    } hover:bg-gray-50 dark:hover:bg-gray-700/50`}
+                                  >
+                                    <td className="py-4 px-4 align-top">
+                                      <span
+                                        className={`text-sm font-bold block ${
+                                          item.status === "berlangsung"
+                                            ? "text-primary"
+                                            : "text-text-main dark:text-white"
+                                        }`}
+                                      >
+                                        {item.tanggal}
+                                      </span>
+                                    </td>
+                                    <td className="py-4 px-4 align-top">
+                                      <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                        {item.kegiatan}
+                                      </span>
+                                      <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                        {item.lokasi || item.keterangan}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Timeline Section */}
+                    <div className="flex items-center justify-between mb-6 px-1">
+                      <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Linimasa Kegiatan
+                      </h3>
+                      <span className="text-xs font-medium text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg">
+                        Gelombang {jadwalGelombang}
+                      </span>
+                    </div>
+
+                    {/* Timeline Items */}
+                    <div className="space-y-0">
+                      {jadwalData
+                        .find((g) => g.gelombang === jadwalGelombang)
+                        ?.items.map((item, idx, arr) => (
+                          <div
+                            key={idx}
+                            className={`timeline-item relative flex gap-4 ${
+                              idx < arr.length - 1 ? "pb-8" : ""
+                            } group`}
+                          >
+                            <div className="flex flex-col items-center flex-shrink-0 relative">
+                              {item.status === "selesai" ? (
+                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/10 border-2 border-primary text-primary z-10 shadow-sm">
+                                  <span className="material-symbols-outlined text-xl">
+                                    check
+                                  </span>
+                                </div>
+                              ) : item.status === "berlangsung" ? (
+                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-black shadow-lg shadow-primary/30 z-10 scale-110 ring-4 ring-white dark:ring-surface-dark">
+                                  <span className="material-symbols-outlined text-xl animate-pulse">
+                                    {item.icon}
+                                  </span>
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                                  <span className="material-symbols-outlined text-xl">
+                                    {item.icon}
+                                  </span>
+                                </div>
+                              )}
+                              {idx < arr.length - 1 && (
+                                <div
+                                  className={`absolute left-5 top-12 bottom-0 w-0.5 -translate-x-1/2 ${
+                                    item.status === "selesai"
+                                      ? "bg-primary/50"
+                                      : "bg-gray-200 dark:bg-gray-700"
+                                  }`}
+                                ></div>
+                              )}
+                            </div>
+                            <div
+                              className={`flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border ${
+                                item.status === "berlangsung"
+                                  ? "shadow-md border-l-4 border-l-primary border-y border-r border-gray-100 dark:border-gray-700 ring-1 ring-primary/10"
+                                  : item.status === "selesai"
+                                  ? "border-gray-200 dark:border-gray-700 opacity-70"
+                                  : "border-gray-100 dark:border-gray-700"
+                              }`}
+                            >
+                              <div className="flex justify-between items-start mb-2">
+                                <span
+                                  className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide ${
+                                    item.status === "selesai"
+                                      ? "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                                      : item.status === "berlangsung"
+                                      ? "bg-primary/20 text-green-800 dark:text-green-200"
+                                      : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400"
+                                  }`}
+                                >
+                                  {item.status === "selesai"
+                                    ? "Selesai"
+                                    : item.status === "berlangsung"
+                                    ? "Sedang Berlangsung"
+                                    : "Akan Datang"}
+                                </span>
+                                <span
+                                  className={`text-xs font-bold ${
+                                    item.status === "berlangsung"
+                                      ? "text-primary"
+                                      : "text-gray-500 dark:text-gray-400"
+                                  }`}
+                                >
+                                  {item.tanggal}
+                                </span>
+                              </div>
+                              <h3
+                                className={`text-lg font-bold mb-1 ${
+                                  item.status === "berlangsung"
+                                    ? "text-text-main dark:text-white"
+                                    : "text-gray-800 dark:text-gray-200"
+                                }`}
+                              >
+                                {item.kegiatan}
+                              </h3>
+                              <p
+                                className={`text-sm leading-relaxed ${
+                                  item.status === "berlangsung"
+                                    ? "text-gray-600 dark:text-gray-300 mb-3"
+                                    : "text-gray-500 dark:text-gray-400"
+                                }`}
+                              >
+                                {item.keterangan}
+                              </p>
+                              {item.lokasi && item.status === "berlangsung" && (
+                                <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                  <span className="material-symbols-outlined text-lg text-primary">
+                                    location_on
+                                  </span>
+                                  <span className="font-medium">
+                                    {item.lokasi}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+
+                  {/* Fixed Bottom Button */}
+                  <div className="fixed bottom-20 right-4 left-4 z-30 max-w-[480px] mx-auto">
+                    <button className="w-full bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-black font-bold text-base py-4 px-6 rounded-xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2">
+                      <span className="material-symbols-outlined">
+                        how_to_reg
+                      </span>
+                      Daftar Sekarang
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* Empty State when no institution selected */}
+              {!jadwalLembaga && (
+                <div className="flex flex-col items-center justify-center pt-10 text-center px-4">
+                  <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-4xl text-gray-400">
+                      event_busy
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                    Pilih Lembaga
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                    Silakan pilih lembaga terlebih dahulu untuk melihat jadwal
+                    pendaftaran.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           {activeTab === Tab.BIAYA && (
             <div className="flex flex-col px-4 pb-24 pt-4 animate-fade-in">
               <div className="bg-gray-50 dark:bg-gray-800/50 p-1.5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex gap-1 mb-3 transition-colors">
-                <button 
-                  onClick={() => setBoardingType('Boarding')}
-                  className={`flex-1 shadow-sm rounded-[10px] py-3 text-sm font-bold transition-all transform active:scale-95 ${boardingType === 'Boarding' ? 'bg-primary text-black' : 'text-text-sub dark:text-gray-400 hover:bg-white dark:hover:bg-white/5'}`}
+                <button
+                  onClick={() => setBoardingType("Boarding")}
+                  className={`flex-1 shadow-sm rounded-[10px] py-3 text-sm font-bold transition-all transform active:scale-95 ${
+                    boardingType === "Boarding"
+                      ? "bg-primary text-black"
+                      : "text-text-sub dark:text-gray-400 hover:bg-white dark:hover:bg-white/5"
+                  }`}
                 >
                   Boarding
                 </button>
-                <button 
-                  onClick={() => setBoardingType('Full Day')}
-                  className={`flex-1 rounded-[10px] py-3 text-sm font-bold transition-all transform active:scale-95 ${boardingType === 'Full Day' ? 'bg-primary text-black' : 'text-text-sub dark:text-gray-400 hover:bg-white dark:hover:bg-white/5'}`}
+                <button
+                  onClick={() => setBoardingType("Full Day")}
+                  className={`flex-1 rounded-[10px] py-3 text-sm font-bold transition-all transform active:scale-95 ${
+                    boardingType === "Full Day"
+                      ? "bg-primary text-black"
+                      : "text-text-sub dark:text-gray-400 hover:bg-white dark:hover:bg-white/5"
+                  }`}
                 >
                   Full Day
                 </button>
@@ -316,9 +902,11 @@ const App: React.FC = () => {
 
               <div className="mb-3 relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <span className="material-symbols-outlined text-text-sub text-[20px]">domain</span>
+                  <span className="material-symbols-outlined text-text-sub text-[20px]">
+                    domain
+                  </span>
                 </div>
-                <select 
+                <select
                   value={selectedLembaga}
                   onChange={(e) => setSelectedLembaga(e.target.value)}
                   className="block w-full appearance-none rounded-xl border border-gray-100 dark:border-white/5 bg-white dark:bg-gray-800 py-3 pl-10 pr-10 text-sm font-medium text-text-main dark:text-white shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
@@ -330,7 +918,9 @@ const App: React.FC = () => {
                   <option value="md">Madrasah Diniyah</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <span className="material-symbols-outlined text-text-sub text-[24px]">expand_more</span>
+                  <span className="material-symbols-outlined text-text-sub text-[24px]">
+                    expand_more
+                  </span>
                 </div>
               </div>
 
@@ -338,45 +928,72 @@ const App: React.FC = () => {
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
                 <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-primary/10 rounded-full blur-xl"></div>
                 <div className="relative z-10 text-center">
-                  <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-2">Total Estimasi</p>
+                  <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-2">
+                    Total Estimasi
+                  </p>
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-sm font-medium text-primary">Rp</span>
-                    <h3 className="text-4xl font-bold text-white tracking-tight">4.250.000</h3>
+                    <h3 className="text-4xl font-bold text-white tracking-tight">
+                      4.250.000
+                    </h3>
                   </div>
                   <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
-                    <span className="material-symbols-outlined text-[16px] text-primary">check_circle</span>
-                    <span className="text-xs text-gray-300">Termasuk SPP Bulan Pertama</span>
+                    <span className="material-symbols-outlined text-[16px] text-primary">
+                      check_circle
+                    </span>
+                    <span className="text-xs text-gray-300">
+                      Termasuk SPP Bulan Pertama
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-text-main dark:text-white font-bold text-lg px-1 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary">receipt_long</span>
+                  <span className="material-symbols-outlined text-primary">
+                    receipt_long
+                  </span>
                   Rincian Biaya
                 </h3>
                 <div className="bg-white dark:bg-gray-800 rounded-xl p-2 shadow-sm border border-gray-100 dark:border-white/5 transition-colors">
                   {rincianBiaya.map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center p-3 border-b border-gray-100 dark:border-white/5 last:border-0">
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center p-3 border-b border-gray-100 dark:border-white/5 last:border-0"
+                    >
                       <div className="flex items-center gap-3">
-                        <div className={`size-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700`}>
-                             <span className="material-symbols-outlined text-[20px] text-primary">{item.icon}</span>
+                        <div
+                          className={`size-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700`}
+                        >
+                          <span className="material-symbols-outlined text-[20px] text-primary">
+                            {item.icon}
+                          </span>
                         </div>
                         <div>
-                          <p className="text-text-main dark:text-white text-sm font-semibold">{item.name}</p>
-                          <p className="text-text-sub dark:text-gray-400 text-[11px]">{item.desc}</p>
+                          <p className="text-text-main dark:text-white text-sm font-semibold">
+                            {item.name}
+                          </p>
+                          <p className="text-text-sub dark:text-gray-400 text-[11px]">
+                            {item.desc}
+                          </p>
                         </div>
                       </div>
-                      <span className="text-text-main dark:text-white text-sm font-bold">{item.amount}</span>
+                      <span className="text-text-main dark:text-white text-sm font-bold">
+                        {item.amount}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-100 dark:border-yellow-900/30">
-                <span className="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-[20px] shrink-0 mt-0.5">info</span>
+                <span className="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-[20px] shrink-0 mt-0.5">
+                  info
+                </span>
                 <p className="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed">
-                  <span className="font-bold">Catatan:</span> Biaya di atas adalah estimasi untuk tahun ajaran 2026/2027. Pembayaran dapat dilakukan secara bertahap (angsuran) sesuai ketentuan yayasan.
+                  <span className="font-bold">Catatan:</span> Biaya di atas
+                  adalah estimasi untuk tahun ajaran 2026/2027. Pembayaran dapat
+                  dilakukan secara bertahap (angsuran) sesuai ketentuan yayasan.
                 </p>
               </div>
               <div className="h-6"></div>
@@ -388,16 +1005,22 @@ const App: React.FC = () => {
               {selectedNews ? (
                 <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
                   <header className="sticky top-0 z-20 flex items-center justify-between bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 border-b border-gray-100 dark:border-white/5 transition-all">
-                    <button 
+                    <button
                       onClick={() => setSelectedNews(null)}
                       className="text-text-main dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70 transition-opacity"
                     >
-                      <span className="material-symbols-outlined text-[24px]">arrow_back</span>
+                      <span className="material-symbols-outlined text-[24px]">
+                        arrow_back
+                      </span>
                     </button>
-                    <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Detail Berita</h2>
+                    <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+                      Detail Berita
+                    </h2>
                     <div className="flex w-12 items-center justify-end">
                       <button className="flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">share</span>
+                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">
+                          share
+                        </span>
                       </button>
                     </div>
                   </header>
@@ -409,7 +1032,9 @@ const App: React.FC = () => {
                           {selectedNews.category}
                         </span>
                         <div className="flex items-center gap-1.5 text-xs text-text-sub">
-                          <span className="material-symbols-outlined text-[16px]">calendar_month</span>
+                          <span className="material-symbols-outlined text-[16px]">
+                            calendar_month
+                          </span>
                           <span>{selectedNews.date}</span>
                         </div>
                       </div>
@@ -418,19 +1043,25 @@ const App: React.FC = () => {
                       </h1>
                       <div className="flex items-center gap-2 border-b border-gray-100 dark:border-white/5 pb-4">
                         <div className="size-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-gray-500 dark:text-gray-400 text-[18px]">person</span>
+                          <span className="material-symbols-outlined text-gray-500 dark:text-gray-400 text-[18px]">
+                            person
+                          </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-xs font-semibold text-text-main dark:text-white">{selectedNews.author}</span>
-                          <span className="text-[10px] text-text-sub">{selectedNews.authorRole}</span>
+                          <span className="text-xs font-semibold text-text-main dark:text-white">
+                            {selectedNews.author}
+                          </span>
+                          <span className="text-[10px] text-text-sub">
+                            {selectedNews.authorRole}
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div className="w-full h-56 rounded-xl overflow-hidden shadow-sm mb-6 bg-gray-100 dark:bg-gray-800 relative group">
-                      <img 
-                        alt="Detail Image" 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      <img
+                        alt="Detail Image"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         src={selectedNews.image}
                       />
                       <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-xl"></div>
@@ -438,33 +1069,65 @@ const App: React.FC = () => {
 
                     <article className="prose prose-sm max-w-none text-text-main dark:text-white leading-relaxed">
                       <p className="mb-4 text-sm text-text-sub dark:text-gray-300 text-justify">
-                        <strong className="text-text-main dark:text-white">Yayasan Sunniyah Salafiyah</strong> — Alhamdulillah, puji syukur kita panjatkan ke hadirat Allah SWT. Dengan memohon ridho-Nya dan syafaat Rasulullah SAW, kami mengumumkan bahwa Penerimaan Santri Baru (PSB) untuk Tahun Ajaran 2026/2027 telah resmi dibuka mulai hari ini.
+                        <strong className="text-text-main dark:text-white">
+                          Yayasan Sunniyah Salafiyah
+                        </strong>{" "}
+                        â€” Alhamdulillah, puji syukur kita panjatkan ke hadirat
+                        Allah SWT. Dengan memohon ridho-Nya dan syafaat
+                        Rasulullah SAW, kami mengumumkan bahwa Penerimaan Santri
+                        Baru (PSB) untuk Tahun Ajaran 2026/2027 telah resmi
+                        dibuka mulai hari ini.
                       </p>
                       <p className="mb-4 text-sm text-text-sub dark:text-gray-300 text-justify">
-                        Kami mengundang putra-putri terbaik bangsa untuk bergabung menjadi bagian dari keluarga besar Yayasan Sunniyah Salafiyah. Program pendidikan kami dirancang secara komprehensif untuk mencetak generasi yang tidak hanya unggul dalam ilmu agama, tetapi juga memiliki wawasan luas, kemandirian, dan akhlakul karimah yang sesuai dengan manhaj Ahlussunnah wal Jamaah.
+                        Kami mengundang putra-putri terbaik bangsa untuk
+                        bergabung menjadi bagian dari keluarga besar Yayasan
+                        Sunniyah Salafiyah. Program pendidikan kami dirancang
+                        secara komprehensif untuk mencetak generasi yang tidak
+                        hanya unggul dalam ilmu agama, tetapi juga memiliki
+                        wawasan luas, kemandirian, dan akhlakul karimah yang
+                        sesuai dengan manhaj Ahlussunnah wal Jamaah.
                       </p>
-                      
+
                       <div className="my-6 p-4 rounded-xl bg-white dark:bg-gray-800 border-l-4 border-primary shadow-sm">
-                        <h3 className="text-sm font-bold text-text-main dark:text-white mb-2">Poin Penting Pendaftaran</h3>
+                        <h3 className="text-sm font-bold text-text-main dark:text-white mb-2">
+                          Poin Penting Pendaftaran
+                        </h3>
                         <ul className="space-y-2">
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">check_circle</span>
-                            <span>Pendaftaran dibuka mulai 12 Mei s.d. 30 Juni 2026.</span>
+                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
+                              check_circle
+                            </span>
+                            <span>
+                              Pendaftaran dibuka mulai 12 Mei s.d. 30 Juni 2026.
+                            </span>
                           </li>
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">check_circle</span>
-                            <span>Tes seleksi meliputi membaca Al-Qur'an dan wawancara.</span>
+                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
+                              check_circle
+                            </span>
+                            <span>
+                              Tes seleksi meliputi membaca Al-Qur'an dan
+                              wawancara.
+                            </span>
                           </li>
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">check_circle</span>
-                            <span>Tersedia beasiswa bagi santri berprestasi dan yatim/piatu.</span>
+                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
+                              check_circle
+                            </span>
+                            <span>
+                              Tersedia beasiswa bagi santri berprestasi dan
+                              yatim/piatu.
+                            </span>
                           </li>
                         </ul>
                       </div>
 
-                      <h3 className="text-base font-bold text-text-main dark:text-white mt-6 mb-3">Persyaratan Administrasi</h3>
+                      <h3 className="text-base font-bold text-text-main dark:text-white mt-6 mb-3">
+                        Persyaratan Administrasi
+                      </h3>
                       <p className="mb-3 text-sm text-text-sub dark:text-gray-300 text-justify">
-                        Calon wali santri diharapkan mempersiapkan berkas-berkas berikut sebelum melakukan pendaftaran:
+                        Calon wali santri diharapkan mempersiapkan berkas-berkas
+                        berikut sebelum melakukan pendaftaran:
                       </p>
                       <ul className="list-disc pl-5 space-y-1 mb-6 text-sm text-text-sub dark:text-gray-400 marker:text-primary">
                         <li>Fotokopi Akta Kelahiran (2 lembar).</li>
@@ -472,9 +1135,13 @@ const App: React.FC = () => {
                         <li>Pas foto berwarna ukuran 3x4 (4 lembar).</li>
                         <li>Surat Keterangan Sehat dari dokter.</li>
                       </ul>
-                      
+
                       <p className="mb-4 text-sm text-text-sub dark:text-gray-300 text-justify">
-                        Segera daftarkan diri Anda sebelum kuota terpenuhi. Untuk informasi lebih lanjut mengenai teknis pendaftaran, biaya pendidikan, dan fasilitas asrama, silakan hubungi sekretariat panitia PSB atau unduh brosur digital melalui tombol di bawah ini.
+                        Segera daftarkan diri Anda sebelum kuota terpenuhi.
+                        Untuk informasi lebih lanjut mengenai teknis
+                        pendaftaran, biaya pendidikan, dan fasilitas asrama,
+                        silakan hubungi sekretariat panitia PSB atau unduh
+                        brosur digital melalui tombol di bawah ini.
                       </p>
                     </article>
                     <div className="h-16"></div>
@@ -483,11 +1150,15 @@ const App: React.FC = () => {
                   <div className="sticky bottom-0 z-20 w-full bg-white/95 dark:bg-[#152018]/95 backdrop-blur-md border-t border-gray-100 dark:border-white/5 p-4 pb-6 max-w-[480px] mx-auto">
                     <div className="flex gap-3">
                       <button className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 text-text-main dark:text-white font-medium rounded-xl h-12 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <span className="material-symbols-outlined text-[20px]">download</span>
+                        <span className="material-symbols-outlined text-[20px]">
+                          download
+                        </span>
                         <span className="text-sm">Brosur</span>
                       </button>
                       <button className="flex-[2] bg-primary hover:brightness-105 text-black font-bold rounded-xl h-12 flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
-                        <span className="material-symbols-outlined text-[20px]">app_registration</span>
+                        <span className="material-symbols-outlined text-[20px]">
+                          app_registration
+                        </span>
                         <span className="text-sm">Daftar Sekarang</span>
                       </button>
                     </div>
@@ -496,16 +1167,22 @@ const App: React.FC = () => {
               ) : (
                 <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
                   <header className="sticky top-0 z-20 flex items-center justify-between bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 border-b border-gray-100 dark:border-white/5 transition-all">
-                    <button 
+                    <button
                       onClick={() => setActiveTab(Tab.HOME)}
                       className="text-text-main dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70 transition-opacity"
                     >
-                      <span className="material-symbols-outlined text-[24px]">arrow_back</span>
+                      <span className="material-symbols-outlined text-[24px]">
+                        arrow_back
+                      </span>
                     </button>
-                    <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Berita</h2>
+                    <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+                      Berita
+                    </h2>
                     <div className="flex w-12 items-center justify-end">
                       <button className="flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">notifications</span>
+                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">
+                          notifications
+                        </span>
                       </button>
                     </div>
                   </header>
@@ -513,10 +1190,12 @@ const App: React.FC = () => {
                   <main className="flex-1 flex flex-col px-4 pb-24 pt-2">
                     <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 -mx-4 px-4 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-none mb-2">
                       <div className="relative">
-                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">search</span>
-                        <input 
-                          className="w-full h-11 rounded-xl border-none bg-white dark:bg-gray-800 pl-10 pr-4 text-sm text-text-main dark:text-white shadow-sm ring-1 ring-gray-100 dark:ring-white/5 focus:ring-2 focus:ring-primary/50 placeholder:text-gray-400 transition-all" 
-                          placeholder="Cari berita atau pengumuman..." 
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">
+                          search
+                        </span>
+                        <input
+                          className="w-full h-11 rounded-xl border-none bg-white dark:bg-gray-800 pl-10 pr-4 text-sm text-text-main dark:text-white shadow-sm ring-1 ring-gray-100 dark:ring-white/5 focus:ring-2 focus:ring-primary/50 placeholder:text-gray-400 transition-all"
+                          placeholder="Cari berita atau pengumuman..."
                           type="text"
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
@@ -524,13 +1203,13 @@ const App: React.FC = () => {
                       </div>
                       <div className="flex gap-2 overflow-x-auto no-scrollbar mt-3 pb-1">
                         {categories.map((cat) => (
-                          <button 
+                          <button
                             key={cat}
                             onClick={() => setNewsCategory(cat)}
                             className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors shadow-sm ${
-                              newsCategory === cat 
-                                ? 'bg-primary text-black shadow-primary/20' 
-                                : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-white/10 text-text-sub dark:text-gray-400'
+                              newsCategory === cat
+                                ? "bg-primary text-black shadow-primary/20"
+                                : "bg-white dark:bg-gray-800 border border-gray-100 dark:border-white/10 text-text-sub dark:text-gray-400"
                             }`}
                           >
                             {cat}
@@ -541,56 +1220,82 @@ const App: React.FC = () => {
 
                     <div className="flex flex-col gap-4">
                       {/* Featured News Card */}
-                      <article 
+                      <article
                         onClick={() => setSelectedNews(mainNews)}
                         className="group flex flex-col gap-0 rounded-xl bg-white dark:bg-gray-800 shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer border border-transparent dark:border-white/5"
                       >
                         <div className="relative h-48 w-full overflow-hidden">
-                          <img 
-                            alt="News Image" 
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                          <img
+                            alt="News Image"
+                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                             src={mainNews.image}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
                           <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-md text-black text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm uppercase">
-                              {mainNews.category}
+                            {mainNews.category}
                           </div>
                         </div>
                         <div className="p-4 flex flex-col gap-2">
                           <div className="flex items-center gap-2 text-[10px] text-text-sub">
-                            <span className="material-symbols-outlined text-[14px]">calendar_today</span>
+                            <span className="material-symbols-outlined text-[14px]">
+                              calendar_today
+                            </span>
                             <span>{mainNews.date}</span>
                           </div>
                           <h3 className="text-base font-bold text-text-main dark:text-white leading-snug">
-                              {mainNews.title}
+                            {mainNews.title}
                           </h3>
                           <p className="text-xs text-text-sub dark:text-gray-400 line-clamp-2 leading-relaxed">
-                              {mainNews.summary}
+                            {mainNews.summary}
                           </p>
                           <div className="mt-2 pt-3 border-t border-gray-50 dark:border-white/5 flex justify-between items-center">
-                            <span className="text-[10px] text-gray-400">Oleh: {mainNews.author}</span>
+                            <span className="text-[10px] text-gray-400">
+                              Oleh: {mainNews.author}
+                            </span>
                             <button className="text-xs font-semibold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                                Baca Selengkapnya <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                              Baca Selengkapnya{" "}
+                              <span className="material-symbols-outlined text-[16px]">
+                                arrow_forward
+                              </span>
                             </button>
                           </div>
                         </div>
                       </article>
 
                       {/* Side Image Articles */}
-                      <article 
-                        onClick={() => setSelectedNews({ ...mainNews, title: 'Kunjungan Syekh dari Timur Tengah', category: 'Kegiatan', date: '10 Mei 2026', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3CqIRpasd2a8279pB-1VY3YQ8QIACPXS6Hj7rgh_HJf1A3zdiP8d3mXmyBjrfeW6khtLgnDJ67WBMocaRVDKBMgBREtWOUoTbSuHrUhlzVxsd7Qlf5Kw_frMUkVsG6IrLzJXXYKA2locqdDTy2q8b2b5zzngoxCUqLZQuu8jcNkGa3hh9IxSdPs-0avVtUwb-ZPR16v0OtLh16sgiT2Fy_mWKQEw1NUTsr6oUTBnbBsqQwmjQBBqCrE0u8y3WnGM8Yt2J86L0qeZp' })}
+                      <article
+                        onClick={() =>
+                          setSelectedNews({
+                            ...mainNews,
+                            title: "Kunjungan Syekh dari Timur Tengah",
+                            category: "Kegiatan",
+                            date: "10 Mei 2026",
+                            image:
+                              "https://lh3.googleusercontent.com/aida-public/AB6AXuD3CqIRpasd2a8279pB-1VY3YQ8QIACPXS6Hj7rgh_HJf1A3zdiP8d3mXmyBjrfeW6khtLgnDJ67WBMocaRVDKBMgBREtWOUoTbSuHrUhlzVxsd7Qlf5Kw_frMUkVsG6IrLzJXXYKA2locqdDTy2q8b2b5zzngoxCUqLZQuu8jcNkGa3hh9IxSdPs-0avVtUwb-ZPR16v0OtLh16sgiT2Fy_mWKQEw1NUTsr6oUTBnbBsqQwmjQBBqCrE0u8y3WnGM8Yt2J86L0qeZp",
+                          })
+                        }
                         className="group flex gap-3 p-3 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow items-start cursor-pointer border border-transparent hover:border-primary/20"
                       >
                         <div className="h-24 w-24 shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 relative">
-                          <img alt="News Thumbnail" className="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3CqIRpasd2a8279pB-1VY3YQ8QIACPXS6Hj7rgh_HJf1A3zdiP8d3mXmyBjrfeW6khtLgnDJ67WBMocaRVDKBMgBREtWOUoTbSuHrUhlzVxsd7Qlf5Kw_frMUkVsG6IrLzJXXYKA2locqdDTy2q8b2b5zzngoxCUqLZQuu8jcNkGa3hh9IxSdPs-0avVtUwb-ZPR16v0OtLh16sgiT2Fy_mWKQEw1NUTsr6oUTBnbBsqQwmjQBBqCrE0u8y3WnGM8Yt2J86L0qeZp" />
+                          <img
+                            alt="News Thumbnail"
+                            className="h-full w-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3CqIRpasd2a8279pB-1VY3YQ8QIACPXS6Hj7rgh_HJf1A3zdiP8d3mXmyBjrfeW6khtLgnDJ67WBMocaRVDKBMgBREtWOUoTbSuHrUhlzVxsd7Qlf5Kw_frMUkVsG6IrLzJXXYKA2locqdDTy2q8b2b5zzngoxCUqLZQuu8jcNkGa3hh9IxSdPs-0avVtUwb-ZPR16v0OtLh16sgiT2Fy_mWKQEw1NUTsr6oUTBnbBsqQwmjQBBqCrE0u8y3WnGM8Yt2J86L0qeZp"
+                          />
                         </div>
                         <div className="flex flex-col flex-1 h-24 justify-between py-0.5">
                           <div className="flex flex-col gap-1">
-                            <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wide">Kegiatan</span>
-                            <h3 className="text-sm font-bold text-text-main dark:text-white leading-snug line-clamp-2">Kunjungan Syekh dari Timur Tengah di Pondok Pusat</h3>
+                            <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wide">
+                              Kegiatan
+                            </span>
+                            <h3 className="text-sm font-bold text-text-main dark:text-white leading-snug line-clamp-2">
+                              Kunjungan Syekh dari Timur Tengah di Pondok Pusat
+                            </h3>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-[10px] text-gray-400">10 Mei 2026</span>
+                            <span className="text-[10px] text-gray-400">
+                              10 Mei 2026
+                            </span>
                           </div>
                         </div>
                       </article>
@@ -606,11 +1311,13 @@ const App: React.FC = () => {
               <div className="py-3 sticky top-[68px] z-10 bg-surface-light dark:bg-surface-dark transition-colors duration-300">
                 <div className="flex w-full h-12 items-stretch rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800 border border-transparent dark:border-gray-700">
                   <div className="text-text-sub flex items-center justify-center pl-4">
-                    <span className="material-symbols-outlined text-[24px]">search</span>
+                    <span className="material-symbols-outlined text-[24px]">
+                      search
+                    </span>
                   </div>
-                  <input 
-                    className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3" 
-                    placeholder="Cari jenjang pendidikan..." 
+                  <input
+                    className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3"
+                    placeholder="Cari jenjang pendidikan..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -618,41 +1325,52 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                {downloadItems.filter(item => 
-                  item.name.toLowerCase().includes(searchQuery.toLowerCase())
-                ).map((item, idx) => (
-                  <div key={idx} className="group relative flex flex-col p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-transparent dark:border-gray-700/50 transition-all duration-300">
-                    <div className="flex gap-4">
-                      <div className="shrink-0">
-                        <div 
-                          className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-white/5 bg-cover bg-center" 
-                          style={{ backgroundImage: `url('${item.image}')` }}
-                        ></div>
+                {downloadItems
+                  .filter((item) =>
+                    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+                  )
+                  .map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="group relative flex flex-col p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-transparent dark:border-gray-700/50 transition-all duration-300"
+                    >
+                      <div className="flex gap-4">
+                        <div className="shrink-0">
+                          <div
+                            className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-white/5 bg-cover bg-center"
+                            style={{ backgroundImage: `url('${item.image}')` }}
+                          ></div>
+                        </div>
+                        <div className="flex flex-col justify-center flex-1 min-w-0 py-0.5">
+                          <h3 className="text-base font-bold text-text-main dark:text-white truncate">
+                            {item.name}
+                          </h3>
+                          <p className="text-sm text-text-sub dark:text-gray-400 truncate">
+                            {item.desc}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex flex-col justify-center flex-1 min-w-0 py-0.5">
-                        <h3 className="text-base font-bold text-text-main dark:text-white truncate">{item.name}</h3>
-                        <p className="text-sm text-text-sub dark:text-gray-400 truncate">{item.desc}</p>
-                      </div>
+                      <button className="mt-4 flex items-center justify-center w-full h-11 gap-2 bg-primary hover:brightness-105 active:scale-[0.98] text-black text-sm font-bold rounded-xl transition-all shadow-sm">
+                        <span className="material-symbols-outlined text-[20px] fill-1">
+                          download
+                        </span>
+                        Download Brosur PDF
+                      </button>
                     </div>
-                    <button className="mt-4 flex items-center justify-center w-full h-11 gap-2 bg-primary hover:brightness-105 active:scale-[0.98] text-black text-sm font-bold rounded-xl transition-all shadow-sm">
-                      <span className="material-symbols-outlined text-[20px] fill-1">download</span>
-                      Download Brosur PDF
-                    </button>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           )}
         </main>
-        
-        {(!selectedInstitution && !selectedNews) && (
-          <BottomNav 
-            activeTab={activeTab} 
+
+        {!selectedInstitution && !selectedNews && (
+          <BottomNav
+            activeTab={activeTab}
             setActiveTab={(tab) => {
               setActiveTab(tab);
               setSelectedInstitution(null);
               setSelectedNews(null);
-            }} 
+            }}
           />
         )}
       </div>

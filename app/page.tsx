@@ -28,10 +28,12 @@ import {
   Landmark,
   LayoutDashboard,
   Wallet,
+  Bell,
   Banknote,
   Newspaper,
   QrCode,
   GraduationCap,
+  ArrowBigDownDash,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -47,6 +49,7 @@ import { Lembaga } from "@/types/lembaga";
 enum Tab {
   HOME = "home",
   PROFIL = "profil",
+  JADWAL = "jadwal",
   BIAYA = "biaya",
   BERITA = "berita",
   DOWNLOAD = "download",
@@ -108,7 +111,9 @@ export default function Home() {
     useState<Lembaga | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [jadwalLembaga, setJadwalLembaga] = useState<string>("");
+  const [jadwalGelombang, setJadwalGelombang] = useState<number>(1);
+  const itemsPerPage = 6;
 
   const tentangRef = useRef<HTMLDivElement>(null);
   const programRef = useRef<HTMLDivElement>(null);
@@ -139,6 +144,8 @@ export default function Home() {
         return "Beranda";
       case Tab.PROFIL:
         return "Profil Lembaga";
+      case Tab.JADWAL:
+        return "Jadwal Kegiatan";
       case Tab.BIAYA:
         return "Informasi Biaya";
       case Tab.BERITA:
@@ -612,6 +619,219 @@ export default function Home() {
             </div>
           )}
 
+          {activeTab === Tab.JADWAL && (
+            <div className="flex flex-col pb-24 animate-fade-in">
+              {/* Institution Selector */}
+              <div className="px-4 pt-6 pb-2 flex flex-col items-center">
+                <div className="w-full mb-6 max-w-md">
+                  <label
+                    className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
+                    htmlFor="jadwal-institution-select"
+                  >
+                    Pilih Lembaga
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <School
+                        size={20}
+                        className="text-gray-400 group-focus-within:text-primary transition-colors"
+                      />
+                    </div>
+                    <select
+                      id="jadwal-institution-select"
+                      value={jadwalLembaga}
+                      onChange={(e) => setJadwalLembaga(e.target.value)}
+                      className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer"
+                    >
+                      <option value="">Pilih Lembaga</option>
+                      {allLembaga.map((lembaga) => (
+                        <option key={lembaga.id} value={lembaga.id}>
+                          {lembaga.shortName}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <ChevronDown size={20} className="text-gray-400" />
+                    </div>
+                  </div>
+                </div>
+
+                {jadwalLembaga && (
+                  <div className="text-center mb-2">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-xs font-medium mb-3 shadow-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      Tahun Ajaran 2026/2027
+                    </div>
+                    <h2 className="text-2xl font-extrabold text-text-main dark:text-white tracking-tight leading-tight">
+                      {allLembaga.find((l) => l.id === jadwalLembaga)?.name}
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">
+                      Yayasan Sunniyah Salafiyah
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {jadwalLembaga && (
+                <>
+                  {/* Wave Tabs */}
+                  <div className="sticky top-[60px] z-10 bg-surface-light dark:bg-surface-dark pt-2 pb-4 px-4">
+                    <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
+                      {[1, 2, 3].map((gel) => (
+                        <button
+                          key={gel}
+                          onClick={() => setJadwalGelombang(gel)}
+                          className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
+                            jadwalGelombang === gel
+                              ? "bg-primary text-black shadow-sm ring-1 ring-black/5"
+                              : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                          }`}
+                        >
+                          <span>Gelombang {gel}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Schedule Content */}
+                  <div className="px-4 pb-28 relative min-h-[400px]">
+                    <div className="mb-8">
+                      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
+                          <Calendar size={20} className="text-primary" />
+                          <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
+                            Jadwal Kegiatan Gelombang {jadwalGelombang}
+                          </h3>
+                        </div>
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
+                                  Tanggal
+                                </th>
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                  Keterangan
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                              <tr className="bg-green-50/50 dark:bg-green-900/10 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-primary">
+                                    1 - 28 Feb
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Pendaftaran Online
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    Via Aplikasi/Website
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white">
+                                    5 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Tes Seleksi
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    Gedung Aula Utama Lt. 2
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white">
+                                    10 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Pengumuman
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    Via Website/Aplikasi
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white">
+                                    11 - 20 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Daftar Ulang
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    Pembayaran & Pengambilan Seragam
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Info Box */}
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30">
+                      <Info
+                        size={20}
+                        className="text-blue-600 dark:text-blue-500 shrink-0 mt-0.5"
+                      />
+                      <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
+                        <span className="font-bold">Info:</span> Jadwal dapat
+                        berubah sewaktu-waktu. Selalu pantau informasi terbaru
+                        melalui aplikasi atau website resmi.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Fixed Bottom Button */}
+                  <div className="fixed bottom-20 right-4 left-4 z-30 max-w-[480px] mx-auto">
+                    <a
+                      href="https://ppdb.sunsal.net/formulirpendaftar/#/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-black font-bold text-base py-4 px-6 rounded-xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2"
+                    >
+                      <GraduationCap size={20} />
+                      Daftar Sekarang
+                    </a>
+                  </div>
+                </>
+              )}
+
+              {/* Empty State */}
+              {!jadwalLembaga && (
+                <div className="flex flex-col items-center justify-center pt-10 text-center px-4">
+                  <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                    <Calendar size={32} className="text-gray-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                    Pilih Lembaga
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                    Silakan pilih lembaga terlebih dahulu untuk melihat jadwal
+                    pendaftaran.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           {activeTab === Tab.BIAYA && (
             <div className="flex flex-col px-4 pb-24 pt-4 animate-fade-in">
               <div className="bg-gray-50 dark:bg-gray-800/50 p-1.5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex gap-1 mb-3 transition-colors">
@@ -879,15 +1099,11 @@ export default function Home() {
                   <div className="sticky bottom-0 z-20 w-full bg-white/95 dark:bg-[#152018]/95 backdrop-blur-md border-t border-gray-100 dark:border-white/5 p-4 pb-6 max-w-[480px] mx-auto">
                     <div className="flex gap-3">
                       <button className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 text-text-main dark:text-white font-medium rounded-xl h-12 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <span className="material-symbols-outlined text-[20px]">
-                          download
-                        </span>
+                        <Download size={20} />
                         <span className="text-sm">Brosur</span>
                       </button>
                       <button className="flex-[2] bg-primary hover:brightness-105 text-black font-bold rounded-xl h-12 flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
-                        <span className="material-symbols-outlined text-[20px]">
-                          app_registration
-                        </span>
+                        <PenSquare size={20} />
                         <span className="text-sm">Daftar Sekarang</span>
                       </button>
                     </div>
@@ -900,18 +1116,17 @@ export default function Home() {
                       onClick={() => setActiveTab(Tab.HOME)}
                       className="text-text-main dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70 transition-opacity"
                     >
-                      <span className="material-symbols-outlined text-[24px]">
-                        arrow_back
-                      </span>
+                      <ChevronLeft size={24} />
                     </button>
                     <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
                       Berita
                     </h2>
                     <div className="flex w-12 items-center justify-end">
                       <button className="flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">
-                          notifications
-                        </span>
+                        <Bell
+                          size={24}
+                          className="text-text-main dark:text-white"
+                        />
                       </button>
                     </div>
                   </header>
@@ -919,9 +1134,10 @@ export default function Home() {
                   <main className="flex-1 flex flex-col px-4 pb-24 pt-2">
                     <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 -mx-4 px-4 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-none mb-2">
                       <div className="relative">
-                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">
-                          search
-                        </span>
+                        <Search
+                          size={20}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                        />
                         <input
                           className="w-full h-11 rounded-xl border-none bg-white dark:bg-gray-800 pl-10 pr-4 text-sm text-text-main dark:text-white shadow-sm ring-1 ring-gray-100 dark:ring-white/5 focus:ring-2 focus:ring-primary/50 placeholder:text-gray-400 transition-all"
                           placeholder="Cari berita atau pengumuman..."
@@ -966,9 +1182,7 @@ export default function Home() {
                         </div>
                         <div className="p-4 flex flex-col gap-2">
                           <div className="flex items-center gap-2 text-[10px] text-text-sub">
-                            <span className="material-symbols-outlined text-[14px]">
-                              calendar_today
-                            </span>
+                            <Calendar size={14} />
                             <span>{mainNews.date}</span>
                           </div>
                           <h3 className="text-base font-bold text-text-main dark:text-white leading-snug">
@@ -982,10 +1196,7 @@ export default function Home() {
                               Oleh: {mainNews.author}
                             </span>
                             <button className="text-xs font-semibold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                              Baca Selengkapnya{" "}
-                              <span className="material-symbols-outlined text-[16px]">
-                                arrow_forward
-                              </span>
+                              Baca Selengkapnya <ChevronRight size={16} />
                             </button>
                           </div>
                         </div>
@@ -1040,9 +1251,7 @@ export default function Home() {
               <div className="py-3 sticky top-[68px] z-10 bg-surface-light dark:bg-surface-dark transition-colors duration-300">
                 <div className="flex w-full h-12 items-stretch rounded-xl shadow-sm bg-gray-50 dark:bg-gray-800 border border-transparent dark:border-gray-700">
                   <div className="text-text-sub flex items-center justify-center pl-4">
-                    <span className="material-symbols-outlined text-[24px]">
-                      search
-                    </span>
+                    <Search size={24} />
                   </div>
                   <input
                     className="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder:text-text-sub text-base px-3"
@@ -1053,7 +1262,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 min-h-[660px]">
                 {downloadItems
                   .filter((item) =>
                     item.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -1067,7 +1276,7 @@ export default function Home() {
                       key={idx}
                       className="group relative flex flex-col p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-transparent dark:border-gray-700/50 transition-all duration-300"
                     >
-                      <div className="flex gap-4">
+                      <div className="flex items-center gap-4">
                         <div className="shrink-0">
                           <div
                             className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-white/5 bg-cover bg-center"
@@ -1082,12 +1291,10 @@ export default function Home() {
                             {item.desc}
                           </p>
                         </div>
+                        <button className="shrink-0 w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-700/50 text-primary hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95">
+                          <ArrowBigDownDash size={24} />
+                        </button>
                       </div>
-
-                      <button className="mt-4 flex items-center justify-center w-full h-11 gap-2 bg-primary hover:brightness-105 active:scale-[0.98] text-black text-sm font-bold rounded-xl transition-all shadow-sm">
-                        <Download size={20} className="fill-current" />
-                        Download Brosur PDF
-                      </button>
                     </div>
                   ))}
               </div>

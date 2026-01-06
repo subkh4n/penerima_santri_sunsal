@@ -3,6 +3,8 @@ import withPWA from "next-pwa";
 
 const nextConfig = {
   reactStrictMode: true,
+  // Enable Turbopack with empty config (Next.js 16+)
+  turbopack: {},
 };
 
 export default withPWA({

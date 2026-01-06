@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
 
@@ -8,19 +8,20 @@ const lexend = Lexend({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Yayasan Sunniyah Salafiyah",
-  description: "Platform informasi dan layanan Yayasan Sunniyah Salafiyah",
-  manifest: "/manifest.json",
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f6f8f6" },
     { media: "(prefers-color-scheme: dark)", color: "#102216" },
   ],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const metadata: Metadata = {
+  title: "Yayasan Sunniyah Salafiyah",
+  description: "Platform informasi dan layanan Yayasan Sunniyah Salafiyah",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -36,7 +37,10 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head></head>
-      <body className={`${lexend.variable} font-display antialiased`}>
+      <body
+        className={`${lexend.variable} font-display antialiased`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
