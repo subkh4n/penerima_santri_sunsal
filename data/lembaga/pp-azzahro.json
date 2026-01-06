@@ -41,6 +41,29 @@
           "icon": "menu_book"
         }
       ]
+    },
+    "fullDay": {
+      "totalEstimasi": 3000000,
+      "rincian": [
+        {
+          "nama": "Uang Pangkal",
+          "deskripsi": "Biaya pendaftaran",
+          "jumlah": 2000000,
+          "icon": "payments"
+        },
+        {
+          "nama": "SPP Bulan Pertama",
+          "deskripsi": "Biaya bulanan",
+          "jumlah": 400000,
+          "icon": "school"
+        },
+        {
+          "nama": "Kitab & Seragam",
+          "deskripsi": "Perlengkapan",
+          "jumlah": 600000,
+          "icon": "menu_book"
+        }
+      ]
     }
   },
   "pendaftaran": {
