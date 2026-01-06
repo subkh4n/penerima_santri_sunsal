@@ -310,17 +310,28 @@ export default function Home() {
 
                       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-50 max-w-[480px] mx-auto">
                         <div className="flex gap-3">
-                          <button className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-xl border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                          <button
+                            onClick={() => {
+                              setActiveTab(Tab.DOWNLOAD);
+                              setSelectedInstitution(null);
+                            }}
+                            className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-xl border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                          >
                             <span className="text-xs font-semibold">
                               Download Brosur
                             </span>
                           </button>
-                          <button className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:brightness-105 active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-xl shadow-lg shadow-primary/20 transition-all">
+                          <a
+                            href="https://ppdb.sunsal.net/formulirpendaftar/#/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:brightness-105 active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-xl shadow-lg shadow-primary/20 transition-all"
+                          >
                             Daftar Sekarang
                             <span className="material-symbols-outlined text-[18px]">
                               arrow_forward
                             </span>
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </div>
