@@ -9,6 +9,7 @@ import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ChatAssistant from "@/components/ChatAssistant";
+import { getAllLembaga, getLembagaById, formatCurrency } from "@/lib/lembaga";
 
 enum Tab {
   HOME = "home",
@@ -147,38 +148,28 @@ export default function Home() {
     },
   ];
 
-  const rincianBiaya = [
-    {
-      name: "Pendaftaran",
-      desc: "Formulir & Administrasi",
-      amount: "Rp 250.000",
-      icon: "app_registration",
-    },
-    {
-      name: "Uang Pangkal",
-      desc: "Pengembangan Gedung",
-      amount: "Rp 2.500.000",
-      icon: "domain",
-    },
-    {
-      name: "Seragam",
-      desc: "3 Stel Bahan Kain",
-      amount: "Rp 650.000",
-      icon: "checkroom",
-    },
-    {
-      name: "Kitab & Buku",
-      desc: "Paket Semester 1",
-      amount: "Rp 450.000",
-      icon: "menu_book",
-    },
-    {
-      name: "SPP Bulan 1",
-      desc: "Syahriah & Makan",
-      amount: "Rp 400.000",
-      icon: "payments",
-    },
-  ];
+  // Get selected lembaga data
+  const selectedLembagaData = selectedLembaga
+    ? getLembagaById(selectedLembaga)
+    : null;
+
+  // Get biaya data based on boarding type
+  const biayaData =
+    selectedLembagaData?.biaya?.[
+      boardingType === "Boarding" ? "boarding" : "fullDay"
+    ];
+
+  // Get rincian biaya dynamically
+  const rincianBiaya =
+    biayaData?.rincian?.map((item) => ({
+      name: item.nama,
+      desc: item.deskripsi,
+      amount: formatCurrency(item.jumlah),
+      icon: item.icon,
+    })) || [];
+
+  // Get total estimasi
+  const totalEstimasi = biayaData?.totalEstimasi || 0;
 
   const downloadItems = [
     {
@@ -465,10 +456,11 @@ export default function Home() {
                   className="block w-full appearance-none rounded-xl border border-gray-100 dark:border-white/5 bg-white dark:bg-gray-800 py-3 pl-10 pr-10 text-sm font-medium text-text-main dark:text-white shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
                 >
                   <option value="">Pilih Lembaga</option>
-                  <option value="pass">Pondok Athfal Sunniyah Salafiyah</option>
-                  <option value="ppss">Pondok Putra Sunniyah Salafiyah</option>
-                  <option value="ppis">Pondok Putri Sunniyah Salafiyah</option>
-                  <option value="md">Madrasah Diniyah</option>
+                  {getAllLembaga().map((lembaga) => (
+                    <option key={lembaga.id} value={lembaga.id}>
+                      {lembaga.name}
+                    </option>
+                  ))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                   <span className="material-symbols-outlined text-text-sub text-[24px]">
@@ -487,7 +479,7 @@ export default function Home() {
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-sm font-medium text-primary">Rp</span>
                     <h3 className="text-4xl font-bold text-white tracking-tight">
-                      4.250.000
+                      {totalEstimasi.toLocaleString("id-ID")}
                     </h3>
                   </div>
                   <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
