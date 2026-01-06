@@ -12,26 +12,26 @@ import smkPutriData from "@/data/lembaga/smk-putri.json";
 import pqRanggehData from "@/data/lembaga/pq-ranggeh.json";
 import ptBesukiData from "@/data/lembaga/pt-besuki.json";
 import mdPutraData from "@/data/lembaga/md-putra.json";
+import mdAzzahroData from "@/data/lembaga/md-azzahro.json";
 import stitData from "@/data/lembaga/stit.json";
 import paAutismData from "@/data/lembaga/pa-autism.json";
-import mdAzzahroData from "@/data/lembaga/md-azzahro.json";
 
 // Create a map of all lembaga
 const lembagaMap: Record<string, Lembaga> = {
-  pass: passData as Lembaga,
-  ppss: ppssData as Lembaga,
-  "smp-putra": smpPutraData as Lembaga,
-  "sma-putra": smaPutraData as Lembaga,
-  "pp-azzahro": ppAzzahroData as Lembaga,
-  "pp-nurus": ppNurusData as Lembaga,
-  "smp-putri": smpPutriData as Lembaga,
-  "smk-putri": smkPutriData as Lembaga,
-  "pq-ranggeh": pqRanggehData as Lembaga,
-  "pt-besuki": ptBesukiData as Lembaga,
-  "md-putra": mdPutraData as Lembaga,
-  stit: stitData as Lembaga,
-  "pa-autism": paAutismData as Lembaga,
-  "md-azzahro": mdAzzahroData as Lembaga,
+  pass: passData as unknown as Lembaga,
+  ppss: ppssData as unknown as Lembaga,
+  "smp-putra": smpPutraData as unknown as Lembaga,
+  "sma-putra": smaPutraData as unknown as Lembaga,
+  "pp-azzahro": ppAzzahroData as unknown as Lembaga,
+  "pp-nurus": ppNurusData as unknown as Lembaga,
+  "smp-putri": smpPutriData as unknown as Lembaga,
+  "smk-putri": smkPutriData as unknown as Lembaga,
+  "pq-ranggeh": pqRanggehData as unknown as Lembaga,
+  "pt-besuki": ptBesukiData as unknown as Lembaga,
+  "md-putra": mdPutraData as unknown as Lembaga,
+  stit: stitData as unknown as Lembaga,
+  "pa-autism": paAutismData as unknown as Lembaga,
+  "md-azzahro": mdAzzahroData as unknown as Lembaga,
 };
 
 /**

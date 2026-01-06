@@ -1,0 +1,152 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+self["webpackHotUpdate_N_E"]("app/page",{
+
+/***/ "(app-pages-browser)/./data/lembaga/md-azzahro.json":
+/*!**************************************!*\
+  !*** ./data/lembaga/md-azzahro.json ***!
+  \**************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"md-azzahro","name":"Madrasah Putri Azzahro\'","shortName":"Madrasah Putri","desc":"Madrasah Diniyah untuk Putri","type":"madrasah","gender":"putri","icon":"auto_stories","image":"/images/lembaga/hero-2.png","profil":{"deskripsi":"Madrasah Putri Azzahro\' menyediakan pendidikan agama Islam mendalam khusus bagi santriwati untuk membentuk muslimah berilmu dan berakhlak mulia.","akreditasi":"A"},"visi":"Terwujudnya muslimah yang faqihah dan berakhlaqul karimah.","misi":["Menyelenggarakan pendidikan diniyah khusus putri.","Mengkaji kitab-kitab kuning dengan metode salaf.","Membentuk karakter muslimah yang tawadhu\' dan istiqomah."],"biaya":{"tahunAjaran":"2025-2026","fullDay":{"totalEstimasi":1500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":1000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":200000,"icon":"school"},{"nama":"Kitab & Seragam","deskripsi":"Perlengkapan","jumlah":300000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4"]},"fasilitas":["Ruang Kelas","Musholla Putri","Perpustakaan"],"programUnggulan":["Tahsin Al-Qur\'an","Fiqih Wanita","Akhlak"],"kontak":{"telepon":"081234567803","whatsapp":"081234567803","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/md-putra.json":
+/*!************************************!*\
+  !*** ./data/lembaga/md-putra.json ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"md-putra","name":"Madrasah Putra Sunniyah Salafiyah","shortName":"Madrasah Putra","desc":"Madrasah Diniyah untuk Putra","type":"madrasah","gender":"putra","icon":"auto_stories","image":"/images/lembaga/hero-2.png","profil":{"deskripsi":"Madrasah Diniyah menyediakan pendidikan agama Islam setelah sekolah formal untuk memperdalam ilmu agama.","akreditasi":"A"},"visi":"Terwujudnya santri yang faqih dan berakhlak mulia.","misi":["Menyelenggarakan pendidikan diniyah takmiliyah.","Mengajarkan kitab-kitab dasar keislaman.","Membiasakan amalan ibadah sehari-hari."],"biaya":{"tahunAjaran":"2025-2026","fullDay":{"totalEstimasi":1500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":1000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":200000,"icon":"school"},{"nama":"Kitab & Seragam","deskripsi":"Perlengkapan","jumlah":300000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4"]},"fasilitas":["Ruang Kelas","Masjid","Perpustakaan Kitab"],"programUnggulan":["Kitab Kuning","Bahasa Arab","Fiqih Ibadah"],"kontak":{"telepon":"081234567800","whatsapp":"081234567800","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pa-autism.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/pa-autism.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pa-autism","name":"Pondok Autism Sunniyah Salafiyah","shortName":"Pondok Autism","desc":"Pondok Khusus untuk Anak Berkebutuhan Khusus","type":"ponpes","gender":"umum","icon":"favorite","image":"/images/lembaga/hero-1.png","profil":{"deskripsi":"Pondok Pesantren khusus untuk anak berkebutuhan khusus (autisme) dengan terapi dan pendidikan agama yang disesuaikan.","akreditasi":"Terakreditasi"},"visi":"Menjadi lembaga pendidikan khusus yang mandiri dan berkarakter Islami.","misi":["Memberikan layanan terapi dan pendidikan yang komprehensif.","Mengembangkan potensi kemandirian anak berkebutuhan khusus.","Menanamkan nilai-nilai agama sesuai dengan kemampuan anak."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":6000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":3500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":1000000,"icon":"school"},{"nama":"Terapi & Asrama","deskripsis":"Biaya terapi dan akomodasi","jumlah":1000000,"icon":"hotel"},{"nama":"Alat Terapi","deskripsi":"Perlengkapan terapi","jumlah":500000,"icon":"medical_services"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4","Surat Keterangan Dokter/Psikolog"]},"fasilitas":["Ruang Terapi","Sensory Room","Asrama Khusus"],"programUnggulan":["Terapi Wicara","Bina Diri","Hafalan Qur\'an Metode Khas","Pendidikan Agama"],"kontak":{"telepon":"081234567802","whatsapp":"081234567802","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pass.json":
+/*!********************************!*\
+  !*** ./data/lembaga/pass.json ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pass","name":"Pondok Athfal Sunniyah Salafiyah","shortName":"Pondok Athfal","desc":"Pendidikan Anak Usia Dini Berbasis Pesantren","type":"ponpes","gender":"umum","icon":"child_care","image":"/images/lembaga/hero-1.png","profil":{"deskripsi":"Pondok Athfal adalah tahap permulaan pendidikan pesantren anak usia dini yang menanamkan dasar-dasar keimanan dan akhlak mulia.","akreditasi":"B"},"visi":"Membangun generasi belia yang cinta Al-Qur\'an dan berakhlakul karimah.","misi":["Menanamkan kecintaan pada Allah dan Rasul-Nya sejak dini.","Membiasakan perilaku sopan santun dan adab Islami.","Mengajarkan dasar-dasar membaca Al-Qur\'an dan ibadah praktis."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":3500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran awal","jumlah":2000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya pendidikan bulanan","jumlah":400000,"icon":"school"},{"nama":"Seragam","deskripsi":"Paket seragam lengkap","jumlah":600000,"icon":"checkroom"},{"nama":"Perlengkapan","deskripsi":"Tas, alat tulis, dan buku","jumlah":500000,"icon":"backpack"}]},"fullDay":{"totalEstimasi":2500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran awal","jumlah":1500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya pendidikan bulanan","jumlah":300000,"icon":"school"},{"nama":"Seragam & Perlengkapan","deskripsi":"Paket lengkap","jumlah":700000,"icon":"backpack"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran (2 lembar)","Fotokopi Kartu Keluarga (2 lembar)","Pas foto 3x4 berwarna (4 lembar)","Surat Keterangan Sehat dari dokter"],"tahapanSeleksi":["Wawancara orang tua","Observasi anak"]},"fasilitas":["Asrama Anak","Taman Bermain","Aula Mengaji"],"programUnggulan":["Tahfidz Juz Amma","Praktik Ibadah","Adab Harian"],"kontak":{"telepon":"081234567890","whatsapp":"081234567890","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pp-azzahro.json":
+/*!**************************************!*\
+  !*** ./data/lembaga/pp-azzahro.json ***!
+  \**************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pp-azzahro","name":"Pondok Putri Az-zahro\'","shortName":"PP Az-zahro\'","desc":"Pondok Pesantren Putri","type":"ponpes","gender":"putri","icon":"mosque","image":"/images/lembaga/hero-1.png","profil":{"deskripsi":"Pondok Putri Az-zahro\' mendidik santriwati menjadi muslimah yang shalihah, berilmu, dan mandiri.","akreditasi":"A"},"visi":"Menjadi pusat pendidikan Islam putri yang melahirkan muslimah berkualitas dan berwawasan luas.","misi":["Membekali santriwati dengan ilmu agama yang mendalam dan keterampilan hidup.","Membentuk kepribadian muslimah yang anggun, cerdas, dan berkarakter.","Mengembangkan potensi santriwati dalam berbagai bidang."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":4250000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":500000,"icon":"school"},{"nama":"Asrama","deskripsi":"Akomodasi","jumlah":750000,"icon":"hotel"},{"nama":"Kitab & Seragam","deskripsi":"Perlengkapan","jumlah":500000,"icon":"menu_book"}]},"fullDay":{"totalEstimasi":3000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":400000,"icon":"school"},{"nama":"Kitab & Seragam","deskripsi":"Perlengkapan","jumlah":600000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi AktaKelahiran","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Asrama Putri","Masjid","Perpustakaan","Klinik Kesehatan"],"programUnggulan":["Tahfidz 30 Juz","Kitab Kuning","Keterampilan Putri"],"kontak":{"telepon":"081234567894","whatsapp":"081234567894","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pp-nurus.json":
+/*!************************************!*\
+  !*** ./data/lembaga/pp-nurus.json ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pp-nurus","name":"Pondok Putri Nurus Salimin","shortName":"PP Nurus Salimin","desc":"Pondok Pesantren Putri","type":"ponpes","gender":"putri","icon":"mosque","image":"/images/lembaga/hero-1.png","profil":{"deskripsi":"Pondok Putri Nurus Salimin adalah lembaga pendidikan putri yang mengutamakan pembentukan karakter muslimah berbudi luhur.","akreditasi":"B"},"visi":"Membangun pribadi muslimah yang sholihah, mandiri, dan bermanfaat.","misi":["Menanamkan nilai-nilai keislaman melalui pendidikan formal dan non-formal.","Melatih kemandirian santriwati melalui kegiatan kewirausahaan.","Membiasakan akhlak mulia dalam kehidupan sehari-hari."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":4000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2300000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":500000,"icon":"school"},{"nama":"Asrama","deskripsi":"Akomodasi","jumlah":700000,"icon":"hotel"},{"nama":"Perlengkapan","deskripsi":"Kitab & seragam","jumlah":500000,"icon":"backpack"}]},"fullDay":{"totalEstimasi":2800000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":1800000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":400000,"icon":"school"},{"nama":"Perlengkapan","deskripsi":"Kitab & seragam","jumlah":600000,"icon":"backpack"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Asrama","Musholla","Dapur Umum"],"programUnggulan":["Tahsin Qur\'an","Fiqih Nisa\'","Keterampilan Menjahit"],"kontak":{"telepon":"081234567895","whatsapp":"081234567895","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/ppss.json":
+/*!********************************!*\
+  !*** ./data/lembaga/ppss.json ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"ppss","name":"Pondok Putra Sunniyah Salafiyah","shortName":"Pondok Putra","desc":"Pondok Pesantren Putra Terpadu","type":"ponpes","gender":"putra","icon":"mosque","image":"/images/lembaga/hero-1.png","profil":{"deskripsi":"Pondok Putra Sunniyah Salafiyah fokus pada pendalaman ilmu agama (tafaqquh fiddin) dengan metode salaf yang dipadukan dengan manajemen modern.","akreditasi":"A"},"visi":"Mencetak kader ulama yang amil (mengamalkan ilmunya) dan sholih.","misi":["Menyelenggarakan pendidikan diniyah yang kurikulumnya bersumber dari kitab kuning.","Membentuk karakter santri yang disiplin, mandiri, dan bertanggung jawab.","Mempersiapkan santri untuk terjun ke masyarakat sebagai da\'i."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":4250000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran awal","jumlah":2500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya pendidikan bulanan","jumlah":500000,"icon":"school"},{"nama":"Asrama","deskripsi":"Biaya akomodasi boarding","jumlah":750000,"icon":"hotel"},{"nama":"Kitab & Seragam","deskripsi":"Paket kitab dan seragam","jumlah":500000,"icon":"menu_book"}]},"fullDay":{"totalEstimasi":3000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran awal","jumlah":2000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya pendidikan bulanan","jumlah":400000,"icon":"school"},{"nama":"Kitab & Seragam","deskripsi":"Paket kitab dan seragam","jumlah":600000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran (2 lembar)","Fotokopi Kartu Keluarga (2 lembar)","Pas foto 3x4 (4 lembar)","Surat Keterangan Sehat dari dokter","Surat rekomendasi dari sekolah asal"],"tahapanSeleksi":["Tes membaca Al-Qur\'an","Wawancara","Tes akademik dasar"]},"fasilitas":["Asrama Santri","Masjid Jami\'","Lapangan Olahraga","Koperasi Santri"],"programUnggulan":["Tahfidz Al-Qur\'an","Kajian Kitab Kuning","Bahasa Arab & Inggris"],"kontak":{"telepon":"081234567891","email":"putra@sunsal.sch.id","alamat":"Jl. Raya Situbondo, Besuki, Jawa Timur"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pq-ranggeh.json":
+/*!**************************************!*\
+  !*** ./data/lembaga/pq-ranggeh.json ***!
+  \**************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pq-ranggeh","name":"Pondok Qur\'an Putra Sunniyah Salafiyah - Ranggeh","shortName":"PQ Ranggeh","desc":"Pondok Qur\'an untuk Putra","type":"ponpes","gender":"putra","icon":"menu_book","image":"/images/lembaga/hero-2.png","profil":{"deskripsi":"Pondok Qur\'an Ranggeh mencetak hafidz dan hafidzah yang mutqin dan berwawasan luas.","akreditasi":"B"},"visi":"Terwujudnya generasi Qur\'ani yang sholih, muslih, dan berprestasi.","misi":["Menyelenggarakan pendidikan Tahfidzul Qur\'an yang berkualitas.","Mengembangkan potensi santri dalam bidang Ulumul Qur\'an.","Membentuk karakter santri yang berakhlakul karimah."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":3800000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2200000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":450000,"icon":"school"},{"nama":"Asrama","deskripsi":"Akomodasi","jumlah":700000,"icon":"hotel"},{"nama":"Mushaf & Seragam","deskripsi":"Perlengkapan","jumlah":450000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Asrama Tahfidz","Masjid","Ruang Setoran"],"programUnggulan":["Tahfidz 30 Juz","Qiro\'ah Sab\'ah","Tafsir Al-Qur\'an"],"kontak":{"telepon":"081234567898","whatsapp":"081234567898","alamat":"Ranggeh, Pasuruan, Jawa Timur","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/pt-besuki.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/pt-besuki.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"pt-besuki","name":"Pondok Takhfidz Putra Sunniyah Salafiyah - Besuki","shortName":"PT Besuki","desc":"Pondok Takhfidz untuk Putra","type":"ponpes","gender":"putra","icon":"import_contacts","image":"/images/lembaga/hero-2.png","profil":{"deskripsi":"Pondok Takhfidz Besuki adalah cabang dari YSS yang fokus pada pendalaman Al-Qur\'an di wilayah Besuki.","akreditasi":"B"},"visi":"Menjadi pusat pembelajaran Al-Qur\'an yang mencetak generasi rabbani.","misi":["Mengajarkan metode menghafal Al-Qur\'an yang efektif.","Menanamkan kecintaan terhadap Al-Qur\'an dan As-Sunnah.","Membina masyarakat melalui dakwah Al-Qur\'an."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":4000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2300000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":500000,"icon":"school"},{"nama":"Asrama & Makan","deskripsi":"Akomodasi","jumlah":700000,"icon":"hotel"},{"nama":"Mushaf & Perlengkapan","deskripsi":"Kelengkapan","jumlah":500000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Akta Kelahiran","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Musholla","Asrama Santri","Halaman Luas"],"programUnggulan":["Tahfidz Anak","Tahsin Dewasa","Kajian Tafsir"],"kontak":{"telepon":"081234567899","whatsapp":"081234567899","alamat":"Besuki, Situbondo, Jawa Timur","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/sma-putra.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/sma-putra.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"sma-putra","name":"SMA Putra Al-Azhar","shortName":"SMA Putra","desc":"SMA Berasrama untuk Putra","type":"sma","gender":"putra","icon":"school","image":"/images/lembaga/hero-3.png","profil":{"deskripsi":"SMA Putra Al-Azhar mempersiapkan siswa untuk melanjutkan ke jenjang pendidikan tinggi dengan bekal ilmu pengetahuan dan agama yang kuat.","akreditasi":"A"},"visi":"Unggul dalam prestasi, santun dalam pekerti, dan siap berkompetisi.","misi":["Mengembangkan potensi akademik dan non-akademik siswa.","Mewujudkan lingkungan sekolah yang religius dan kondusif.","Menjalin kerjasama dengan berbagai pihak untuk peningkatan mutu pendidikan."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":5500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":3500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":700000,"icon":"school"},{"nama":"Asrama & Makan","deskripsi":"Akomodasi","jumlah":800000,"icon":"hotel"},{"nama":"Buku & Seragam","deskripsi":"Perlengkapan","jumlah":500000,"icon":"menu_book"}]},"fullDay":{"totalEstimasi":4000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":3000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":550000,"icon":"school"},{"nama":"Buku & Seragam","deskripsi":"Perlengkapan","jumlah":450000,"icon":"menu_book"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Ijazah SMP","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Lab IPA","Lab Bahasa","Perpustakaan Digital"],"programUnggulan":["Olimpiade Sains","Karya Tulis Ilmiah","Public Speaking"],"prodi":[{"nama":"IPA","deskripsi":"Ilmu Pengetahuan Alam","icon":"science"},{"nama":"IPS","deskripsi":"Ilmu Pengetahuan Sosial","icon":"public"}],"kontak":{"telepon":"081234567893","whatsapp":"081234567893","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/smk-putri.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/smk-putri.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"smk-putri","name":"SMK Putri Al-Azhar","shortName":"SMK Putri","desc":"SMK Berasrama untuk Putri","type":"smk","gender":"putri","icon":"engineering","image":"/images/lembaga/hero-3.png","profil":{"deskripsi":"SMK Putri Al-Azhar mencetak lulusan yang kompeten di bidang keahliannya serta memiliki karakter islami yang kuat.","akreditasi":"A"},"visi":"Menjadi SMK unggulan yang menghasilkan lulusan siap kerja, santun, dan mandiri.","misi":["Menyelenggarakan pendidikan kejuruan yang berbasis industri.","Membekali siswi dengan keterampilan wirausaha.","Membentuk karakter kerja yang profesional dan islami."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":5200000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":3000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":650000,"icon":"school"},{"nama":"Asrama & Makan","deskripsi":"Akomodasi","jumlah":900000,"icon":"hotel"},{"nama":"Perlengkapan Praktik","deskripsi":"Alat praktik","jumlah":650000,"icon":"construction"}]},"fullDay":{"totalEstimasi":3700000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":550000,"icon":"school"},{"nama":"Perlengkapan Praktik","deskripsi":"Alat praktik","jumlah":650000,"icon":"construction"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Ijazah SMP","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Lab Komputer","Studio Busana","Teaching Factory"],"programUnggulan":["Desain Busana","Multimedia","Kewirausahaan"],"prodi":[{"nama":"Tata Busana","deskripsi":"Keahlian Desain dan Produksi Busana","icon":"styler"},{"nama":"TKJ","deskripsi":"Teknik Komputer dan Jaringan","icon":"computer"}],"kontak":{"telepon":"081234567897","whatsapp":"081234567897","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/smp-putra.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/smp-putra.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"smp-putra","name":"SMP Putra Al-Azhar","shortName":"SMP Putra","desc":"SMP Berasrama untuk Putra","type":"smp","gender":"putra","icon":"school","image":"/images/lembaga/hero-3.png","profil":{"deskripsi":"SMP Putra Al-Azhar adalah sekolah menengah pertama berbasis pesantren yang mengintegrasikan kurikulum nasional dengan nilai-nilai kepesantrenan.","akreditasi":"A"},"visi":"Terwujudnya lulusan yang cerdas, terampil, dan berakhlakul karimah.","misi":["Melaksanakan pembelajaran yang aktif, inovatif, kreatif, efektif, dan menyenangkan.","Menumbuhkan semangat keunggulan secara intensif kepada seluruh warga sekolah.","Menerapkan manajemen partisipatif dengan melibatkan seluruh warga sekolah."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":5000000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":3000000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":600000,"icon":"school"},{"nama":"Asrama & Makan","deskripsi":"Akomodasi","jumlah":800000,"icon":"hotel"},{"nama":"Seragam","deskripsi":"Seragam lengkap","jumlah":600000,"icon":"checkroom"}]},"fullDay":{"totalEstimasi":3500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2500000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":500000,"icon":"school"},{"nama":"Seragam","deskripsi":"Seragam lengkap","jumlah":500000,"icon":"checkroom"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Ijazah SD","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Ruang Kelas Multimedia","Lab Komputer","Lapangan Futsal"],"programUnggulan":["Sains Club","English Club","Tahfidz Juz 30"],"kontak":{"telepon":"081234567892","whatsapp":"081234567892","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/smp-putri.json":
+/*!*************************************!*\
+  !*** ./data/lembaga/smp-putri.json ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"smp-putri","name":"SMP Putri Al-Azhar","shortName":"SMP Putri","desc":"SMP Berasrama untuk Putri","type":"smp","gender":"putri","icon":"school","image":"/images/lembaga/hero-3.png","profil":{"deskripsi":"SMP Putri Al-Azhar adalah sekolah menengah pertama khusus putri yang mengintegrasikan ilmu pengetahuan umum dan agama.","akreditasi":"A"},"visi":"Terbentuknya muslimah yang cerdas, kreatif, dan berwawasan global.","misi":["Menyelenggarakan pembelajaran yang aktif dan menyenangkan.","Mengembangkan potensi siswi dalam bidang akademik dan non-akademik.","Menanamkan nilai-nilai keislaman dalam setiap aktivitas."],"biaya":{"tahunAjaran":"2025-2026","boarding":{"totalEstimasi":4800000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2800000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":600000,"icon":"school"},{"nama":"Asrama & Makan","deskripsi":"Akomodasi","jumlah":800000,"icon":"hotel"},{"nama":"Seragam","deskripsi":"Seragam lengkap","jumlah":600000,"icon":"checkroom"}]},"fullDay":{"totalEstimasi":3300000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2300000,"icon":"payments"},{"nama":"SPP Bulan Pertama","deskripsi":"Biaya bulanan","jumlah":500000,"icon":"school"},{"nama":"Seragam","deskripsi":"Seragam lengkap","jumlah":500000,"icon":"checkroom"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-06-30","persyaratan":["Fotokopi Ijazah SD","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Asrama Putri","Lab IPA","Lab Komputer","Masjid","Perpustakaan","Lab Bahasa","Ruang Keterampilan"],"programUnggulan":["English Speaking","Karya Ilmiah Remaja","Tahfidz Qur\'an","Bahasa Arab & Inggris","Keterampilan Putri"],"kontak":{"telepon":"081234567896","whatsapp":"081234567896","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./data/lembaga/stit.json":
+/*!********************************!*\
+  !*** ./data/lembaga/stit.json ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"id":"stit","name":"STIT Sunniyah Salafiyah","shortName":"STIT","desc":"Sekolah Tinggi Ilmu Tarbiyah","type":"stit","gender":"umum","icon":"school","image":"/images/lembaga/hero-2.png","profil":{"deskripsi":"STIT Sunniyah Salafiyah adalah perguruan tinggi yang mencetak sarjana muslim yang intelek dan ulama yang sarjana.","akreditasi":"B"},"visi":"Menjadi Perguruan Tinggi Islam yang Unggul dalam Integrasi Keilmuan dan Keislaman.","misi":["Menyelenggarakan pendidikan tinggi yang berkualitas dan berdaya saing.","Mengembangkan riset dan pengabdian masyarakat.","Membangun kemitraan strategis dengan berbagai lembaga."],"biaya":{"tahunAjaran":"2025-2026","fullDay":{"totalEstimasi":3500000,"rincian":[{"nama":"Uang Pangkal","deskripsi":"Biaya pendaftaran","jumlah":2500000,"icon":"payments"},{"nama":"SPP Semester 1","deskripsi":"Biaya semester","jumlah":1000000,"icon":"school"}]}},"pendaftaran":{"tanggalBuka":"2025-05-12","tanggalTutup":"2025-08-31","persyaratan":["Fotokopi Ijazah SMA/MA","Fotokopi KK","Pas foto 3x4","Surat Sehat"]},"fasilitas":["Ruang Kuliah Ber-AC","Perpustakaan Kampus","Wi-Fi Area"],"programUnggulan":["Beasiswa Tahfidz","KKN Nusantara","Jurnal Ilmiah"],"prodi":[{"nama":"PBA","deskripsi":"Pendidikan Bahasa Arab","icon":"translate"},{"nama":"MPI","deskripsi":"Manajemen Pendidikan Islam","icon":"school"},{"nama":"ES","deskripsi":"Ekonomi Syariah","icon":"account_balance"}],"kontak":{"telepon":"081234567801","whatsapp":"081234567801","alamat":"Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171","googleMap":"https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"}}');
+
+/***/ })
+
+});

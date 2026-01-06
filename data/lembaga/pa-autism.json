@@ -6,10 +6,10 @@
   "type": "ponpes",
   "gender": "umum",
   "icon": "favorite",
-  "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXQQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
+  "image": "/images/lembaga/hero-1.png",
   "profil": {
     "deskripsi": "Pondok Pesantren khusus untuk anak berkebutuhan khusus (autisme) dengan terapi dan pendidikan agama yang disesuaikan.",
-    "akreditasi": "Terakreditasi"
+    "akreditasi": "A"
   },
   "visi": "Menjadi lembaga pendidikan khusus yang mandiri dan berkarakter Islami.",
   "misi": [
@@ -59,6 +59,17 @@
       "Surat Keterangan Dokter/Psikolog"
     ]
   },
+  "fasilitas": ["Ruang Terapi", "Sensory Room", "Asrama Khusus"],
+  "programUnggulan": [
+    "Terapi Wicara",
+    "Bina Diri",
+    "Hafalan Qur'an Metode Khas",
     "Pendidikan Agama"
-  ]
+  ],
+  "kontak": {
+    "telepon": "081234567802",
+    "whatsapp": "081234567802",
+    "alamat": "Jl. Raya Sidogiri Km. 1, Sungikulon, Pohjentrek, Pasuruan, Jawa Timur 67171",
+    "googleMap": "https://maps.google.com/?q=Yayasan+Sunniyah+Salafiyah"
+  }
 }

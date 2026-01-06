@@ -181,12 +181,12 @@ export default function Home() {
             <div className="animate-fade-in">
               {selectedInstitution ? (
                 <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-                  <header className="sticky top-0 z-30 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200/50 dark:border-white/5 transition-all duration-300">
-                    <div className="flex items-center justify-between px-4 py-3">
+                  <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-40 bg-black/60 backdrop-blur-md border-b border-white/10 transition-all duration-300 pointer-events-none">
+                    <div className="flex items-center justify-between px-4 py-3 pointer-events-auto">
                       <button
                         onClick={() => setSelectedInstitution(null)}
                         aria-label="Go back"
-                        className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-white/10 active:scale-95 transition-all text-[#111813] dark:text-white"
+                        className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-white/20 active:scale-95 transition-all text-white backdrop-blur-md shadow-sm"
                       >
                         <span
                           className="material-symbols-outlined"
@@ -195,14 +195,14 @@ export default function Home() {
                           arrow_back_ios_new
                         </span>
                       </button>
-                      <h1 className="text-lg font-bold tracking-tight text-[#111813] dark:text-white flex-1 text-center pr-8">
+                      <h1 className="text-lg font-bold tracking-tight text-white flex-1 text-center pr-8 drop-shadow-md">
                         Profil Lembaga
                       </h1>
                     </div>
                   </header>
 
-                  <main className="flex-1 overflow-y-auto pb-24 no-scrollbar">
-                    <div className="relative h-64 w-full">
+                  <main className="flex-1 overflow-y-auto pb-24 no-scrollbar relative w-full">
+                    <div className="relative h-72 w-full shrink-0">
                       <div
                         className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center"
                         style={{
@@ -215,7 +215,7 @@ export default function Home() {
                           <span className="material-symbols-outlined text-[16px] mr-1 filled">
                             verified
                           </span>
-                          Order Terakreditasi{" "}
+                          Terakreditasi{" "}
                           {selectedInstitution.profil.akreditasi || "A"}
                         </span>
                       </div>
