@@ -171,40 +171,13 @@ export default function Home() {
   // Get total estimasi
   const totalEstimasi = biayaData?.totalEstimasi || 0;
 
-  const downloadItems = [
-    {
-      name: "Madrasah Ibtidaiyah (MI)",
-      desc: "Pendidikan tingkat dasar",
-      type: "PDF",
-      size: "1.2 MB",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAt5zjRM8B-1n4IXNBD-knYgEavErBZ_NFcFnE-j8r8AJpYhw7BdXjrlcGHi9xG9VPtPiiQd7XQ2HQ_x2l3BHAldokKNU0HXJqG28HRntMp7dOXmpvquhDGXXLj8-q5Wi_GcKmD7Bd0Hd0dDy3ZMXvlxxRIqUF5b5qcLXDZm1zbJXVpFJPCSrhycxPupqMLzSh8bbPkl7GJhucUMchnTP4RpfmPt49at2bSlQVJSX2JhAu1t5Kre6zHIStLGg3SeR6o42hQRfbLcF5M",
-    },
-    {
-      name: "Madrasah Tsanawiyah (MTs)",
-      desc: "Pendidikan tingkat menengah",
-      type: "PDF",
-      size: "2.4 MB",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAWJo9eFxCdrleK5VookN6PFmDrUoU_v1SQ7kqHcNgtWWnYSoQ2uKUyewuzTi9AnhAZvKt-zIPuDkxvG4fO114ay6-MiblG0BsS21aVjqp_9uQwaZMztL1S55Kbpy3LgnC-PFCMZPoh_rgkEBvY4LqNd2SgaAe3lGYo8f3_05bCWQBAmoFahRSdVFrNltoITRQoQku729kFX5yx9wOQHCvnefxvb7WCRGfxmOZsuGDik-a_ifs7KlJknN9Sk1DIYE2xFoi1l7S7I07X",
-    },
-    {
-      name: "Madrasah Aliyah (MA)",
-      desc: "Pendidikan tingkat atas",
-      type: "PDF",
-      size: "3.1 MB",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u",
-    },
-    {
-      name: "Pondok Pesantren",
-      desc: "Asrama dan Pendidikan Diniyah",
-      type: "PDF",
-      size: "4.5 MB",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuD3y1p_FBOHWx18imPbP-3HWJR46tQzJa6BS8Sr4okgQEeoNm8Kyp_iCAMbzhv96lHEgEYo50tObDGYR05M_bWvxuZXqlobnWW7SyonaSuuOaEpkAaX_P-AAaqtONu-V57aT6SRyMHsvTGNVxkW7ayArIAwSFDPRrMJUWJsV8m00piOK8Z2TRtqCCv355gPXMQkOP2R61QE-vT5QI_zKd0di2LXzQL028IQPo_X1ER0_Aa7ab4yJqFITKVWgKVl6Y75S9HEjjzphTs6",
-    },
-  ];
+  const downloadItems = getAllLembaga().map((lembaga) => ({
+    name: lembaga.name,
+    desc: lembaga.desc,
+    type: "PDF",
+    size: "Brosur Digital",
+    image: lembaga.image,
+  }));
 
   const mainNews: NewsItem = {
     id: "psb-2026",
