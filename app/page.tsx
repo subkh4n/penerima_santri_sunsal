@@ -48,6 +48,8 @@ export default function Home() {
   const [selectedInstitution, setSelectedInstitution] =
     useState<Institution | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -850,6 +852,10 @@ export default function Home() {
                   .filter((item) =>
                     item.name.toLowerCase().includes(searchQuery.toLowerCase())
                   )
+                  .slice(
+                    (currentPage - 1) * itemsPerPage,
+                    currentPage * itemsPerPage
+                  )
                   .map((item, idx) => (
                     <div
                       key={idx}
@@ -880,6 +886,84 @@ export default function Home() {
                     </div>
                   ))}
               </div>
+
+              {/* Pagination Controls */}
+              {downloadItems.filter((item) =>
+                item.name.toLowerCase().includes(searchQuery.toLowerCase())
+              ).length > itemsPerPage && (
+                <div className="flex justify-center items-center gap-2 mt-6 pb-2">
+                  <button
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
+                    disabled={currentPage === 1}
+                    className="flex items-center justify-center w-10 h-10 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-text-main dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      chevron_left
+                    </span>
+                  </button>
+
+                  <div className="flex items-center gap-1">
+                    {Array.from(
+                      {
+                        length: Math.ceil(
+                          downloadItems.filter((item) =>
+                            item.name
+                              .toLowerCase()
+                              .includes(searchQuery.toLowerCase())
+                          ).length / itemsPerPage
+                        ),
+                      },
+                      (_, i) => i + 1
+                    ).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`w-10 h-10 rounded-xl text-sm font-bold transition-all ${
+                          currentPage === page
+                            ? "bg-primary text-black shadow-sm"
+                            : "bg-white dark:bg-gray-800 text-text-sub dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      setCurrentPage((prev) =>
+                        Math.min(
+                          prev + 1,
+                          Math.ceil(
+                            downloadItems.filter((item) =>
+                              item.name
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase())
+                            ).length / itemsPerPage
+                          )
+                        )
+                      )
+                    }
+                    disabled={
+                      currentPage ===
+                      Math.ceil(
+                        downloadItems.filter((item) =>
+                          item.name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                        ).length / itemsPerPage
+                      )
+                    }
+                    className="flex items-center justify-center w-10 h-10 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-text-main dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      chevron_right
+                    </span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </main>
