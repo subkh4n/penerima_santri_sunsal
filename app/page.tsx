@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ChatAssistant from "@/components/ChatAssistant";
 
-export enum Tab {
+enum Tab {
   HOME = "home",
   PROFIL = "profil",
   BIAYA = "biaya",
