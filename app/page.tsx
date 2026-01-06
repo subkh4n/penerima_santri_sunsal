@@ -196,11 +196,14 @@ export default function Home() {
     <div className={`min-h-screen ${isDarkMode ? "dark" : ""}`}>
       <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto shadow-2xl bg-surface-light dark:bg-surface-dark transition-colors duration-300">
         {!selectedInstitution && !selectedNews && (
-          <Header
-            onToggleTheme={toggleDarkMode}
-            isDarkMode={isDarkMode}
-            title={getHeaderTitle(activeTab)}
-          />
+          <>
+            <Header
+              onToggleTheme={toggleDarkMode}
+              isDarkMode={isDarkMode}
+              title={getHeaderTitle(activeTab)}
+            />
+            <div className="h-[72px] w-full shrink-0" />
+          </>
         )}
 
         <main
