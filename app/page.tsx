@@ -1058,7 +1058,6 @@ export default function Home() {
               />
 
               <div className="px-4 pt-6 pb-2 bg-background-light dark:bg-background-dark flex flex-col items-center">
-                {/* Institution Selector */}
                 <div className="w-full mb-6 max-w-md">
                   <label
                     className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
@@ -1069,15 +1068,15 @@ export default function Home() {
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <School
+                        size={20}
                         className="text-gray-400 group-focus-within:text-primary transition-colors"
-                        size={24}
                       />
                     </div>
                     <select
                       id="institution-select"
                       value={jadwalLembaga}
                       onChange={(e) => setJadwalLembaga(e.target.value)}
-                      className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
+                      className="block w-full pl-14 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
                     >
                       <option value="">Pilih Lembaga</option>
                       {getAllLembaga().map((lembaga) => (
@@ -1108,317 +1107,343 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Wave Selector */}
-              <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 px-4 transition-colors duration-300">
-                <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
-                  {["1", "2", "3"].map((gel) => (
-                    <button
-                      key={gel}
-                      onClick={() => setJadwalGelombang(gel)}
-                      className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
-                        jadwalGelombang === gel
-                          ? "bg-primary text-[#052e12] shadow-sm ring-1 ring-black/5"
-                          : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 font-medium"
-                      }`}
-                    >
-                      <span>Gelombang {gel}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {jadwalLembaga && (
+                <>
+                  {/* Wave Selector */}
+                  <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 px-4 transition-colors duration-300">
+                    <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
+                      {["1", "2", "3"].map((gel) => (
+                        <button
+                          key={gel}
+                          onClick={() => setJadwalGelombang(gel)}
+                          className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
+                            jadwalGelombang === gel
+                              ? "bg-primary text-[#052e12] shadow-sm ring-1 ring-black/5"
+                              : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 font-medium"
+                          }`}
+                        >
+                          <span>Gelombang {gel}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-              <div className="px-4 pb-28 relative min-h-[400px]">
-                {/* Schedule Content */}
-                <div id="timeline-content">
-                  {/* Table */}
-                  <div className="mb-8">
-                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-                      <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
-                        <Calendar className="text-primary" size={24} />
-                        <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
-                          Jadwal Kegiatan
-                        </h3>
-                      </div>
-                      <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
-                          <thead>
-                            <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
-                              <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
-                                Tanggal
-                              </th>
-                              <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Keterangan
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block">
-                                  1 Jan - 28 Feb
-                                </span>
-                              </td>
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                  Pendaftaran Online
-                                </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
-                                  Via Aplikasi/Website
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className="group bg-green-50/50 dark:bg-green-900/10 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-primary block">
-                                  5 Maret
-                                </span>
-                              </td>
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                  Tes Seleksi Masuk
-                                </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
-                                  Gedung Aula Utama Lt. 2
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block">
-                                  10 Maret
-                                </span>
-                              </td>
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                  Pengumuman Kelulusan
-                                </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
-                                  Cek status di aplikasi
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block">
-                                  11 - 20 Maret
-                                </span>
-                              </td>
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                  Daftar Ulang
-                                </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
-                                  Pembayaran & Pengambilan Seragam
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block">
-                                  15 Juli
-                                </span>
-                              </td>
-                              <td className="py-4 px-4 align-top">
-                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                  Awal Masuk Sekolah
-                                </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
-                                  Hari pertama kegiatan KBM
-                                </span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                  {/* Schedule Content */}
+                  <div className="px-4 pb-28 relative min-h-[400px]">
+                    {/* Table */}
+                    <div className="mb-8">
+                      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
+                          <Calendar className="text-primary" size={20} />
+                          <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
+                            Jadwal Kegiatan Gelombang {jadwalGelombang}
+                          </h3>
+                        </div>
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
+                                  Tanggal
+                                </th>
+                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                  Keterangan
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                              <tr className="group bg-green-50/50 dark:bg-green-900/10 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-primary block">
+                                    1 - 28 Feb
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Pendaftaran Online
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                    Via Aplikasi/Website
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block">
+                                    5 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Tes Seleksi
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                    Gedung Aula Utama Lt. 2
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block">
+                                    10 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Pengumuman
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                    Via Website/Aplikasi
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block">
+                                    11 - 20 Maret
+                                  </span>
+                                </td>
+                                <td className="py-4 px-4 align-top">
+                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                    Daftar Ulang
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                    Pembayaran & Pengambilan Seragam
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Info Box */}
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30">
+                      <Info
+                        size={20}
+                        className="text-blue-600 dark:text-blue-500 shrink-0 mt-0.5"
+                      />
+                      <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
+                        <span className="font-bold">Info:</span> Jadwal dapat
+                        berubah sewaktu-waktu. Selalu pantau informasi terbaru
+                        melalui aplikasi atau website resmi.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Fixed Bottom Button - Floating Style */}
+                  <div className="fixed bottom-24 left-4 right-4 z-50 flex justify-center pointer-events-none">
+                    <a
+                      href="https://ppdb.sunsal.net/formulirpendaftar/#/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pointer-events-auto w-full max-w-md bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-black font-bold text-base py-3 px-6 rounded-2xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2 ring-1 ring-white/20"
+                    >
+                      <GraduationCap size={22} className="text-[#052e12]" />
+                      <span className="text-[#052e12]">Daftar Sekarang</span>
+                    </a>
                   </div>
 
                   {/* Timeline */}
-                  <div className="flex items-center justify-between mb-6 px-1">
-                    <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                      Linimasa Kegiatan
-                    </h3>
-                    <span className="text-xs font-medium text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg">
-                      Gelombang {jadwalGelombang}
-                    </span>
-                  </div>
-
-                  <div className="relative pb-8">
-                    {/* Item 1 - Selesai */}
-                    <div className="relative flex gap-4 pb-8 group">
-                      <div className="flex flex-col items-center flex-shrink-0 relative">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/10 border-2 border-primary text-primary z-10 shadow-sm transition-transform group-hover:scale-110">
-                          <Check
-                            className="text-xl"
-                            size={20}
-                            strokeWidth={3}
-                          />
-                        </div>
-                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-primary/30"></div>
-                      </div>
-                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 opacity-70">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
-                            Selesai
-                          </span>
-                          <span className="text-xs font-bold text-gray-500 dark:text-gray-400">
-                            1 Jan - 28 Feb
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
-                          Pendaftaran Online
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                          Pengisian formulir biodata santri dan upload berkas
-                          persyaratan.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Item 2 - Active */}
-                    <div className="relative flex gap-4 pb-8 group">
-                      <div className="flex flex-col items-center flex-shrink-0 relative">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-[#052e12] shadow-lg shadow-primary/30 z-10 scale-110 ring-4 ring-white dark:ring-background-dark">
-                          <FileEdit
-                            className="text-xl animate-pulse"
-                            size={20}
-                          />
-                        </div>
-                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                      </div>
-                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md border-l-4 border-l-primary border-y border-r border-gray-100 dark:border-gray-700 ring-1 ring-primary/10 transition-transform hover:-translate-y-1">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-primary/20 text-green-800 dark:text-green-200">
-                            Sedang Berlangsung
-                          </span>
-                          <span className="text-xs font-bold text-primary">
-                            5 Maret
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-text-main dark:text-white mb-1">
-                          Tes Seleksi Masuk
-                        </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
-                          Tes kemampuan dasar, tes membaca Al-Qur'an, dan
-                          wawancara.
-                        </p>
-                        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                          <MapPin className="text-primary" size={18} />
-                          <span className="font-medium">
-                            Gedung Aula Utama Lt. 2
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Item 3 - Future */}
-                    <div className="relative flex gap-4 pb-8 group">
-                      <div className="flex flex-col items-center flex-shrink-0 relative">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
-                          <Megaphone className="text-xl" size={20} />
-                        </div>
-                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                      </div>
-                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
-                            Akan Datang
-                          </span>
-                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                            10 Maret
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
-                          Pengumuman Kelulusan
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                          Hasil tes seleksi dapat dilihat melalui aplikasi atau
-                          papan pengumuman.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Item 4 - Future */}
-                    <div className="relative flex gap-4 pb-8 group">
-                      <div className="flex flex-col items-center flex-shrink-0 relative">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
-                          <ClipboardList className="text-xl" size={20} />
-                        </div>
-                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                      </div>
-                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
-                            Akan Datang
-                          </span>
-                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                            11 - 20 Maret
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
-                          Daftar Ulang
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                          Pembayaran biaya masuk dan pengambilan seragam santri
-                          baru.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Item 5 - Future */}
-                    <div className="relative flex gap-4 group">
-                      <div className="flex flex-col items-center flex-shrink-0 relative">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
-                          <School className="text-xl" size={20} />
-                        </div>
-                      </div>
-                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
-                            Akan Datang
-                          </span>
-                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                            15 Juli
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
-                          Awal Masuk Sekolah
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                          Hari pertama kegiatan Belajar Mengajar (KBM) dimulai.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Empty State - Hidden by default for active flow */}
-                  {false && (
-                    <div
-                      className="flex flex-col items-center justify-center pt-10 text-center"
-                      id="empty-state"
-                    >
-                      <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
-                        <CalendarX className="text-gray-400" size={40} />
-                      </div>
-                      <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
-                        Belum Ada Jadwal
+                  <div className="px-4 pb-28 relative min-h-[400px]">
+                    {/* Timeline */}
+                    <div className="flex items-center justify-between mb-6 px-1">
+                      <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Linimasa Kegiatan
                       </h3>
-                      <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
-                        Informasi pendaftaran untuk gelombang ini belum tersedia
-                        saat ini.
-                      </p>
+                      <span className="text-xs font-medium text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg">
+                        Gelombang {jadwalGelombang}
+                      </span>
                     </div>
-                  )}
-                </div>
-              </div>
 
-              <div className="fixed bottom-0 left-0 right-0 z-30 p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pb-6">
-                <button className="w-full bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-[#052e12] font-bold text-base py-4 px-6 rounded-xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2">
-                  <UserPlus size={24} />
-                  Daftar Sekarang
-                </button>
-              </div>
+                    <div className="relative pb-8">
+                      {/* Item 1 - Selesai */}
+                      <div className="relative flex gap-4 pb-8 group">
+                        <div className="flex flex-col items-center flex-shrink-0 relative">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/10 border-2 border-primary text-primary z-10 shadow-sm transition-transform group-hover:scale-110">
+                            <Check
+                              className="text-xl"
+                              size={20}
+                              strokeWidth={3}
+                            />
+                          </div>
+                          <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-primary/30"></div>
+                        </div>
+                        <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 opacity-70">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                              Selesai
+                            </span>
+                            <span className="text-xs font-bold text-gray-500 dark:text-gray-400">
+                              1 Jan - 28 Feb
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                            Pendaftaran Online
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Pengisian formulir biodata santri dan upload berkas
+                            persyaratan.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 2 - Active */}
+                      <div className="relative flex gap-4 pb-8 group">
+                        <div className="flex flex-col items-center flex-shrink-0 relative">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-[#052e12] shadow-lg shadow-primary/30 z-10 scale-110 ring-4 ring-white dark:ring-background-dark">
+                            <FileEdit
+                              className="text-xl animate-pulse"
+                              size={20}
+                            />
+                          </div>
+                          <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                        </div>
+                        <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md border-l-4 border-l-primary border-y border-r border-gray-100 dark:border-gray-700 ring-1 ring-primary/10 transition-transform hover:-translate-y-1">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-primary/20 text-green-800 dark:text-green-200">
+                              Sedang Berlangsung
+                            </span>
+                            <span className="text-xs font-bold text-primary">
+                              5 Maret
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-text-main dark:text-white mb-1">
+                            Tes Seleksi Masuk
+                          </h3>
+                          <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                            Tes kemampuan dasar, tes membaca Al-Qur'an, dan
+                            wawancara.
+                          </p>
+                          <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                            <MapPin className="text-primary" size={18} />
+                            <span className="font-medium">
+                              Gedung Aula Utama Lt. 2
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Item 3 - Future */}
+                      <div className="relative flex gap-4 pb-8 group">
+                        <div className="flex flex-col items-center flex-shrink-0 relative">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                            <Megaphone className="text-xl" size={20} />
+                          </div>
+                          <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                        </div>
+                        <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                              Akan Datang
+                            </span>
+                            <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                              10 Maret
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                            Pengumuman Kelulusan
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Hasil tes seleksi dapat dilihat melalui aplikasi
+                            atau papan pengumuman.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 4 - Future */}
+                      <div className="relative flex gap-4 pb-8 group">
+                        <div className="flex flex-col items-center flex-shrink-0 relative">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                            <ClipboardList className="text-xl" size={20} />
+                          </div>
+                          <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                        </div>
+                        <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                              Akan Datang
+                            </span>
+                            <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                              11 - 20 Maret
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                            Daftar Ulang
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Pembayaran biaya masuk dan pengambilan seragam
+                            santri baru.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Item 5 - Future */}
+                      <div className="relative flex gap-4 group">
+                        <div className="flex flex-col items-center flex-shrink-0 relative">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                            <School className="text-xl" size={20} />
+                          </div>
+                        </div>
+                        <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                              Akan Datang
+                            </span>
+                            <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                              15 Juli
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                            Awal Masuk Sekolah
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Hari pertama kegiatan Belajar Mengajar (KBM)
+                            dimulai.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Empty State - Hidden by default for active flow */}
+                    {false && (
+                      <div
+                        className="flex flex-col items-center justify-center pt-10 text-center"
+                        id="empty-state"
+                      >
+                        <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                          <CalendarX className="text-gray-400" size={40} />
+                        </div>
+                        <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                          Belum Ada Jadwal
+                        </h3>
+                        <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                          Informasi pendaftaran untuk gelombang ini belum
+                          tersedia saat ini.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* Empty State */}
+              {!jadwalLembaga && (
+                <div className="flex flex-col items-center justify-center pt-10 text-center px-4">
+                  <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                    <Calendar size={32} className="text-gray-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                    Pilih Lembaga
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                    Silakan pilih lembaga terlebih dahulu untuk melihat jadwal
+                    pendaftaran.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
