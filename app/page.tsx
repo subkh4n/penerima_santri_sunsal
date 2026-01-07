@@ -654,219 +654,6 @@ export default function Home() {
             </div>
           )}
 
-          {activeTab === Tab.JADWAL && (
-            <div className="flex flex-col pb-24 animate-fade-in">
-              {/* Institution Selector */}
-              <div className="px-4 pt-6 pb-2 flex flex-col items-center">
-                <div className="w-full mb-6 max-w-md">
-                  <label
-                    className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
-                    htmlFor="jadwal-institution-select"
-                  >
-                    Pilih Lembaga
-                  </label>
-                  <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <School
-                        size={20}
-                        className="text-gray-400 group-focus-within:text-primary transition-colors"
-                      />
-                    </div>
-                    <select
-                      id="jadwal-institution-select"
-                      value={jadwalLembaga}
-                      onChange={(e) => setJadwalLembaga(e.target.value)}
-                      className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer"
-                    >
-                      <option value="">Pilih Lembaga</option>
-                      {allLembaga.map((lembaga) => (
-                        <option key={lembaga.id} value={lembaga.id}>
-                          {lembaga.shortName}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                      <ChevronDown size={20} className="text-gray-400" />
-                    </div>
-                  </div>
-                </div>
-
-                {jadwalLembaga && (
-                  <div className="text-center mb-2">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-xs font-medium mb-3 shadow-sm">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                      </span>
-                      Tahun Ajaran 2026/2027
-                    </div>
-                    <h2 className="text-2xl font-extrabold text-text-main dark:text-white tracking-tight leading-tight">
-                      {allLembaga.find((l) => l.id === jadwalLembaga)?.name}
-                    </h2>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">
-                      Yayasan Sunniyah Salafiyah
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {jadwalLembaga && (
-                <>
-                  {/* Wave Tabs */}
-                  <div className="sticky top-[60px] z-10 bg-surface-light dark:bg-surface-dark pt-2 pb-4 px-4">
-                    <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
-                      {["1", "2", "3"].map((gel) => (
-                        <button
-                          key={gel}
-                          onClick={() => setJadwalGelombang(gel)}
-                          className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
-                            jadwalGelombang === gel
-                              ? "bg-primary text-black shadow-sm ring-1 ring-black/5"
-                              : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                          }`}
-                        >
-                          <span>Gelombang {gel}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Schedule Content */}
-                  <div className="px-4 pb-28 relative min-h-[400px]">
-                    <div className="mb-8">
-                      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-                        <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
-                          <Calendar size={20} className="text-primary" />
-                          <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
-                            Jadwal Kegiatan Gelombang {jadwalGelombang}
-                          </h3>
-                        </div>
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
-                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
-                                  Tanggal
-                                </th>
-                                <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                  Keterangan
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-                              <tr className="bg-green-50/50 dark:bg-green-900/10 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-primary">
-                                    1 - 28 Feb
-                                  </span>
-                                </td>
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                    Pendaftaran Online
-                                  </span>
-                                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                                    Via Aplikasi/Website
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white">
-                                    5 Maret
-                                  </span>
-                                </td>
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                    Tes Seleksi
-                                  </span>
-                                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                                    Gedung Aula Utama Lt. 2
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white">
-                                    10 Maret
-                                  </span>
-                                </td>
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                    Pengumuman
-                                  </span>
-                                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                                    Via Website/Aplikasi
-                                  </span>
-                                </td>
-                              </tr>
-                              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white">
-                                    11 - 20 Maret
-                                  </span>
-                                </td>
-                                <td className="py-4 px-4 align-top">
-                                  <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
-                                    Daftar Ulang
-                                  </span>
-                                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                                    Pembayaran & Pengambilan Seragam
-                                  </span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Info Box */}
-                    <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30">
-                      <Info
-                        size={20}
-                        className="text-blue-600 dark:text-blue-500 shrink-0 mt-0.5"
-                      />
-                      <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
-                        <span className="font-bold">Info:</span> Jadwal dapat
-                        berubah sewaktu-waktu. Selalu pantau informasi terbaru
-                        melalui aplikasi atau website resmi.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Fixed Bottom Button */}
-                  <div className="fixed bottom-20 right-4 left-4 z-30 max-w-[480px] mx-auto">
-                    <a
-                      href="https://ppdb.sunsal.net/formulirpendaftar/#/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-black font-bold text-base py-4 px-6 rounded-xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2"
-                    >
-                      <GraduationCap size={20} />
-                      Daftar Sekarang
-                    </a>
-                  </div>
-                </>
-              )}
-
-              {/* Empty State */}
-              {!jadwalLembaga && (
-                <div className="flex flex-col items-center justify-center pt-10 text-center px-4">
-                  <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
-                    <Calendar size={32} className="text-gray-400" />
-                  </div>
-                  <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
-                    Pilih Lembaga
-                  </h3>
-                  <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
-                    Silakan pilih lembaga terlebih dahulu untuk melihat jadwal
-                    pendaftaran.
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
           {activeTab === Tab.BIAYA && (
             <div className="flex flex-col px-4 pb-24 pt-4 animate-fade-in">
               <div className="bg-gray-50 dark:bg-gray-800/50 p-1.5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex gap-1 mb-3 transition-colors">
@@ -1292,10 +1079,12 @@ export default function Home() {
                       onChange={(e) => setJadwalLembaga(e.target.value)}
                       className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
                     >
-                      <option value="mi">Madrasah Ibtidaiyah (MI)</option>
-                      <option value="mts">Madrasah Tsanawiyah (MTs)</option>
-                      <option value="ma">Madrasah Aliyah (MA)</option>
-                      <option value="pdf">PDF Ulya</option>
+                      <option value="">Pilih Lembaga</option>
+                      {getAllLembaga().map((lembaga) => (
+                        <option key={lembaga.id} value={lembaga.id}>
+                          {lembaga.name}
+                        </option>
+                      ))}
                     </select>
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <ChevronDown className="text-gray-400" size={24} />
@@ -1306,13 +1095,8 @@ export default function Home() {
                 {/* Active Wave Info */}
                 <div className="text-center mb-2">
                   <h2 className="text-2xl font-extrabold text-text-main dark:text-white tracking-tight leading-tight mb-2">
-                    {jadwalLembaga === "mi"
-                      ? "Madrasah Ibtidaiyah"
-                      : jadwalLembaga === "mts"
-                      ? "Madrasah Tsanawiyah"
-                      : jadwalLembaga === "ma"
-                      ? "Madrasah Aliyah"
-                      : "PDF Ulya"}
+                    {getAllLembaga().find((l) => l.id === jadwalLembaga)
+                      ?.name || "Pilih Lembaga"}
                   </h2>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-xs font-medium shadow-sm">
                     <span className="relative flex h-2 w-2">
