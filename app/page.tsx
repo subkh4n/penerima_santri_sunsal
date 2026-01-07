@@ -780,18 +780,17 @@ export default function Home() {
                       onClick={() => setSelectedNews(null)}
                       className="text-text-main dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70 transition-opacity"
                     >
-                      <span className="material-symbols-outlined text-[24px]">
-                        arrow_back
-                      </span>
+                      <ChevronLeft size={28} />
                     </button>
                     <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
                       Detail Berita
                     </h2>
                     <div className="flex w-12 items-center justify-end">
                       <button className="flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                        <span className="material-symbols-outlined text-text-main dark:text-white text-[24px]">
-                          share
-                        </span>
+                        <Share2
+                          size={24}
+                          className="text-text-main dark:text-white"
+                        />
                       </button>
                     </div>
                   </header>
@@ -803,9 +802,7 @@ export default function Home() {
                           {selectedNews.category}
                         </span>
                         <div className="flex items-center gap-1.5 text-xs text-text-sub">
-                          <span className="material-symbols-outlined text-[16px]">
-                            calendar_month
-                          </span>
+                          <Calendar size={16} />
                           <span>{selectedNews.date}</span>
                         </div>
                       </div>
@@ -814,9 +811,10 @@ export default function Home() {
                       </h1>
                       <div className="flex items-center gap-2 border-b border-gray-100 dark:border-white/5 pb-4">
                         <div className="size-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-gray-500 dark:text-gray-400 text-[18px]">
-                            person
-                          </span>
+                          <User
+                            size={18}
+                            className="text-gray-500 dark:text-gray-400"
+                          />
                         </div>
                         <div className="flex flex-col">
                           <span className="text-xs font-semibold text-text-main dark:text-white">
@@ -865,26 +863,29 @@ export default function Home() {
                         </h3>
                         <ul className="space-y-2">
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
-                              check_circle
-                            </span>
+                            <CheckCircle2
+                              size={16}
+                              className="text-primary fill-current"
+                            />
                             <span>
                               Pendaftaran dibuka mulai 12 Mei s.d. 30 Juni 2026.
                             </span>
                           </li>
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
-                              check_circle
-                            </span>
+                            <CheckCircle2
+                              size={16}
+                              className="text-primary fill-current"
+                            />
                             <span>
                               Tes seleksi meliputi membaca Al-Qur'an dan
                               wawancara.
                             </span>
                           </li>
                           <li className="flex gap-2 text-xs text-text-sub dark:text-gray-400">
-                            <span className="material-symbols-outlined text-primary text-[16px] fill-1">
-                              check_circle
-                            </span>
+                            <CheckCircle2
+                              size={16}
+                              className="text-primary fill-current"
+                            />
                             <span>
                               Tersedia beasiswa bagi santri berprestasi dan
                               yatim/piatu.
