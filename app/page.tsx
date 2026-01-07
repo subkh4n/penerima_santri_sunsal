@@ -1609,21 +1609,23 @@ export default function Home() {
                   </div>
 
                   {/* Empty State - Hidden by default for active flow */}
-                  <div
-                    className="hidden flex flex-col items-center justify-center pt-10 text-center"
-                    id="empty-state"
-                  >
-                    <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
-                      <CalendarX className="text-gray-400" size={40} />
+                  {false && (
+                    <div
+                      className="flex flex-col items-center justify-center pt-10 text-center"
+                      id="empty-state"
+                    >
+                      <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                        <CalendarX className="text-gray-400" size={40} />
+                      </div>
+                      <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                        Belum Ada Jadwal
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                        Informasi pendaftaran untuk gelombang ini belum tersedia
+                        saat ini.
+                      </p>
                     </div>
-                    <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
-                      Belum Ada Jadwal
-                    </h3>
-                    <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
-                      Informasi pendaftaran untuk gelombang ini belum tersedia
-                      saat ini.
-                    </p>
-                  </div>
+                  )}
                 </div>
               </div>
 
