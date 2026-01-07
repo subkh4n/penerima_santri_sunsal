@@ -1116,26 +1116,6 @@ export default function Home() {
                 </div>
               ) : (
                 <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-                  <header className="sticky top-0 z-20 flex items-center justify-between bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 border-b border-gray-100 dark:border-white/5 transition-all">
-                    <button
-                      onClick={() => setActiveTab(Tab.HOME)}
-                      className="text-text-main dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70 transition-opacity"
-                    >
-                      <ChevronLeft size={24} />
-                    </button>
-                    <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
-                      Berita
-                    </h2>
-                    <div className="flex w-12 items-center justify-end">
-                      <button className="flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                        <Bell
-                          size={24}
-                          className="text-text-main dark:text-white"
-                        />
-                      </button>
-                    </div>
-                  </header>
-
                   <main className="flex-1 flex flex-col px-4 pb-24 pt-2">
                     <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 -mx-4 px-4 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-none mb-2">
                       <div className="relative">
