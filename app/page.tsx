@@ -228,6 +228,11 @@ export default function Home() {
               onToggleTheme={toggleDarkMode}
               isDarkMode={isDarkMode}
               title={getHeaderTitle(activeTab)}
+              onBack={
+                activeTab !== Tab.HOME
+                  ? () => setActiveTab(Tab.HOME)
+                  : undefined
+              }
             />
             <div className="h-[72px] w-full shrink-0" />
           </>
