@@ -1,21 +1,32 @@
 import React from "react";
-import { Sun, Moon, Bell } from "lucide-react";
+import { Sun, Moon, Bell, ChevronLeft } from "lucide-react";
 
 interface HeaderProps {
   onToggleTheme: () => void;
   isDarkMode: boolean;
   title: string;
+  onBack?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
   isDarkMode,
   title,
+  onBack,
 }) => {
   return (
     <div className="flex items-center bg-surface-light dark:bg-surface-dark p-4 pb-2 justify-between fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 shadow-sm transition-colors duration-300 rounded-t-none">
-      {/* Spacer to keep title centered since menu button is removed */}
-      <div className="size-10 shrink-0"></div>
+      {onBack ? (
+        <button
+          onClick={onBack}
+          aria-label="Go back"
+          className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-main dark:text-white"
+        >
+          <ChevronLeft size={24} />
+        </button>
+      ) : (
+        <div className="size-10 shrink-0"></div>
+      )}
 
       <h2 className="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center capitalize">
         {title}
