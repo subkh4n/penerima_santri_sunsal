@@ -53,6 +53,13 @@ import RequirementsPage from "@/components/RequirementsPage";
 import { getAllLembaga, getLembagaById, formatCurrency } from "@/lib/lembaga";
 import { Lembaga } from "@/types/lembaga";
 import { JADWAL_PENDAFTARAN } from "@/data/jadwal-pendaftaran";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 enum Tab {
   HOME = "home",
@@ -1071,7 +1078,7 @@ export default function Home() {
               />
 
               <div className="px-4 pt-6 pb-2 bg-background-light dark:bg-background-dark flex flex-col items-center">
-                <div className="w-full mb-6 max-w-md">
+                <div className="w-full mb-6">
                   <label
                     className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
                     htmlFor="institution-select"
@@ -1079,32 +1086,24 @@ export default function Home() {
                     Pilih Lembaga
                   </label>
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <School
-                        size={20}
-                        className="text-gray-400 group-focus-within:text-primary transition-colors"
-                      />
-                    </div>
-                    <select
-                      id="institution-select"
+                    <Select
                       value={jadwalLembaga}
-                      onChange={(e) => setJadwalLembaga(e.target.value)}
-                      className="block w-full pl-14 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
+                      onValueChange={(value) => setJadwalLembaga(value)}
                     >
-                      <option value="">Pilih Lembaga</option>
-                      {profilSections.map((section, idx) => (
-                        <optgroup key={idx} label={section.title}>
-                          {section.items.map((lembaga) => (
-                            <option key={lembaga.id} value={lembaga.id}>
-                              {lembaga.name}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                      <ChevronDown className="text-gray-400" size={24} />
-                    </div>
+                      <SelectTrigger className="w-full pl-3 pr-4 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                        <div className="flex items-center gap-3">
+                          <School size={20} className="text-gray-400" />
+                          <SelectValue placeholder="Pilih Lembaga" />
+                        </div>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAllLembaga().map((lembaga) => (
+                          <SelectItem key={lembaga.id} value={lembaga.id}>
+                            {lembaga.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
