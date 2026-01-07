@@ -34,6 +34,12 @@ import {
   QrCode,
   GraduationCap,
   ArrowBigDownDash,
+  Check,
+  FileEdit,
+  Megaphone,
+  ClipboardList,
+  CalendarX,
+  UserPlus,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -43,6 +49,7 @@ import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ChatAssistant from "@/components/ChatAssistant";
+import RequirementsPage from "@/components/RequirementsPage";
 import { getAllLembaga, getLembagaById, formatCurrency } from "@/lib/lembaga";
 import { Lembaga } from "@/types/lembaga";
 
@@ -110,9 +117,11 @@ export default function Home() {
   const [selectedInstitution, setSelectedInstitution] =
     useState<Lembaga | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [showRequirements, setShowRequirements] = useState(false);
+  const [jadwalLembaga, setJadwalLembaga] = useState("mts");
+  const [jadwalGelombang, setJadwalGelombang] = useState("1");
   const [currentPage, setCurrentPage] = useState(1);
-  const [jadwalLembaga, setJadwalLembaga] = useState<string>("");
-  const [jadwalGelombang, setJadwalGelombang] = useState<number>(1);
+
   const itemsPerPage = 6;
 
   const tentangRef = useRef<HTMLDivElement>(null);
@@ -256,309 +265,330 @@ export default function Home() {
           {activeTab === Tab.PROFIL && (
             <div className="animate-fade-in">
               {selectedInstitution ? (
-                <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
-                  <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-40 bg-black/60 backdrop-blur-md border-b border-white/10 transition-all duration-300 pointer-events-none">
-                    <div className="flex items-center justify-between px-4 py-3 pointer-events-auto">
-                      <button
-                        onClick={() => setSelectedInstitution(null)}
-                        aria-label="Go back"
-                        className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-white/20 active:scale-95 transition-all text-white backdrop-blur-md shadow-sm"
-                      >
-                        <ChevronLeft size={28} />
-                      </button>
-                      <h1 className="text-lg font-bold tracking-tight text-white flex-1 text-center pr-8 drop-shadow-md">
-                        Profil Lembaga
-                      </h1>
-                    </div>
-                  </header>
-
-                  <main className="flex-1 overflow-y-auto pb-24 no-scrollbar relative w-full">
-                    <div className="relative h-72 w-full shrink-0">
-                      <div
-                        className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url('${selectedInstitution.image}')`,
-                        }}
-                      ></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-black/30"></div>
-                      <div className="absolute bottom-4 left-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-[#052e12] shadow-lg backdrop-blur-sm">
-                          <BadgeCheck size={16} className="mr-1 fill-current" />
-                          Terakreditasi{" "}
-                          {selectedInstitution.profil.akreditasi || "A"}
-                        </span>
+                showRequirements ? (
+                  <RequirementsPage
+                    institution={selectedInstitution}
+                    onBack={() => setShowRequirements(false)}
+                  />
+                ) : (
+                  <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark">
+                    <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-40 bg-black/60 backdrop-blur-md border-b border-white/10 transition-all duration-300 pointer-events-none">
+                      <div className="flex items-center justify-between px-4 py-3 pointer-events-auto">
+                        <button
+                          onClick={() => setSelectedInstitution(null)}
+                          aria-label="Go back"
+                          className="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-white/20 active:scale-95 transition-all text-white backdrop-blur-md shadow-sm"
+                        >
+                          <ChevronLeft size={28} />
+                        </button>
+                        <h1 className="text-lg font-bold tracking-tight text-white flex-1 text-center pr-8 drop-shadow-md">
+                          Profil Lembaga
+                        </h1>
                       </div>
-                    </div>
+                    </header>
 
-                    <div className="px-4 -mt-2 relative z-10">
-                      <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-[#111813] dark:text-white leading-tight mb-2">
-                          {selectedInstitution.name}
-                        </h2>
-                        <div className="flex items-center text-sm text-[#61896f] dark:text-gray-400">
-                          <School size={18} className="mr-1" />
-                          <span>{selectedInstitution.desc}</span>
+                    <main className="flex-1 overflow-y-auto pb-24 no-scrollbar relative w-full">
+                      <div className="relative h-72 w-full shrink-0">
+                        <div
+                          className="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-cover bg-center"
+                          style={{
+                            backgroundImage: `url('${selectedInstitution.image}')`,
+                          }}
+                        ></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-black/30"></div>
+                        <div className="absolute bottom-4 left-4">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-[#052e12] shadow-lg backdrop-blur-sm">
+                            <BadgeCheck
+                              size={16}
+                              className="mr-1 fill-current"
+                            />
+                            Terakreditasi{" "}
+                            {selectedInstitution.profil.akreditasi || "A"}
+                          </span>
                         </div>
                       </div>
 
-                      <div className="flex space-x-2 overflow-x-auto no-scrollbar mb-6 pb-2">
-                        <button
-                          onClick={() => scrollToSection(tentangRef)}
-                          className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors"
-                        >
-                          Tentang
-                        </button>
-                        <button
-                          onClick={() => scrollToSection(programRef)}
-                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
-                        >
-                          Program
-                        </button>
-                        <button
-                          onClick={() => scrollToSection(fasilitasRef)}
-                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
-                        >
-                          Fasilitas
-                        </button>
-                        <button
-                          onClick={() => scrollToSection(kontakRef)}
-                          className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
-                        >
-                          Kontak
-                        </button>
-                      </div>
-
-                      <section ref={tentangRef} className="space-y-4 mb-8">
-                        <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
-                          <span className="w-1 h-6 bg-primary rounded-full"></span>
-                          Selayang Pandang
-                        </h3>
-                        <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
-                          <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {selectedInstitution.profil.deskripsi}
-                          </p>
+                      <div className="px-4 -mt-2 relative z-10">
+                        <div className="mb-6">
+                          <h2 className="text-2xl font-bold text-[#111813] dark:text-white leading-tight mb-2">
+                            {selectedInstitution.name}
+                          </h2>
+                          <div className="flex items-center text-sm text-[#61896f] dark:text-gray-400">
+                            <School size={18} className="mr-1" />
+                            <span>{selectedInstitution.desc}</span>
+                          </div>
                         </div>
-                      </section>
 
-                      {selectedInstitution.visi && (
-                        <section className="space-y-4 mb-8">
+                        <div className="flex space-x-2 overflow-x-auto no-scrollbar mb-6 pb-2">
+                          <button
+                            onClick={() => scrollToSection(tentangRef)}
+                            className="flex-shrink-0 px-4 py-2 bg-[#111813] dark:bg-primary text-white dark:text-[#052e12] text-sm font-medium rounded-lg transition-colors"
+                          >
+                            Tentang
+                          </button>
+                          <button
+                            onClick={() => scrollToSection(programRef)}
+                            className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                          >
+                            Program
+                          </button>
+                          <button
+                            onClick={() => scrollToSection(fasilitasRef)}
+                            className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                          >
+                            Fasilitas
+                          </button>
+                          <button
+                            onClick={() => scrollToSection(kontakRef)}
+                            className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                          >
+                            Kontak
+                          </button>
+                          <button
+                            onClick={() => setShowRequirements(true)}
+                            className="flex-shrink-0 px-4 py-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors"
+                          >
+                            Persyaratan
+                          </button>
+                        </div>
+
+                        <section ref={tentangRef} className="space-y-4 mb-8">
                           <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
                             <span className="w-1 h-6 bg-primary rounded-full"></span>
-                            Visi & Misi
+                            Selayang Pandang
                           </h3>
-                          <div className="grid gap-3">
-                            <div className="relative overflow-hidden p-4 rounded-lg bg-[#e8f5e9] dark:bg-[#132e21] border border-primary/20">
-                              <span className="absolute -right-4 -top-4 text-primary/10 dark:text-primary/5">
-                                <Eye size={100} className="fill-current" />
-                              </span>
-                              <h4 className="font-bold text-[#111813] dark:text-white mb-1 relative z-10">
-                                Visi
-                              </h4>
-                              <p className="text-sm text-gray-700 dark:text-gray-300 italic relative z-10">
-                                "{selectedInstitution.visi}"
-                              </p>
-                            </div>
-                            {selectedInstitution.misi && (
-                              <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
-                                <h4 className="font-bold text-[#111813] dark:text-white mb-3">
-                                  Misi
-                                </h4>
-                                <ul className="space-y-3">
-                                  {selectedInstitution.misi.map((misi, idx) => (
-                                    <li
-                                      key={idx}
-                                      className="flex items-start gap-3"
-                                    >
-                                      <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-primary/20 text-primary text-[10px] font-bold mt-0.5">
-                                        {idx + 1}
-                                      </span>
-                                      <span className="text-sm text-gray-600 dark:text-gray-300">
-                                        {misi}
-                                      </span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
+                          <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                              {selectedInstitution.profil.deskripsi}
+                            </p>
                           </div>
                         </section>
-                      )}
 
-                      <section ref={programRef} className="space-y-4 mb-8">
-                        <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
-                          <span className="w-1 h-6 bg-primary rounded-full"></span>
-                          {selectedInstitution.prodi
-                            ? "Jurusan & Program"
-                            : "Program Unggulan"}
-                        </h3>
-                        {selectedInstitution.prodi ? (
-                          <div className="grid grid-cols-2 gap-3">
-                            {selectedInstitution.prodi.map((prodi, idx) => (
-                              <div
-                                key={idx}
-                                className={`group p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all text-center ${
-                                  idx ===
-                                    selectedInstitution.prodi!.length - 1 &&
-                                  idx % 2 === 0
-                                    ? "col-span-2"
-                                    : ""
-                                }`}
-                              >
-                                <div className="w-10 h-10 mx-auto mb-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
-                                  {getIcon(prodi.icon || "school", 20)}
-                                </div>
-                                <h4 className="font-semibold text-sm text-[#111813] dark:text-white">
-                                  {prodi.nama}
+                        {selectedInstitution.visi && (
+                          <section className="space-y-4 mb-8">
+                            <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                              <span className="w-1 h-6 bg-primary rounded-full"></span>
+                              Visi & Misi
+                            </h3>
+                            <div className="grid gap-3">
+                              <div className="relative overflow-hidden p-4 rounded-lg bg-[#e8f5e9] dark:bg-[#132e21] border border-primary/20">
+                                <span className="absolute -right-4 -top-4 text-primary/10 dark:text-primary/5">
+                                  <Eye size={100} className="fill-current" />
+                                </span>
+                                <h4 className="font-bold text-[#111813] dark:text-white mb-1 relative z-10">
+                                  Visi
                                 </h4>
-                                <p className="text-[10px] text-gray-500 mt-1">
-                                  {prodi.deskripsi}
+                                <p className="text-sm text-gray-700 dark:text-gray-300 italic relative z-10">
+                                  "{selectedInstitution.visi}"
                                 </p>
                               </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="grid grid-cols-1 gap-3">
-                            {selectedInstitution.programUnggulan?.map(
-                              (prog, idx) => (
-                                <div
-                                  key={idx}
-                                  className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-3"
-                                >
-                                  <CheckCircle2
-                                    size={20}
-                                    className="text-primary"
-                                  />
-                                  <span className="text-sm text-gray-700 dark:text-gray-300">
-                                    {prog}
-                                  </span>
+                              {selectedInstitution.misi && (
+                                <div className="p-4 bg-white dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5">
+                                  <h4 className="font-bold text-[#111813] dark:text-white mb-3">
+                                    Misi
+                                  </h4>
+                                  <ul className="space-y-3">
+                                    {selectedInstitution.misi.map(
+                                      (misi, idx) => (
+                                        <li
+                                          key={idx}
+                                          className="flex items-start gap-3"
+                                        >
+                                          <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-primary/20 text-primary text-[10px] font-bold mt-0.5">
+                                            {idx + 1}
+                                          </span>
+                                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                                            {misi}
+                                          </span>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
                                 </div>
-                              )
-                            )}
-                          </div>
+                              )}
+                            </div>
+                          </section>
                         )}
-                      </section>
 
-                      {selectedInstitution.fasilitas && (
-                        <section ref={fasilitasRef} className="space-y-4 mb-8">
+                        <section ref={programRef} className="space-y-4 mb-8">
                           <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
                             <span className="w-1 h-6 bg-primary rounded-full"></span>
-                            Fasilitas
+                            {selectedInstitution.prodi
+                              ? "Jurusan & Program"
+                              : "Program Unggulan"}
                           </h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            {selectedInstitution.fasilitas.map(
-                              (fasilitas, idx) => (
+                          {selectedInstitution.prodi ? (
+                            <div className="grid grid-cols-2 gap-3">
+                              {selectedInstitution.prodi.map((prodi, idx) => (
                                 <div
                                   key={idx}
-                                  className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-2"
+                                  className={`group p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all text-center ${
+                                    idx ===
+                                      selectedInstitution.prodi!.length - 1 &&
+                                    idx % 2 === 0
+                                      ? "col-span-2"
+                                      : ""
+                                  }`}
                                 >
-                                  <Building2
-                                    size={20}
-                                    className="text-primary"
-                                  />
-                                  <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
-                                    {fasilitas}
-                                  </span>
+                                  <div className="w-10 h-10 mx-auto mb-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
+                                    {getIcon(prodi.icon || "school", 20)}
+                                  </div>
+                                  <h4 className="font-semibold text-sm text-[#111813] dark:text-white">
+                                    {prodi.nama}
+                                  </h4>
+                                  <p className="text-[10px] text-gray-500 mt-1">
+                                    {prodi.deskripsi}
+                                  </p>
                                 </div>
-                              )
-                            )}
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="grid grid-cols-1 gap-3">
+                              {selectedInstitution.programUnggulan?.map(
+                                (prog, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-3"
+                                  >
+                                    <CheckCircle2
+                                      size={20}
+                                      className="text-primary"
+                                    />
+                                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                                      {prog}
+                                    </span>
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          )}
+                        </section>
+
+                        {selectedInstitution.fasilitas && (
+                          <section
+                            ref={fasilitasRef}
+                            className="space-y-4 mb-8"
+                          >
+                            <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                              <span className="w-1 h-6 bg-primary rounded-full"></span>
+                              Fasilitas
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3">
+                              {selectedInstitution.fasilitas.map(
+                                (fasilitas, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="p-3 bg-white dark:bg-surface-dark rounded-lg border border-gray-100 dark:border-white/5 flex items-center gap-2"
+                                  >
+                                    <Building2
+                                      size={20}
+                                      className="text-primary"
+                                    />
+                                    <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
+                                      {fasilitas}
+                                    </span>
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </section>
+                        )}
+
+                        <section ref={kontakRef} className="space-y-4">
+                          <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
+                            <span className="w-1 h-6 bg-primary rounded-full"></span>
+                            Kontak & Lokasi
+                          </h3>
+                          <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-white/10">
+                            <div className="bg-gray-200 dark:bg-gray-700 h-32 w-full flex items-center justify-center relative">
+                              <div
+                                className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply"
+                                style={{
+                                  backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u')`,
+                                }}
+                              ></div>
+                              {selectedInstitution.kontak?.googleMap && (
+                                <button
+                                  onClick={() =>
+                                    window.open(
+                                      selectedInstitution.kontak?.googleMap,
+                                      "_blank"
+                                    )
+                                  }
+                                  className="z-10 bg-white dark:bg-[#111813] text-[#111813] dark:text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 hover:scale-105 transition-transform"
+                                >
+                                  <MapPin size={16} className="text-primary" />
+                                  Lihat di Peta
+                                </button>
+                              )}
+                            </div>
+
+                            <div className="p-4 bg-white dark:bg-surface-dark">
+                              <div className="flex items-start gap-3 mb-4">
+                                <MapPin
+                                  size={20}
+                                  className="text-gray-400 mt-0.5"
+                                />
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                                  {selectedInstitution.kontak?.alamat ||
+                                    "Alamat belum tersedia"}
+                                </p>
+                              </div>
+                              <div className="grid grid-cols-2 gap-3">
+                                {selectedInstitution.kontak?.whatsapp && (
+                                  <a
+                                    href={`https://wa.me/${selectedInstitution.kontak.whatsapp}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-100 transition-colors"
+                                  >
+                                    <MessageCircle size={16} />
+                                    WhatsApp
+                                  </a>
+                                )}
+                                {selectedInstitution.kontak?.telepon && (
+                                  <a
+                                    href={`tel:${selectedInstitution.kontak.telepon}`}
+                                    className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 transition-colors"
+                                  >
+                                    <Phone size={16} />
+                                    Telepon
+                                  </a>
+                                )}
+                              </div>
+                            </div>
                           </div>
                         </section>
-                      )}
+                        <div className="h-6"></div>
+                      </div>
+                    </main>
 
-                      <section ref={kontakRef} className="space-y-4">
-                        <h3 className="text-lg font-bold text-[#111813] dark:text-white flex items-center gap-2">
-                          <span className="w-1 h-6 bg-primary rounded-full"></span>
-                          Kontak & Lokasi
-                        </h3>
-                        <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-white/10">
-                          <div className="bg-gray-200 dark:bg-gray-700 h-32 w-full flex items-center justify-center relative">
-                            <div
-                              className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply"
-                              style={{
-                                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCD7TwjvuBLANCoPFf9SPtQX1CUqzyywqoc5rO04GyQAqRxwcJljWleLR0DstXThwBrDCu6dDMkUkfWQ_cQRzajrA36GCbCoZh8fcLwVQ1QBzCHzUBGFlar4G2-l4NjHOTfLmei1Nna6-QlfDpZARoYjdcHVogDwpPsiU1Y8b6vcJIiHzFz_6ltoPcZi95WmioBqe_KNiaKoTJAWjFJF422UoLBDEz7e5xS1SNpEQqRpmOoOCirfeGGPTIV_Doy4mQwvuUm9HfUXX6u')`,
-                              }}
-                            ></div>
-                            {selectedInstitution.kontak?.googleMap && (
-                              <button
-                                onClick={() =>
-                                  window.open(
-                                    selectedInstitution.kontak?.googleMap,
-                                    "_blank"
-                                  )
-                                }
-                                className="z-10 bg-white dark:bg-[#111813] text-[#111813] dark:text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 hover:scale-105 transition-transform"
-                              >
-                                <MapPin size={16} className="text-primary" />
-                                Lihat di Peta
-                              </button>
-                            )}
-                          </div>
-
-                          <div className="p-4 bg-white dark:bg-surface-dark">
-                            <div className="flex items-start gap-3 mb-4">
-                              <MapPin
-                                size={20}
-                                className="text-gray-400 mt-0.5"
-                              />
-                              <p className="text-sm text-gray-600 dark:text-gray-300">
-                                {selectedInstitution.kontak?.alamat ||
-                                  "Alamat belum tersedia"}
-                              </p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              {selectedInstitution.kontak?.whatsapp && (
-                                <a
-                                  href={`https://wa.me/${selectedInstitution.kontak.whatsapp}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold hover:bg-green-100 transition-colors"
-                                >
-                                  <MessageCircle size={16} />
-                                  WhatsApp
-                                </a>
-                              )}
-                              {selectedInstitution.kontak?.telepon && (
-                                <a
-                                  href={`tel:${selectedInstitution.kontak.telepon}`}
-                                  className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 transition-colors"
-                                >
-                                  <Phone size={16} />
-                                  Telepon
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                      <div className="h-6"></div>
-                    </div>
-                  </main>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-20">
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => {
-                          setActiveTab(Tab.DOWNLOAD);
-                          setSelectedInstitution(null);
-                        }}
-                        className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                      >
-                        <span className="text-xs font-semibold">
-                          Download Brosur
-                        </span>
-                      </button>
-                      <a
-                        href="https://ppdb.sunsal.net/formulirpendaftar/#/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:bg-[#0fd650] active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-lg shadow-lg shadow-primary/20 transition-all"
-                      >
-                        Daftar Sekarang
-                        <ChevronRight size={18} />
-                      </a>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#102216]/90 backdrop-blur-md border-t border-gray-100 dark:border-white/5 z-20">
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => {
+                            setActiveTab(Tab.DOWNLOAD);
+                            setSelectedInstitution(null);
+                          }}
+                          className="flex-1 flex flex-col items-center justify-center gap-1 h-12 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                        >
+                          <span className="text-xs font-semibold">
+                            Download Brosur
+                          </span>
+                        </button>
+                        <a
+                          href="https://ppdb.sunsal.net/formulirpendaftar/#/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-[2] flex items-center justify-center gap-2 h-12 bg-primary hover:bg-[#0fd650] active:scale-[0.98] text-[#052e12] font-bold text-sm rounded-lg shadow-lg shadow-primary/20 transition-all"
+                        >
+                          Daftar Sekarang
+                          <ChevronRight size={18} />
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )
               ) : (
                 <div className="flex flex-col px-4 pt-2">
                   <div className="py-3 sticky top-[68px] z-10 bg-surface-light dark:bg-surface-dark transition-colors duration-300">
@@ -685,7 +715,7 @@ export default function Home() {
                   {/* Wave Tabs */}
                   <div className="sticky top-[60px] z-10 bg-surface-light dark:bg-surface-dark pt-2 pb-4 px-4">
                     <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
-                      {[1, 2, 3].map((gel) => (
+                      {["1", "2", "3"].map((gel) => (
                         <button
                           key={gel}
                           onClick={() => setJadwalGelombang(gel)}
@@ -1228,6 +1258,381 @@ export default function Home() {
                   </main>
                 </div>
               )}
+            </div>
+          )}
+
+          {activeTab === Tab.JADWAL && (
+            <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark animate-fade-in relative z-50">
+              <Header
+                onToggleTheme={toggleDarkMode}
+                isDarkMode={isDarkMode}
+                title="Jadwal Pendaftaran"
+                onBack={() => setActiveTab(Tab.HOME)}
+              />
+
+              <div className="px-4 pt-6 pb-2 bg-background-light dark:bg-background-dark flex flex-col items-center">
+                {/* Institution Selector */}
+                <div className="w-full mb-6 max-w-md">
+                  <label
+                    className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-1"
+                    htmlFor="institution-select"
+                  >
+                    Pilih Lembaga
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <School
+                        className="text-gray-400 group-focus-within:text-primary transition-colors"
+                        size={24}
+                      />
+                    </div>
+                    <select
+                      id="institution-select"
+                      value={jadwalLembaga}
+                      onChange={(e) => setJadwalLembaga(e.target.value)}
+                      className="block w-full pl-10 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
+                    >
+                      <option value="mi">Madrasah Ibtidaiyah (MI)</option>
+                      <option value="mts">Madrasah Tsanawiyah (MTs)</option>
+                      <option value="ma">Madrasah Aliyah (MA)</option>
+                      <option value="pdf">PDF Ulya</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <ChevronDown className="text-gray-400" size={24} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Active Wave Info */}
+                <div className="text-center mb-2">
+                  <h2 className="text-2xl font-extrabold text-text-main dark:text-white tracking-tight leading-tight mb-2">
+                    {jadwalLembaga === "mi"
+                      ? "Madrasah Ibtidaiyah"
+                      : jadwalLembaga === "mts"
+                      ? "Madrasah Tsanawiyah"
+                      : jadwalLembaga === "ma"
+                      ? "Madrasah Aliyah"
+                      : "PDF Ulya"}
+                  </h2>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-xs font-medium shadow-sm">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    Tahun Ajaran 2024/2025
+                  </div>
+                </div>
+              </div>
+
+              {/* Wave Selector */}
+              <div className="sticky top-[60px] z-10 bg-background-light dark:bg-background-dark pt-2 pb-4 px-4 transition-colors duration-300">
+                <div className="p-1.5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 grid grid-cols-3 gap-1 shadow-sm">
+                  {["1", "2", "3"].map((gel) => (
+                    <button
+                      key={gel}
+                      onClick={() => setJadwalGelombang(gel)}
+                      className={`relative py-2.5 text-sm font-bold rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 ${
+                        jadwalGelombang === gel
+                          ? "bg-primary text-[#052e12] shadow-sm ring-1 ring-black/5"
+                          : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 font-medium"
+                      }`}
+                    >
+                      <span>Gelombang {gel}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="px-4 pb-28 relative min-h-[400px]">
+                {/* Schedule Content */}
+                <div id="timeline-content">
+                  {/* Table */}
+                  <div className="mb-8">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                      <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
+                        <Calendar className="text-primary" size={24} />
+                        <h3 className="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">
+                          Jadwal Kegiatan
+                        </h3>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-gray-50 dark:bg-gray-700/30 border-b border-gray-100 dark:border-gray-700">
+                              <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[35%]">
+                                Tanggal
+                              </th>
+                              <th className="py-3 px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                Keterangan
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block">
+                                  1 Jan - 28 Feb
+                                </span>
+                              </td>
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                  Pendaftaran Online
+                                </span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                  Via Aplikasi/Website
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="group bg-green-50/50 dark:bg-green-900/10 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-primary block">
+                                  5 Maret
+                                </span>
+                              </td>
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                  Tes Seleksi Masuk
+                                </span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                  Gedung Aula Utama Lt. 2
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block">
+                                  10 Maret
+                                </span>
+                              </td>
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                  Pengumuman Kelulusan
+                                </span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                  Cek status di aplikasi
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block">
+                                  11 - 20 Maret
+                                </span>
+                              </td>
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                  Daftar Ulang
+                                </span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                  Pembayaran & Pengambilan Seragam
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block">
+                                  15 Juli
+                                </span>
+                              </td>
+                              <td className="py-4 px-4 align-top">
+                                <span className="text-sm font-bold text-text-main dark:text-white block mb-0.5">
+                                  Awal Masuk Sekolah
+                                </span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400 block">
+                                  Hari pertama kegiatan KBM
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Timeline */}
+                  <div className="flex items-center justify-between mb-6 px-1">
+                    <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Linimasa Kegiatan
+                    </h3>
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg">
+                      Gelombang {jadwalGelombang}
+                    </span>
+                  </div>
+
+                  <div className="relative pb-8">
+                    {/* Item 1 - Selesai */}
+                    <div className="relative flex gap-4 pb-8 group">
+                      <div className="flex flex-col items-center flex-shrink-0 relative">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/10 border-2 border-primary text-primary z-10 shadow-sm transition-transform group-hover:scale-110">
+                          <Check
+                            className="text-xl"
+                            size={20}
+                            strokeWidth={3}
+                          />
+                        </div>
+                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-primary/30"></div>
+                      </div>
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 opacity-70">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                            Selesai
+                          </span>
+                          <span className="text-xs font-bold text-gray-500 dark:text-gray-400">
+                            1 Jan - 28 Feb
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                          Pendaftaran Online
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                          Pengisian formulir biodata santri dan upload berkas
+                          persyaratan.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 2 - Active */}
+                    <div className="relative flex gap-4 pb-8 group">
+                      <div className="flex flex-col items-center flex-shrink-0 relative">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-[#052e12] shadow-lg shadow-primary/30 z-10 scale-110 ring-4 ring-white dark:ring-background-dark">
+                          <FileEdit
+                            className="text-xl animate-pulse"
+                            size={20}
+                          />
+                        </div>
+                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                      </div>
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md border-l-4 border-l-primary border-y border-r border-gray-100 dark:border-gray-700 ring-1 ring-primary/10 transition-transform hover:-translate-y-1">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-primary/20 text-green-800 dark:text-green-200">
+                            Sedang Berlangsung
+                          </span>
+                          <span className="text-xs font-bold text-primary">
+                            5 Maret
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-text-main dark:text-white mb-1">
+                          Tes Seleksi Masuk
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                          Tes kemampuan dasar, tes membaca Al-Qur'an, dan
+                          wawancara.
+                        </p>
+                        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                          <MapPin className="text-primary" size={18} />
+                          <span className="font-medium">
+                            Gedung Aula Utama Lt. 2
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Item 3 - Future */}
+                    <div className="relative flex gap-4 pb-8 group">
+                      <div className="flex flex-col items-center flex-shrink-0 relative">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                          <Megaphone className="text-xl" size={20} />
+                        </div>
+                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                      </div>
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                            Akan Datang
+                          </span>
+                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                            10 Maret
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                          Pengumuman Kelulusan
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                          Hasil tes seleksi dapat dilihat melalui aplikasi atau
+                          papan pengumuman.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 4 - Future */}
+                    <div className="relative flex gap-4 pb-8 group">
+                      <div className="flex flex-col items-center flex-shrink-0 relative">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                          <ClipboardList className="text-xl" size={20} />
+                        </div>
+                        <div className="absolute top-[40px] bottom-[-20px] w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                      </div>
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                            Akan Datang
+                          </span>
+                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                            11 - 20 Maret
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                          Daftar Ulang
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                          Pembayaran biaya masuk dan pengambilan seragam santri
+                          baru.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Item 5 - Future */}
+                    <div className="relative flex gap-4 group">
+                      <div className="flex flex-col items-center flex-shrink-0 relative">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500 z-10">
+                          <School className="text-xl" size={20} />
+                        </div>
+                      </div>
+                      <div className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+                            Akan Datang
+                          </span>
+                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                            15 Juli
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-1">
+                          Awal Masuk Sekolah
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                          Hari pertama kegiatan Belajar Mengajar (KBM) dimulai.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Empty State - Hidden by default for active flow */}
+                  <div
+                    className="hidden flex flex-col items-center justify-center pt-10 text-center"
+                    id="empty-state"
+                  >
+                    <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                      <CalendarX className="text-gray-400" size={40} />
+                    </div>
+                    <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">
+                      Belum Ada Jadwal
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 max-w-[250px] mx-auto text-sm leading-relaxed">
+                      Informasi pendaftaran untuk gelombang ini belum tersedia
+                      saat ini.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="fixed bottom-0 left-0 right-0 z-30 p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pb-6">
+                <button className="w-full bg-primary hover:bg-[#0fdc52] active:scale-[0.98] transition-all text-[#052e12] font-bold text-base py-4 px-6 rounded-xl shadow-xl shadow-primary/30 flex items-center justify-center gap-2">
+                  <UserPlus size={24} />
+                  Daftar Sekarang
+                </button>
+              </div>
             </div>
           )}
 

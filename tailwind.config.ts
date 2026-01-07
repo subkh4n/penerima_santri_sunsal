@@ -18,6 +18,12 @@ const config: Config = {
         "surface-dark": "#1a2c20",
         "text-main": "#111813",
         "text-sub": "#61896f",
+        "card-light": "#ffffff",
+        "card-dark": "#1a2c20",
+        "text-main-light": "#111813",
+        "text-main-dark": "#f0f4f2",
+        "text-sub-light": "#61896f",
+        "text-sub-dark": "#8ba695",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
