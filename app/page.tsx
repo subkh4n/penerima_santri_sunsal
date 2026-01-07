@@ -712,21 +712,14 @@ export default function Home() {
                     </div>
                   </SelectTrigger>
                   <SelectContent className="max-h-[300px]">
-                    {profilSections.map((section, idx) => (
-                      <SelectGroup key={idx}>
-                        <SelectLabel className="sticky top-0 bg-white dark:bg-gray-950 text-xs font-bold text-primary px-2 py-1.5 uppercase tracking-wider">
-                          {section.title}
-                        </SelectLabel>
-                        {section.items.map((item) => (
-                          <SelectItem
-                            key={item.id}
-                            value={item.id}
-                            className="pl-4 cursor-pointer focus:bg-primary/10 focus:text-primary"
-                          >
-                            {item.name}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
+                    {getAllLembaga().map((lembaga) => (
+                      <SelectItem
+                        key={lembaga.id}
+                        value={lembaga.id}
+                        className="cursor-pointer focus:bg-primary/10 focus:text-primary"
+                      >
+                        {lembaga.name}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
