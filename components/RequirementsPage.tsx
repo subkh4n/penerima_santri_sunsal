@@ -99,7 +99,7 @@ const RequirementsPage: React.FC<RequirementsPageProps> = ({
             </h3>
             <div className="bg-card-light dark:bg-card-dark rounded-[12px] p-5 shadow-sm">
               <ul className="flex flex-col gap-4">
-                {institution.pendaftaran.persyaratan.map((syarat, idx) => (
+                {institution.pendaftaran?.persyaratan?.map((syarat, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <div className="mt-1 size-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <div className="size-2 rounded-full bg-primary"></div>
