@@ -17,73 +17,16 @@
     "Menumbuhkan semangat keunggulan secara intensif kepada seluruh warga sekolah.",
     "Menerapkan manajemen partisipatif dengan melibatkan seluruh warga sekolah."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 5000000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 3000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 600000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama & Makan",
-          "deskripsi": "Akomodasi",
-          "jumlah": 800000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Seragam",
-          "deskripsi": "Seragam lengkap",
-          "jumlah": 600000,
-          "icon": "checkroom"
-        }
-      ]
-    },
-    "fullDay": {
-      "totalEstimasi": 3500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 500000,
-          "icon": "school"
-        },
-        {
-          "nama": "Seragam",
-          "deskripsi": "Seragam lengkap",
-          "jumlah": 500000,
-          "icon": "checkroom"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Ijazah SD",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Ruang Kelas Multimedia", "Lab Komputer", "Lapangan Futsal"],
-  "programUnggulan": ["Sains Club", "English Club", "Tahfidz Juz 30"],
+  "fasilitas": [
+    "Ruang Kelas Multimedia",
+    "Lab Komputer",
+    "Lapangan Futsal"
+  ],
+  "programUnggulan": [
+    "Sains Club",
+    "English Club",
+    "Tahfidz Juz 30"
+  ],
   "kontak": {
     "telepon": "081234567892",
     "whatsapp": "081234567892",

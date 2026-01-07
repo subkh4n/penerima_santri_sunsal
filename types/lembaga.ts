@@ -17,9 +17,9 @@ export interface Profil {
 }
 
 export interface Pendaftaran {
-  tanggalBuka: string;
-  tanggalTutup: string;
-  persyaratan: string[];
+  tanggalBuka?: string;
+  tanggalTutup?: string;
+  persyaratan?: string[];
   tahapanSeleksi?: string[];
 }
 
@@ -42,7 +42,7 @@ export interface Lembaga {
   name: string;
   shortName: string;
   desc: string;
-  type: "ponpes" | "smp" | "sma" | "smk" | "stit" | "madrasah";
+  type: "ponpes" | "sd" | "smp" | "sma" | "smk" | "stit" | "madrasah";
   gender?: "putra" | "putri" | "umum";
   icon: string;
   image: string;
@@ -57,7 +57,7 @@ export interface Lembaga {
     fullDay?: BiayaType;
   };
 
-  pendaftaran: Pendaftaran;
+  pendaftaran?: Pendaftaran;
 
   fasilitas?: string[];
   programUnggulan?: string[];

@@ -3,7 +3,7 @@
   "name": "Pondok Athfal Sunniyah Salafiyah",
   "shortName": "Pondok Athfal",
   "desc": "Pendidikan Anak Usia Dini Berbasis Pesantren",
-  "type": "ponpes",
+  "type": "sd",
   "gender": "umum",
   "icon": "child_care",
   "image": "/images/lembaga/hero-1.png",
@@ -17,72 +17,6 @@
     "Membiasakan perilaku sopan santun dan adab Islami.",
     "Mengajarkan dasar-dasar membaca Al-Qur'an dan ibadah praktis."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 3500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran awal",
-          "jumlah": 2000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya pendidikan bulanan",
-          "jumlah": 400000,
-          "icon": "school"
-        },
-        {
-          "nama": "Seragam",
-          "deskripsi": "Paket seragam lengkap",
-          "jumlah": 600000,
-          "icon": "checkroom"
-        },
-        {
-          "nama": "Perlengkapan",
-          "deskripsi": "Tas, alat tulis, dan buku",
-          "jumlah": 500000,
-          "icon": "backpack"
-        }
-      ]
-    },
-    "fullDay": {
-      "totalEstimasi": 2500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran awal",
-          "jumlah": 1500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya pendidikan bulanan",
-          "jumlah": 300000,
-          "icon": "school"
-        },
-        {
-          "nama": "Seragam & Perlengkapan",
-          "deskripsi": "Paket lengkap",
-          "jumlah": 700000,
-          "icon": "backpack"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Akta Kelahiran (2 lembar)",
-      "Fotokopi Kartu Keluarga (2 lembar)",
-      "Pas foto 3x4 berwarna (4 lembar)",
-      "Surat Keterangan Sehat dari dokter"
-    ],
-    "tahapanSeleksi": ["Wawancara orang tua", "Observasi anak"]
-  },
   "fasilitas": ["Asrama Anak", "Taman Bermain", "Aula Mengaji"],
   "programUnggulan": ["Tahfidz Juz Amma", "Praktik Ibadah", "Adab Harian"],
   "kontak": {

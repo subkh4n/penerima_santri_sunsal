@@ -17,39 +17,16 @@
     "Mengajarkan kitab-kitab dasar keislaman.",
     "Membiasakan amalan ibadah sehari-hari."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "fullDay": {
-      "totalEstimasi": 1500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 1000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 200000,
-          "icon": "school"
-        },
-        {
-          "nama": "Kitab & Seragam",
-          "deskripsi": "Perlengkapan",
-          "jumlah": 300000,
-          "icon": "menu_book"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": ["Fotokopi Akta Kelahiran", "Fotokopi KK", "Pas foto 3x4"]
-  },
-  "fasilitas": ["Ruang Kelas", "Masjid", "Perpustakaan Kitab"],
-  "programUnggulan": ["Kitab Kuning", "Bahasa Arab", "Fiqih Ibadah"],
+  "fasilitas": [
+    "Ruang Kelas",
+    "Masjid",
+    "Perpustakaan Kitab"
+  ],
+  "programUnggulan": [
+    "Kitab Kuning",
+    "Bahasa Arab",
+    "Fiqih Ibadah"
+  ],
   "kontak": {
     "telepon": "081234567800",
     "whatsapp": "081234567800",

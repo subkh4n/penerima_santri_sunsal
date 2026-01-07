@@ -17,49 +17,11 @@
     "Mengembangkan potensi kemandirian anak berkebutuhan khusus.",
     "Menanamkan nilai-nilai agama sesuai dengan kemampuan anak."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 6000000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 3500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 1000000,
-          "icon": "school"
-        },
-        {
-          "nama": "Terapi & Asrama",
-          "deskripsis": "Biaya terapi dan akomodasi",
-          "jumlah": 1000000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Alat Terapi",
-          "deskripsi": "Perlengkapan terapi",
-          "jumlah": 500000,
-          "icon": "medical_services"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Akta Kelahiran",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Keterangan Dokter/Psikolog"
-    ]
-  },
-  "fasilitas": ["Ruang Terapi", "Sensory Room", "Asrama Khusus"],
+  "fasilitas": [
+    "Ruang Terapi",
+    "Sensory Room",
+    "Asrama Khusus"
+  ],
   "programUnggulan": [
     "Terapi Wicara",
     "Bina Diri",

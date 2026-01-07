@@ -17,50 +17,16 @@
     "Mengembangkan potensi santri dalam bidang Ulumul Qur'an.",
     "Membentuk karakter santri yang berakhlakul karimah."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 3800000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2200000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 450000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama",
-          "deskripsi": "Akomodasi",
-          "jumlah": 700000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Mushaf & Seragam",
-          "deskripsi": "Perlengkapan",
-          "jumlah": 450000,
-          "icon": "menu_book"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Akta Kelahiran",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Asrama Tahfidz", "Masjid", "Ruang Setoran"],
-  "programUnggulan": ["Tahfidz 30 Juz", "Qiro'ah Sab'ah", "Tafsir Al-Qur'an"],
+  "fasilitas": [
+    "Asrama Tahfidz",
+    "Masjid",
+    "Ruang Setoran"
+  ],
+  "programUnggulan": [
+    "Tahfidz 30 Juz",
+    "Qiro'ah Sab'ah",
+    "Tafsir Al-Qur'an"
+  ],
   "kontak": {
     "telepon": "081234567898",
     "whatsapp": "081234567898",

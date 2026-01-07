@@ -17,39 +17,16 @@
     "Mengkaji kitab-kitab kuning dengan metode salaf.",
     "Membentuk karakter muslimah yang tawadhu' dan istiqomah."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "fullDay": {
-      "totalEstimasi": 1500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 1000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 200000,
-          "icon": "school"
-        },
-        {
-          "nama": "Kitab & Seragam",
-          "deskripsi": "Perlengkapan",
-          "jumlah": 300000,
-          "icon": "menu_book"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": ["Fotokopi Akta Kelahiran", "Fotokopi KK", "Pas foto 3x4"]
-  },
-  "fasilitas": ["Ruang Kelas", "Musholla Putri", "Perpustakaan"],
-  "programUnggulan": ["Tahsin Al-Qur'an", "Fiqih Wanita", "Akhlak"],
+  "fasilitas": [
+    "Ruang Kelas",
+    "Musholla Putri",
+    "Perpustakaan"
+  ],
+  "programUnggulan": [
+    "Tahsin Al-Qur'an",
+    "Fiqih Wanita",
+    "Akhlak"
+  ],
   "kontak": {
     "telepon": "081234567803",
     "whatsapp": "081234567803",

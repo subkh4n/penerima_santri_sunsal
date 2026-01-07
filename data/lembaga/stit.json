@@ -17,38 +17,16 @@
     "Mengembangkan riset dan pengabdian masyarakat.",
     "Membangun kemitraan strategis dengan berbagai lembaga."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "fullDay": {
-      "totalEstimasi": 3500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Semester 1",
-          "deskripsi": "Biaya semester",
-          "jumlah": 1000000,
-          "icon": "school"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-08-31",
-    "persyaratan": [
-      "Fotokopi Ijazah SMA/MA",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Ruang Kuliah Ber-AC", "Perpustakaan Kampus", "Wi-Fi Area"],
-  "programUnggulan": ["Beasiswa Tahfidz", "KKN Nusantara", "Jurnal Ilmiah"],
+  "fasilitas": [
+    "Ruang Kuliah Ber-AC",
+    "Perpustakaan Kampus",
+    "Wi-Fi Area"
+  ],
+  "programUnggulan": [
+    "Beasiswa Tahfidz",
+    "KKN Nusantara",
+    "Jurnal Ilmiah"
+  ],
   "prodi": [
     {
       "nama": "PBA",

@@ -17,73 +17,16 @@
     "Melatih kemandirian santriwati melalui kegiatan kewirausahaan.",
     "Membiasakan akhlak mulia dalam kehidupan sehari-hari."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 4000000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2300000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 500000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama",
-          "deskripsi": "Akomodasi",
-          "jumlah": 700000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Perlengkapan",
-          "deskripsi": "Kitab & seragam",
-          "jumlah": 500000,
-          "icon": "backpack"
-        }
-      ]
-    },
-    "fullDay": {
-      "totalEstimasi": 2800000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 1800000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 400000,
-          "icon": "school"
-        },
-        {
-          "nama": "Perlengkapan",
-          "deskripsi": "Kitab & seragam",
-          "jumlah": 600000,
-          "icon": "backpack"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Akta Kelahiran",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Asrama", "Musholla", "Dapur Umum"],
-  "programUnggulan": ["Tahsin Qur'an", "Fiqih Nisa'", "Keterampilan Menjahit"],
+  "fasilitas": [
+    "Asrama",
+    "Musholla",
+    "Dapur Umum"
+  ],
+  "programUnggulan": [
+    "Tahsin Qur'an",
+    "Fiqih Nisa'",
+    "Keterampilan Menjahit"
+  ],
   "kontak": {
     "telepon": "081234567895",
     "whatsapp": "081234567895",

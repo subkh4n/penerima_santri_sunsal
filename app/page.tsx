@@ -119,7 +119,7 @@ export default function Home() {
     useState<Lembaga | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [showRequirements, setShowRequirements] = useState(false);
-  const [jadwalLembaga, setJadwalLembaga] = useState("mts");
+  const [jadwalLembaga, setJadwalLembaga] = useState("pass");
   const [jadwalGelombang, setJadwalGelombang] = useState("1");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -142,6 +142,15 @@ export default function Home() {
       document.documentElement.classList.add("dark");
     }
   }, []);
+
+  // Sync jadwal selection with profile selection
+  useEffect(() => {
+    if (selectedLembaga) {
+      setJadwalLembaga(selectedLembaga);
+    } else if (selectedInstitution) {
+      setJadwalLembaga(selectedInstitution.id);
+    }
+  }, [selectedLembaga, selectedInstitution]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -176,8 +185,10 @@ export default function Home() {
       items: allLembaga.filter((l) => l.type === "ponpes"),
     },
     {
-      title: "Sekolah Formal",
-      items: allLembaga.filter((l) => ["smp", "sma", "smk"].includes(l.type)),
+      title: "Sekolah Formal & Pondok Pesantren",
+      items: allLembaga.filter((l) =>
+        ["sd", "smp", "sma", "smk"].includes(l.type)
+      ),
     },
     {
       title: "Madrasah & Kampus",
@@ -1081,10 +1092,14 @@ export default function Home() {
                       className="block w-full pl-14 pr-10 py-3.5 text-sm font-semibold text-text-main dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer appearance-none"
                     >
                       <option value="">Pilih Lembaga</option>
-                      {getAllLembaga().map((lembaga) => (
-                        <option key={lembaga.id} value={lembaga.id}>
-                          {lembaga.name}
-                        </option>
+                      {profilSections.map((section, idx) => (
+                        <optgroup key={idx} label={section.title}>
+                          {section.items.map((lembaga) => (
+                            <option key={lembaga.id} value={lembaga.id}>
+                              {lembaga.name}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1219,6 +1234,79 @@ export default function Home() {
                             terbaru melalui aplikasi atau website resmi.
                           </p>
                         </div>
+
+                        {/* Requirements & Selection Stages */}
+                        {getLembagaById(jadwalLembaga)?.pendaftaran && (
+                          <div className="mt-6 space-y-4">
+                            {/* Requirements */}
+                            {getLembagaById(jadwalLembaga)?.pendaftaran
+                              ?.persyaratan &&
+                              getLembagaById(jadwalLembaga)!.pendaftaran!
+                                .persyaratan!.length > 0 && (
+                                <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+                                  <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-3">
+                                    <ClipboardList
+                                      className="text-primary"
+                                      size={18}
+                                    />
+                                    Syarat Pendaftaran
+                                  </h3>
+                                  <ul className="space-y-3">
+                                    {getLembagaById(
+                                      jadwalLembaga
+                                    )?.pendaftaran?.persyaratan?.map(
+                                      (req, i) => (
+                                        <li
+                                          key={i}
+                                          className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400"
+                                        >
+                                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                                          <span className="leading-relaxed">
+                                            {req}
+                                          </span>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                </div>
+                              )}
+
+                            {/* Selection Stages */}
+                            {getLembagaById(jadwalLembaga)?.pendaftaran
+                              ?.tahapanSeleksi &&
+                              getLembagaById(jadwalLembaga)!.pendaftaran!
+                                .tahapanSeleksi!.length > 0 && (
+                                <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+                                  <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-3">
+                                    <UserPlus
+                                      className="text-primary"
+                                      size={18}
+                                    />
+                                    Tahapan Seleksi
+                                  </h3>
+                                  <ul className="space-y-3">
+                                    {getLembagaById(
+                                      jadwalLembaga
+                                    )?.pendaftaran?.tahapanSeleksi?.map(
+                                      (step, i) => (
+                                        <li
+                                          key={i}
+                                          className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400"
+                                        >
+                                          <div className="w-6 h-6 rounded-full bg-gray-50 dark:bg-gray-700/50 text-xs font-bold flex items-center justify-center text-primary shrink-0 border border-gray-100 dark:border-gray-600">
+                                            {i + 1}
+                                          </div>
+                                          <span className="mt-0.5 leading-relaxed">
+                                            {step}
+                                          </span>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                </div>
+                              )}
+                          </div>
+                        )}
                       </div>
 
                       {/* Fixed Bottom Button - Floating Style */}

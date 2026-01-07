@@ -1,4 +1,6 @@
 import type { Lembaga } from "@/types/lembaga";
+import { BIAYA_PENDIDIKAN } from "@/data/biaya-pendidikan";
+import { PERSYARATAN_PENDAFTARAN } from "@/data/persyaratan-pendaftaran";
 
 // Import all lembaga data
 import passData from "@/data/lembaga/pass.json";
@@ -16,22 +18,31 @@ import mdAzzahroData from "@/data/lembaga/md-azzahro.json";
 import stitData from "@/data/lembaga/stit.json";
 import paAutismData from "@/data/lembaga/pa-autism.json";
 
+// Helper to merge centralized data (biaya & pendaftaran)
+const mergeData = (lembaga: any, id: string): Lembaga => {
+  return {
+    ...lembaga,
+    biaya: BIAYA_PENDIDIKAN[id] || lembaga.biaya,
+    pendaftaran: PERSYARATAN_PENDAFTARAN[id] || lembaga.pendaftaran,
+  } as Lembaga;
+};
+
 // Create a map of all lembaga
 const lembagaMap: Record<string, Lembaga> = {
-  pass: passData as unknown as Lembaga,
-  ppss: ppssData as unknown as Lembaga,
-  "smp-putra": smpPutraData as unknown as Lembaga,
-  "sma-putra": smaPutraData as unknown as Lembaga,
-  "pp-azzahro": ppAzzahroData as unknown as Lembaga,
-  "pp-nurus": ppNurusData as unknown as Lembaga,
-  "smp-putri": smpPutriData as unknown as Lembaga,
-  "smk-putri": smkPutriData as unknown as Lembaga,
-  "pq-ranggeh": pqRanggehData as unknown as Lembaga,
-  "pt-besuki": ptBesukiData as unknown as Lembaga,
-  "md-putra": mdPutraData as unknown as Lembaga,
-  stit: stitData as unknown as Lembaga,
-  "pa-autism": paAutismData as unknown as Lembaga,
-  "md-azzahro": mdAzzahroData as unknown as Lembaga,
+  pass: mergeData(passData, "pass"),
+  ppss: mergeData(ppssData, "ppss"),
+  "smp-putra": mergeData(smpPutraData, "smp-putra"),
+  "sma-putra": mergeData(smaPutraData, "sma-putra"),
+  "pp-azzahro": mergeData(ppAzzahroData, "pp-azzahro"),
+  "pp-nurus": mergeData(ppNurusData, "pp-nurus"),
+  "smp-putri": mergeData(smpPutriData, "smp-putri"),
+  "smk-putri": mergeData(smkPutriData, "smk-putri"),
+  "pq-ranggeh": mergeData(pqRanggehData, "pq-ranggeh"),
+  "pt-besuki": mergeData(ptBesukiData, "pt-besuki"),
+  "md-putra": mergeData(mdPutraData, "md-putra"),
+  stit: mergeData(stitData, "stit"),
+  "pa-autism": mergeData(paAutismData, "pa-autism"),
+  "md-azzahro": mergeData(mdAzzahroData, "md-azzahro"),
 };
 
 /**
@@ -87,6 +98,10 @@ export function getProfilSections() {
     {
       title: "Pondok Pesantren",
       items: getAllLembaga().filter((l) => l.type === "ponpes"),
+    },
+    {
+      title: "Sekolah Dasar",
+      items: getAllLembaga().filter((l) => l.type === "sd"),
     },
     {
       title: "Sekolah Menengah Pertama",

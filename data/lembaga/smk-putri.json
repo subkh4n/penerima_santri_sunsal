@@ -17,73 +17,16 @@
     "Membekali siswi dengan keterampilan wirausaha.",
     "Membentuk karakter kerja yang profesional dan islami."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 5200000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 3000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 650000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama & Makan",
-          "deskripsi": "Akomodasi",
-          "jumlah": 900000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Perlengkapan Praktik",
-          "deskripsi": "Alat praktik",
-          "jumlah": 650000,
-          "icon": "construction"
-        }
-      ]
-    },
-    "fullDay": {
-      "totalEstimasi": 3700000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 550000,
-          "icon": "school"
-        },
-        {
-          "nama": "Perlengkapan Praktik",
-          "deskripsi": "Alat praktik",
-          "jumlah": 650000,
-          "icon": "construction"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Ijazah SMP",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Lab Komputer", "Studio Busana", "Teaching Factory"],
-  "programUnggulan": ["Desain Busana", "Multimedia", "Kewirausahaan"],
+  "fasilitas": [
+    "Lab Komputer",
+    "Studio Busana",
+    "Teaching Factory"
+  ],
+  "programUnggulan": [
+    "Desain Busana",
+    "Multimedia",
+    "Kewirausahaan"
+  ],
   "prodi": [
     {
       "nama": "Tata Busana",

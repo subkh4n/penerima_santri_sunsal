@@ -17,50 +17,16 @@
     "Menanamkan kecintaan terhadap Al-Qur'an dan As-Sunnah.",
     "Membina masyarakat melalui dakwah Al-Qur'an."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 4000000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 2300000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 500000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama & Makan",
-          "deskripsi": "Akomodasi",
-          "jumlah": 700000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Mushaf & Perlengkapan",
-          "deskripsi": "Kelengkapan",
-          "jumlah": 500000,
-          "icon": "menu_book"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Akta Kelahiran",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Musholla", "Asrama Santri", "Halaman Luas"],
-  "programUnggulan": ["Tahfidz Anak", "Tahsin Dewasa", "Kajian Tafsir"],
+  "fasilitas": [
+    "Musholla",
+    "Asrama Santri",
+    "Halaman Luas"
+  ],
+  "programUnggulan": [
+    "Tahfidz Anak",
+    "Tahsin Dewasa",
+    "Kajian Tafsir"
+  ],
   "kontak": {
     "telepon": "081234567899",
     "whatsapp": "081234567899",

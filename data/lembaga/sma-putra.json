@@ -17,72 +17,11 @@
     "Mewujudkan lingkungan sekolah yang religius dan kondusif.",
     "Menjalin kerjasama dengan berbagai pihak untuk peningkatan mutu pendidikan."
   ],
-  "biaya": {
-    "tahunAjaran": "2025-2026",
-    "boarding": {
-      "totalEstimasi": 5500000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 3500000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 700000,
-          "icon": "school"
-        },
-        {
-          "nama": "Asrama & Makan",
-          "deskripsi": "Akomodasi",
-          "jumlah": 800000,
-          "icon": "hotel"
-        },
-        {
-          "nama": "Buku & Seragam",
-          "deskripsi": "Perlengkapan",
-          "jumlah": 500000,
-          "icon": "menu_book"
-        }
-      ]
-    },
-    "fullDay": {
-      "totalEstimasi": 4000000,
-      "rincian": [
-        {
-          "nama": "Uang Pangkal",
-          "deskripsi": "Biaya pendaftaran",
-          "jumlah": 3000000,
-          "icon": "payments"
-        },
-        {
-          "nama": "SPP Bulan Pertama",
-          "deskripsi": "Biaya bulanan",
-          "jumlah": 550000,
-          "icon": "school"
-        },
-        {
-          "nama": "Buku & Seragam",
-          "deskripsi": "Perlengkapan",
-          "jumlah": 450000,
-          "icon": "menu_book"
-        }
-      ]
-    }
-  },
-  "pendaftaran": {
-    "tanggalBuka": "2025-05-12",
-    "tanggalTutup": "2025-06-30",
-    "persyaratan": [
-      "Fotokopi Ijazah SMP",
-      "Fotokopi KK",
-      "Pas foto 3x4",
-      "Surat Sehat"
-    ]
-  },
-  "fasilitas": ["Lab IPA", "Lab Bahasa", "Perpustakaan Digital"],
+  "fasilitas": [
+    "Lab IPA",
+    "Lab Bahasa",
+    "Perpustakaan Digital"
+  ],
   "programUnggulan": [
     "Olimpiade Sains",
     "Karya Tulis Ilmiah",
