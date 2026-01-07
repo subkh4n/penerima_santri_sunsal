@@ -59,6 +59,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectGroup,
+  SelectLabel,
 } from "@/components/ui/select";
 
 enum Tab {
@@ -699,24 +701,35 @@ export default function Home() {
               </div>
 
               <div className="mb-3 relative">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Building2 size={20} className="text-text-sub" />
-                </div>
-                <select
+                <Select
                   value={selectedLembaga}
-                  onChange={(e) => setSelectedLembaga(e.target.value)}
-                  className="block w-full appearance-none rounded-xl border border-gray-100 dark:border-white/5 bg-white dark:bg-gray-800 py-3 pl-10 pr-10 text-sm font-medium text-text-main dark:text-white shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                  onValueChange={(value) => setSelectedLembaga(value)}
                 >
-                  <option value="">Pilih Lembaga</option>
-                  {getAllLembaga().map((lembaga) => (
-                    <option key={lembaga.id} value={lembaga.id}>
-                      {lembaga.name}
-                    </option>
-                  ))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <ChevronDown size={24} className="text-text-sub" />
-                </div>
+                  <SelectTrigger className="w-full h-[50px] rounded-xl border-gray-100 dark:border-white/5 bg-white dark:bg-gray-800 text-text-main dark:text-white shadow-sm focus:ring-primary/20">
+                    <div className="flex items-center gap-3">
+                      <Building2 size={20} className="text-text-sub shrink-0" />
+                      <SelectValue placeholder="Pilih Lembaga" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent className="max-h-[300px]">
+                    {profilSections.map((section, idx) => (
+                      <SelectGroup key={idx}>
+                        <SelectLabel className="sticky top-0 bg-white dark:bg-gray-950 text-xs font-bold text-primary px-2 py-1.5 uppercase tracking-wider">
+                          {section.title}
+                        </SelectLabel>
+                        {section.items.map((item) => (
+                          <SelectItem
+                            key={item.id}
+                            value={item.id}
+                            className="pl-4 cursor-pointer focus:bg-primary/10 focus:text-primary"
+                          >
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="relative overflow-hidden bg-[#111813] dark:bg-gray-900 rounded-2xl p-6 shadow-lg mb-6 text-white border border-gray-800 dark:border-white/10">
